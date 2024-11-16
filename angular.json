@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "teleport-project-template-angular:build"
+            "buildTarget": "teleport-project-template-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "teleport-project-template-angular:build:production"
+              "buildTarget": "teleport-project-template-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "teleport-project-template-angular:build"
+            "buildTarget": "teleport-project-template-angular:build"
           }
         },
         "test": {
