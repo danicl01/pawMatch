@@ -1,0 +1,186 @@
+:host { 
+  display: contents; 
+}
+.register-container1 {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(180deg, rgba(195, 236, 255, 0.7) 2.00%,rgb(255, 208, 254) 99.00%);
+}
+.register-body {
+  width: 90%;
+  height: 850px;
+  display: flex;
+  z-index: 100;
+  box-shadow: 5px 5px 10px 0px #888686;
+  align-items: flex-start;
+  border-radius: 4px;
+  background-color: #f6f6f6;
+}
+.register-register-form-container {
+  flex: 0 0 auto;
+  width: 40%;
+  height: 80%;
+  display: flex;
+  align-self: center;
+  align-items: flex-start;
+  margin-left: var(--dl-space-space-threeunits);
+  padding-top: var(--dl-space-space-threeunits);
+  margin-right: var(--dl-space-space-threeunits);
+  padding-left: var(--dl-space-space-twounits);
+  border-radius: var(--dl-radius-radius-radius8);
+  padding-right: var(--dl-space-space-twounits);
+  flex-direction: column;
+  background-color: #ffffff;
+}
+.register-text1 {
+  font-size: 4em;
+  font-family: "Roboto";
+  margin-bottom: var(--dl-space-space-unit);
+}
+.register-login-container {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.register-text2 {
+  color: rgb(185, 182, 182);
+  font-size: 22px;
+  font-family: "Roboto";
+  margin-bottom: var(--dl-space-space-threeunits);
+}
+.register-navlink1 {
+  color: rgb(244, 122, 255);
+  font-size: 22px;
+  font-family: "Roboto";
+  margin-left: var(--dl-space-space-halfunit);
+  text-decoration: underline;
+}
+.register-text3 {
+  font-size: 24px;
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.register-textinput1 {
+  width: 100%;
+  font-size: 1.5em;
+  font-family: "Roboto";
+  border-color: #7f7f7f;
+  border-radius: var(--dl-radius-radius-imageradius);
+  margin-bottom: var(--dl-space-space-twounits);
+}
+.register-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.register-text4 {
+  font-size: 24px;
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.register-textinput2 {
+  width: 100%;
+  font-size: 1.5em;
+  font-family: "Roboto";
+  border-color: #7f7f7f;
+  border-radius: var(--dl-radius-radius-imageradius);
+  margin-bottom: var(--dl-space-space-threeunits);
+}
+.register-text5 {
+  font-size: 24px;
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 700;
+}
+.register-textinput3 {
+  width: 100%;
+  font-size: 1.5em;
+  font-family: "Roboto";
+  border-color: #7f7f7f;
+  border-radius: var(--dl-radius-radius-imageradius);
+  margin-bottom: var(--dl-space-space-threeunits);
+}
+.register-navlink2 {
+  color: rgb(255, 255, 255);
+  width: 100%;
+  height: 70px;
+  align-self: center;
+  transition: 0.3s;
+  border-width: 0px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: rgb(244, 122, 255);
+}
+.register-navlink2:hover {
+  background-color: #f6b5f9;
+}
+.register-logo-container {
+  flex: 0 0 auto;
+  width: 50%;
+  height: 90%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.register-image1 {
+  width: 95%;
+  height: 100%;
+  margin-top: var(--dl-space-space-twounits);
+  object-fit: cover;
+  margin-bottom: var(--dl-space-space-twounits);
+}
+.register-image2 {
+  width: 95%;
+  height: 100%;
+  object-fit: cover;
+}
+@media(max-width: 1200px) {
+  .register-register-form-container {
+    margin-left: var(--dl-space-space-unit);
+    margin-right: var(--dl-space-space-unit);
+  }
+  .register-logo-container {
+    width: 60%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .register-image1 {
+    width: 90%;
+  }
+  .register-image2 {
+    width: 90%;
+    height: 80%;
+  }
+}
+@media(max-width: 991px) {
+  .register-register-form-container {
+    width: 90%;
+    align-items: center;
+  }
+  .register-text3 {
+    align-self: flex-start;
+  }
+  .register-text5 {
+    align-self: flex-start;
+  }
+  .register-logo-container {
+    display: none;
+  }
+}

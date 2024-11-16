@@ -1,0 +1,437 @@
+<div class="form-container10">
+  <svg width="24" height="24" viewBox="0 0 24 24" class="form-icon1">
+    <circle r="2.5" cx="4.5" cy="9.5" fill="currentColor"></circle>
+    <circle r="2.5" cx="9" cy="5.5" fill="currentColor"></circle>
+    <circle r="2.5" cx="15" cy="5.5" fill="currentColor"></circle>
+    <circle r="2.5" cx="19.5" cy="9.5" fill="currentColor"></circle>
+    <path
+      d="M17.34 14.86c-.87-1.02-1.6-1.89-2.48-2.91c-.46-.54-1.05-1.08-1.75-1.32q-.165-.06-.33-.09c-.25-.04-.52-.04-.78-.04s-.53 0-.79.05q-.165.03-.33.09c-.7.24-1.28.78-1.75 1.32c-.87 1.02-1.6 1.89-2.48 2.91c-1.31 1.31-2.92 2.76-2.62 4.79c.29 1.02 1.02 2.03 2.33 2.32c.73.15 3.06-.44 5.54-.44h.18c2.48 0 4.81.58 5.54.44c1.31-.29 2.04-1.31 2.33-2.32c.31-2.04-1.3-3.49-2.61-4.8"
+      fill="currentColor"
+    ></path>
+  </svg>
+  <form
+    id="registrationForm"
+    name="userForm"
+    action="/home"
+    method="POST"
+    target="self"
+    enctype="multipart/form-data"
+    autocomplete="on"
+    class="form-form"
+  >
+    <div class="form-form-content">
+      <div class="form-form-owner-section">
+        <div class="form-title">
+          <span class="form-text10">Pet&apos;s Owner Registration Form</span>
+        </div>
+        <div class="form-owner-name-section">
+          <div class="form-first-name">
+            <span class="form-text11">
+              <span class="form-text12">Pet&apos;s owner full name:</span>
+              <span class="form-text13">*</span>
+            </span>
+            <input
+              type="text"
+              id="owner-first-name"
+              name="ownerFirstName"
+              required="true"
+              placeholder="First name"
+              autocomplete="given-name"
+              class="form-textinput10 input"
+            />
+          </div>
+          <div class="form-last-name">
+            <input
+              type="text"
+              id="owner-last-name"
+              name="ownerLastName"
+              required="true"
+              placeholder="Last name"
+              autocomplete="family-name"
+              class="form-textinput11 input"
+            />
+          </div>
+        </div>
+        <input
+          type="number"
+          id="owner-age"
+          max="99"
+          min="10"
+          name="ownerAge"
+          step="1"
+          required="true"
+          placeholder="Age"
+          class="form-textinput12 input"
+        />
+        <select
+          id="owner-sex"
+          name="ownerSex"
+          required="true"
+          autocomplete="off"
+          class="form-select1"
+        >
+          <option value="Option 1">EEUU</option>
+          <option value="Option 2">Canada</option>
+          <option value="Option 3">England</option>
+        </select>
+        <div class="form-owner-address-section">
+          <div class="form-container11">
+            <span class="form-text14">Adress:</span>
+            <input
+              type="text"
+              id="owner-address"
+              name="ownerAddress"
+              placeholder="Street Address"
+              autocomplete="address-line1"
+              class="form-textinput13 input"
+            />
+          </div>
+          <div class="form-container12">
+            <div class="form-container13">
+              <input
+                type="text"
+                id="owner-city"
+                name="ownerCity"
+                required="true"
+                placeholder="City"
+                autocomplete="address-line2"
+                class="form-textinput14 input"
+              />
+            </div>
+            <div class="form-container14">
+              <select
+                id="owner-country"
+                name="ownerCountry"
+                required="true"
+                autocomplete="country"
+                class="form-select2"
+              >
+                <option value="Option 1">EEUU</option>
+                <option value="Option 2">Canada</option>
+                <option value="Option 3">England</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-owner-phone-number-section1">
+          <span class="form-text15">Current job:*</span>
+          <input
+            type="text"
+            id="owner-job"
+            name="ownerJob"
+            required="true"
+            placeholder="Job"
+            autocomplete="off"
+            class="form-textinput15 input"
+          />
+        </div>
+        <div class="form-owner-phone-number-section2">
+          <span class="form-text16">
+            <span class="form-text17">Availability:</span>
+            <span class="form-text18">*</span>
+          </span>
+          <select
+            id="owner-availability"
+            name="ownerAvailability"
+            required="true"
+            autocomplete="off"
+            class="form-select3"
+          >
+            <option value="Option 1">EEUU</option>
+            <option value="Option 2">Canada</option>
+            <option value="Option 3">England</option>
+          </select>
+          <div class="form-container15">
+            <span class="form-text19">
+              Short description of yourself (optional):
+            </span>
+            <textarea
+              id="owner-desciption"
+              cols="40"
+              name="petDescription"
+              rows="6"
+              placeholder="Write here..."
+              class="form-textarea1 textarea"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-container16">
+          <div class="form-container17">
+            <span class="form-text20">
+              <span>Select the pet you are registering:</span>
+              <span class="form-text22">*</span>
+            </span>
+            <span class="form-text23">Click to edit</span>
+          </div>
+          <div class="form-container18">
+            <div class="form-container19">
+              <div class="form-container20">
+                <input
+                  type="radio"
+                  id="pet-dog"
+                  name="petType"
+                  value="dog"
+                  checked="true"
+                  required="true"
+                  class="form-radiobutton1"
+                />
+                <label class="form-text24">Dog</label>
+              </div>
+            </div>
+            <div class="form-container21">
+              <div class="form-container22">
+                <input
+                  type="radio"
+                  id="pet-cat"
+                  name="petType"
+                  value="cat"
+                  required="true"
+                  class="form-radiobutton2"
+                />
+                <label class="form-text25">Cat</label>
+              </div>
+            </div>
+            <div class="form-container23">
+              <div class="form-container24">
+                <input
+                  type="radio"
+                  id="pet-hamster"
+                  name="petType"
+                  value="hamster"
+                  required="true"
+                  class="form-radiobutton3"
+                />
+                <label class="form-text26">Hamster</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-container25">
+        <span class="form-text27">Profile picture</span>
+        <input
+          type="file"
+          id="profile-image"
+          name="profileImage"
+          accept="image/*"
+          placeholder="placeholder"
+          class="input"
+        />
+      </div>
+      <div class="form-line"></div>
+      <div class="form-form-pet-section">
+        <div class="form-container26">
+          <span class="form-text28">Pet Registration Form</span>
+        </div>
+        <div class="form-container27">
+          <div class="form-container28">
+            <span class="form-text29">
+              <span class="form-text30">Pet full name:</span>
+              <span class="form-text31">*</span>
+            </span>
+            <input
+              type="text"
+              id="pet-first-name"
+              name="petFirstName"
+              required="true"
+              placeholder="First name"
+              autocomplete="given-name"
+              class="form-textinput17 input"
+            />
+          </div>
+          <div class="form-container29">
+            <input
+              type="text"
+              id="pet-last-name"
+              name="petLastName"
+              required="true"
+              placeholder="Last name"
+              autocomplete="family-name"
+              class="form-textinput18 input"
+            />
+          </div>
+        </div>
+        <div class="form-container30">
+          <div class="form-container31">
+            <div class="form-container32">
+              <span class="form-text32">
+                <span class="form-text33">General Information:</span>
+                <span class="form-text34">*</span>
+              </span>
+              <select
+                id="pet-breed"
+                name="petBreed"
+                required="true"
+                autocomplete="off"
+                class="form-select4"
+              >
+                <option value="Option 1">EEUU</option>
+                <option value="Option 2">Canada</option>
+                <option value="Option 3">England</option>
+              </select>
+            </div>
+            <div class="form-container33">
+              <input
+                type="number"
+                id="pet-age"
+                max="30"
+                min="0"
+                name="petAge"
+                step="1"
+                required="true"
+                placeholder="Age"
+                class="form-textinput19 input"
+              />
+            </div>
+          </div>
+          <div class="form-container34">
+            <div class="form-container35">
+              <input
+                type="number"
+                id="pet-weight"
+                max="100"
+                min="0.1"
+                name="petWeight"
+                step="0.1"
+                required="true"
+                placeholder="Weight"
+                class="form-textinput20 input"
+              />
+            </div>
+            <div class="form-container36">
+              <input
+                type="number"
+                id="pet-size"
+                max="200"
+                min="10"
+                name="petSize"
+                step="1"
+                required="true"
+                placeholder="Size"
+                class="form-textinput21 input"
+              />
+            </div>
+          </div>
+          <div class="form-container37">
+            <div class="form-container38">
+              <select
+                id="pet-sex"
+                name="petSex"
+                required="true"
+                autocomplete="off"
+                class="form-select5"
+              >
+                <option value="Option 1">EEUU</option>
+                <option value="Option 2">Canada</option>
+                <option value="Option 3">England</option>
+              </select>
+            </div>
+            <div class="form-container39">
+              <select
+                id="pet-sexual-status"
+                name="petSexualStatus"
+                required="true"
+                autocomplete="off"
+                class="form-select6"
+              >
+                <option value="Option 1">EEUU</option>
+                <option value="Option 2">Canada</option>
+                <option value="Option 3">England</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-container40">
+          <span class="form-text35">Diseases (if any):</span>
+          <textarea
+            id="pet-diseases"
+            cols="40"
+            name="petDiseases"
+            rows="4"
+            placeholder="Write here..."
+            class="form-textarea2 textarea"
+          ></textarea>
+        </div>
+        <div class="form-container41">
+          <span class="form-text36">
+            Short description of your pet (optional):
+          </span>
+          <textarea
+            id="pet-description"
+            cols="40"
+            name="petDescription"
+            rows="6"
+            placeholder="Write here..."
+            class="form-textarea3 textarea"
+          ></textarea>
+        </div>
+        <div class="form-container42">
+          <span class="form-text37">Pet profile picture</span>
+          <input
+            type="file"
+            id="pet-image"
+            name="petImage"
+            accept="image/*"
+            placeholder="placeholder"
+            class="input"
+          />
+        </div>
+      </div>
+      <div class="form-container43">
+        <div class="form-container44">
+          <span class="form-text38">What is your pet looking for?</span>
+        </div>
+        <div class="form-container45">
+          <div class="form-container46">
+            <span class="form-text39">Love</span>
+            <input
+              type="radio"
+              id="love"
+              name="petSearch"
+              value="love"
+              required="true"
+              class="form-radiobutton4"
+            />
+          </div>
+          <div class="form-container47">
+            <span class="form-text40">Care</span>
+            <input
+              type="radio"
+              id="care"
+              name="petSearch"
+              value="care"
+              required="true"
+              class="form-radiobutton5"
+            />
+          </div>
+          <div class="form-container48">
+            <span class="form-text41">Adoption</span>
+            <input
+              type="radio"
+              id="adoption"
+              name="petSearch"
+              value="adoption"
+              required="true"
+              class="form-radiobutton6"
+            />
+          </div>
+        </div>
+      </div>
+      <a
+        routerLink="/home"
+        id="submit-form"
+        name="submitButton"
+        disabled="true"
+        class="form-navlink button"
+      >
+        SUBMIT
+      </a>
+    </div>
+  </form>
+  <svg width="24" height="24" viewBox="0 0 24 24" class="form-icon7">
+    <path
+      d="M9.5 21q-1.071 0-1.785-.714Q7 19.57 7 18.5q0-.456-.043-.764t-.215-.478q-.17-.172-.478-.234t-.764-.063q-1.071 0-1.785-.695Q3 15.571 3 14.5t.715-1.785T5.5 12q.402 0 .762.102t.611.306q.27.211.625.211t.606-.25l4.188-4.188q.25-.25.289-.635t-.173-.673q-.185-.271-.297-.621T12 5.5q0-1.071.715-1.785Q13.429 3 14.5 3t1.786.715T17 5.5q0 .456.043.764t.215.478q.17.172.479.215T18.5 7q1.071 0 1.786.715Q21 8.429 21 9.5t-.714 1.786T18.5 12q-.402 0-.752-.111t-.621-.297q-.288-.192-.654-.163q-.365.029-.615.279l-4.15 4.15q-.25.25-.289.586t.135.645q.165.27.306.64q.14.369.14.771q0 1.071-.714 1.786Q10.57 21 9.5 21"
+      fill="currentColor"
+    ></path>
+  </svg>
+</div>

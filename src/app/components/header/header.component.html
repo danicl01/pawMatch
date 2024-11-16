@@ -1,0 +1,211 @@
+<header class="header-container1" [ngClass]="rootClassName">
+  <header data-thq="thq-navbar" class="header-navbar-interactive">
+    <img [attr.alt]="imageAlt" [attr.src]="imageSrc" class="header-image1" />
+    <div data-thq="thq-navbar-nav" class="header-desktop-menu">
+      <nav class="header-links1">
+        <a routerLink="/home" class="header-link11 thq-link thq-body-small">
+          <ng-container>
+            <ng-template #defaultLink1>
+              <div><span>Home</span></div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="link1 ? link1 : defaultLink1"
+            ></ng-container>
+          </ng-container>
+        </a>
+        <a routerLink="/search" class="header-link21 thq-link thq-body-small">
+          <ng-container>
+            <ng-template #defaultLink2>
+              <div><span>Search</span></div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="link2 ? link2 : defaultLink2"
+            ></ng-container>
+          </ng-container>
+        </a>
+        <a routerLink="/map" class="header-link31 thq-link thq-body-small">
+          <ng-container>
+            <ng-template #defaultLink3>
+              <div><span>Map</span></div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="link3 ? link3 : defaultLink3"
+            ></ng-container>
+          </ng-container>
+        </a>
+        <a routerLink="/saves" class="header-link41 thq-link thq-body-small">
+          <ng-container>
+            <ng-template #defaultLink4>
+              <div><span>Saves</span></div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="link4 ? link4 : defaultLink4"
+            ></ng-container>
+          </ng-container>
+        </a>
+        <a routerLink="/mailbox" class="header-link51 thq-link thq-body-small">
+          <ng-container>
+            <ng-template #defaultLink5>
+              <div><span>Mailbox</span></div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="link5 ? link5 : defaultLink5"
+            ></ng-container>
+          </ng-container>
+        </a>
+        <a
+          [attr.href]="textUrl"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="header-link6 thq-link thq-body-small"
+        >
+          <ng-container>
+            <ng-template #defaultText>
+              <div class="header-fragment1">
+                <span class="header-text1">Notifications</span>
+              </div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="text ? text : defaultText"
+            ></ng-container>
+          </ng-container>
+        </a>
+      </nav>
+    </div>
+    <div data-thq="thq-burger-menu" class="header-burger-menu">
+      <svg viewBox="0 0 1024 1024" class="header-icon1">
+        <path
+          d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+        ></path>
+      </svg>
+    </div>
+    <div data-thq="thq-mobile-menu" class="header-mobile-menu">
+      <div class="header-nav">
+        <div class="header-top">
+          <img
+            [attr.alt]="imageAlt2"
+            [attr.src]="imageSrc2"
+            class="header-image2"
+          />
+          <div data-thq="thq-close-menu" class="header-close-menu">
+            <svg viewBox="0 0 1024 1024" class="header-icon3">
+              <path
+                d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <nav class="header-links2">
+          <a routerLink="/home" class="header-link12 thq-link thq-body-small">
+            <ng-container>
+              <ng-template #defaultLink1>
+                <div class="header-fragment7">
+                  <span class="header-text7">Home</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="link1 ? link1 : defaultLink1"
+              ></ng-container>
+            </ng-container>
+          </a>
+          <a routerLink="/search" class="header-link22 thq-link thq-body-small">
+            <ng-container>
+              <ng-template #defaultLink2>
+                <div class="header-fragment9">
+                  <span class="header-text9">Search</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="link2 ? link2 : defaultLink2"
+              ></ng-container>
+            </ng-container>
+          </a>
+          <a routerLink="/map" class="header-link32 thq-link thq-body-small">
+            <ng-container>
+              <ng-template #defaultLink3>
+                <div class="header-fragment6">
+                  <span class="header-text6">Map</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="link3 ? link3 : defaultLink3"
+              ></ng-container>
+            </ng-container>
+          </a>
+          <a routerLink="/saves" class="header-link42 thq-link thq-body-small">
+            <ng-container>
+              <ng-template #defaultLink4>
+                <div class="header-fragment5">
+                  <span class="header-text5">Saves</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="link4 ? link4 : defaultLink4"
+              ></ng-container>
+            </ng-container>
+          </a>
+          <a
+            routerLink="/mailbox"
+            class="header-link52 thq-link thq-body-small"
+          >
+            <ng-container>
+              <ng-template #defaultLink5>
+                <div class="header-fragment3">
+                  <span class="header-text3">Mailbox</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="link5 ? link5 : defaultLink5"
+              ></ng-container>
+            </ng-container>
+          </a>
+          <a
+            [attr.href]="textUrl2"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="thq-link thq-body-small header-link7"
+          >
+            <ng-container>
+              <ng-template #defaultText2>
+                <div class="header-fragment4">
+                  <span class="header-text4">Notifications</span>
+                </div>
+              </ng-template>
+              <ng-container
+                *ngTemplateOutlet="text2 ? text2 : defaultText2"
+              ></ng-container>
+            </ng-container>
+          </a>
+        </nav>
+      </div>
+      <div class="header-container2">
+        <a routerLink="/owner-profile" class="header-navlink1">
+          <ng-container>
+            <ng-template #defaultText3>
+              <div class="header-fragment8">
+                <span class="header-text8">Link</span>
+              </div>
+            </ng-template>
+            <ng-container
+              *ngTemplateOutlet="text3 ? text3 : defaultText3"
+            ></ng-container>
+          </ng-container>
+        </a>
+      </div>
+    </div>
+    <div class="header-container3">
+      <a routerLink="/pet-profile" class="header-navlink2">
+        <ng-container>
+          <ng-template #defaultText11>
+            <div class="header-fragment2">
+              <span class="header-text2">Link</span>
+            </div>
+          </ng-template>
+          <ng-container
+            *ngTemplateOutlet="text11 ? text11 : defaultText11"
+          ></ng-container>
+        </ng-container>
+      </a>
+    </div>
+  </header>
+</header>

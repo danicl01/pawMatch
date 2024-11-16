@@ -1,0 +1,62 @@
+<div class="login-container">
+  <div class="login-body">
+    <div class="login-login-form-container">
+      <h1 class="login-text1">LOGIN</h1>
+      <div class="login-sign-up-container">
+        <span class="login-text2">
+          Doesn`t have an account yet?
+          <span [innerHTML]="raw03d3"></span>
+        </span>
+        <a routerLink="/register" class="login-navlink1">Sign Up</a>
+      </div>
+      <span class="login-text3">Email Adress</span>
+      <input
+        type="email"
+        id="email_adress"
+        name="email_adress"
+        size="30"
+        pattern="..+@gmail.com"
+        required="true"
+        maxlength="20"
+        minlength="3"
+        placeholder="you@example.com"
+        autocomplete="email"
+        class="login-textinput1 input"
+      />
+      <div class="login-password-container">
+        <span class="login-text4">Password</span>
+        <a
+          href="https://example.com"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="login-link"
+        >
+          Forgot Password?
+        </a>
+      </div>
+      <input
+        type="password"
+        id="password"
+        placeholder="password"
+        class="login-textinput2 input"
+      />
+      <a
+        routerLink="/home"
+        id="login_button"
+        name="login"
+        class="login-navlink2 button"
+      >
+        LOGIN
+      </a>
+    </div>
+    <div class="login-logo-container">
+      <img
+        alt="pawmatch logo"
+        src="/assets/image%20(2)-700w.png"
+        loading="eager"
+        class="login-image1"
+      />
+      <img alt="pets" src="/pets-700w.png" class="login-image2" />
+    </div>
+  </div>
+</div>

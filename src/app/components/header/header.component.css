@@ -1,0 +1,316 @@
+:host { 
+  display: contents; 
+}
+.header-container1 {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  background-color: var(--dl-color-theme-neutral-light);
+}
+.header-navbar-interactive {
+  width: 100%;
+  display: flex;
+  z-index: 300;
+  align-items: center;
+  padding-top: 0px;
+  border-color: #000000;
+  border-style: ridge;
+  border-width: 1px;
+  padding-left: var(--dl-space-space-threeunits);
+  padding-right: var(--dl-space-space-threeunits);
+  padding-bottom: 0px;
+  justify-content: space-between;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.header-image1 {
+  width: 200px;
+  object-fit: cover;
+}
+.header-desktop-menu {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.header-links1 {
+  gap: var(--dl-space-space-fourunits);
+  flex: 1;
+  display: flex;
+  font-size: large;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.header-link11 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link21 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link31 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link41 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link51 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link6 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+.header-burger-menu {
+  display: none;
+}
+.header-icon1 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.header-mobile-menu {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  padding: var(--dl-space-space-twounits);
+  z-index: 100;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--dl-color-theme-neutral-light);
+}
+.header-nav {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-threeunits);
+  justify-content: space-between;
+}
+.header-image2 {
+  width: 200px;
+  object-fit: cover;
+}
+.header-close-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-icon3 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.header-links2 {
+  gap: var(--dl-space-space-unit);
+  flex: 0 0 auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-link12 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link22 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link32 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link42 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-link52 {
+  font-style: normal;
+  font-family: "Roboto";
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-container2 {
+  width: var(--dl-size-size-medium);
+  height: 96px;
+  display: flex;
+  margin-top: var(--dl-space-space-twounits);
+  align-items: center;
+  border-color: #ef7bef;
+  border-width: 2px;
+  border-radius: 50%;
+  background-size: cover;
+  justify-content: center;
+  background-image: url('https://play.teleporthq.io/static/svg/default-img.svg');
+  background-position: center;
+}
+.header-navlink1 {
+  text-decoration: none;
+}
+.header-container3 {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  border-color: #ffbdff;
+  border-width: 3px;
+  border-radius: 100px;
+  background-size: cover;
+  justify-content: center;
+  background-image: url('https://play.teleporthq.io/static/svg/default-img.svg');
+  background-position: center;
+}
+.header-navlink2 {
+  text-decoration: none;
+}
+.header-fragment1 {
+  display: contents;
+}
+.header-text1 {
+  display: inline-block;
+}
+.header-fragment2 {
+  display: contents;
+}
+.header-text2 {
+  display: inline-block;
+}
+.header-fragment3 {
+  display: contents;
+}
+.header-text3 {
+  display: inline-block;
+}
+.header-fragment4 {
+  display: contents;
+}
+.header-text4 {
+  display: inline-block;
+}
+.header-fragment5 {
+  display: contents;
+}
+.header-text5 {
+  display: inline-block;
+}
+.header-fragment6 {
+  display: contents;
+}
+.header-text6 {
+  display: inline-block;
+}
+.header-fragment7 {
+  display: contents;
+}
+.header-text7 {
+  display: inline-block;
+}
+.header-fragment8 {
+  display: contents;
+}
+.header-text8 {
+  display: inline-block;
+}
+.header-fragment9 {
+  display: contents;
+}
+.header-text9 {
+  display: inline-block;
+}
+.headerroot-class-name {
+  background-color: #ffffff;
+}
+
+
+
+
+
+
+
+
+@media(max-width: 991px) {
+  .header-image1 {
+    width: var(--dl-size-size-large);
+  }
+  .header-image2 {
+    width: var(--dl-size-size-large);
+  }
+}
+@media(max-width: 767px) {
+  .header-navbar-interactive {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+  .header-image1 {
+    width: var(--dl-size-size-xlarge);
+  }
+  .header-desktop-menu {
+    display: none;
+  }
+  .header-burger-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-image2 {
+    width: var(--dl-size-size-xlarge);
+  }
+  .header-container3 {
+    display: none;
+  }
+}
+@media(max-width: 479px) {
+  .header-navbar-interactive {
+    padding: var(--dl-space-space-unit);
+    padding-right: 16px;
+  }
+  .header-mobile-menu {
+    padding: var(--dl-space-space-unit);
+  }
+  .header-link7 {
+    font-style: normal;
+    font-family: Roboto;
+    font-weight: 500;
+  }
+  .header-container2 {
+    width: var(--dl-size-size-medium);
+    margin-top: var(--dl-space-space-twounits);
+    border-color: #ff8eff;
+    border-width: 2px;
+    border-radius: 50%;
+  }
+  .header-container3 {
+    display: none;
+  }
+}
