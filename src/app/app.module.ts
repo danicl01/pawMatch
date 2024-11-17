@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { ComponentsModule } from './components/components.module'
 import { AppComponent } from './app.component'
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+
 
 const routes = [
   {
@@ -101,7 +104,12 @@ const routes = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), ComponentsModule],
+  imports: [
+      BrowserModule,
+    RouterModule.forRoot(routes),
+    ComponentsModule,
+      AngularFireModule.initializeApp(environment.firebase)
+  ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
