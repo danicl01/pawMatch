@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -7,7 +8,8 @@ import { Title, Meta } from '@angular/platform-browser'
   styleUrls: ['search.component.css'],
 })
 export class Search {
-  constructor(private title: Title, private meta: Meta) {
+  selectedSex: string = '';
+  constructor(private title: Title, private meta: Meta, private router: Router) {
     this.title.setTitle('Search - PawMatch')
     this.meta.addTags([
       {
@@ -15,5 +17,9 @@ export class Search {
         content: 'Search - PawMatch',
       },
     ])
+  }
+
+  onFilterClick() :any {
+    this.router.navigate(['/home'], { queryParams: { sex: this.selectedSex } });
   }
 }

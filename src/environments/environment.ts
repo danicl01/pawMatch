@@ -6,7 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-
+    apiKey: "AIzaSyCLGPVOPpLS_2D-X1ALmCTxjoCl-aut1E8",
+    authDomain: "pawmatch-f87bf.firebaseapp.com",
+    projectId: "pawmatch-f87bf",
+    storageBucket: "pawmatch-f87bf.firebasestorage.app",
+    messagingSenderId: "113794447173",
+    appId: "1:113794447173:web:4122135f72103d2108f02c"
   }
 };
 

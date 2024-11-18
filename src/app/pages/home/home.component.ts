@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FirestoreService} from "../../services/firestore.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,14 @@ import {FirestoreService} from "../../services/firestore.service";
 })
 export class Home implements OnInit {
   rawdjrt: string = ' '
-  constructor(private title: Title, private meta: Meta,private firestoreService: FirestoreService) {
+  selectedPetSex: string = '';
+  filteredPets: any[] = [];
+  constructor(
+      private title: Title,
+      private meta: Meta,
+      private firestoreService: FirestoreService,
+      private route: ActivatedRoute) {
+
     this.title.setTitle('Home - PawMatch')
     this.meta.addTags([
       {
@@ -19,7 +27,10 @@ export class Home implements OnInit {
     ]);
   }
   ngOnInit(): void {
-    this.loadData();
+    this.route.queryParams.subscribe(params => {
+      this.selectedPetSex = params['sex'] || '';
+      this.loadData();
+    });
   }
 
   loadData() {
@@ -35,16 +46,36 @@ export class Home implements OnInit {
     this.firestoreService.getPets(userId).subscribe((petsData: any[]) => {
       console.log('Pets Data:', petsData);
 
-      // Si hay mascotas, podemos asignar el nombre del primero
-      if (petsData.length > 0) {
+      // Filtrar mascotas por sexo si hay un filtro seleccionado
+      if (this.selectedPetSex) {
+        this.filteredPets = petsData.filter(pet => pet.sex === this.selectedPetSex);
+      } else {
+        this.filteredPets = petsData;  // Mostrar todas las mascotas si no se selecciona un filtro
+      }
+
+
+      /*
+      if (this.filteredPets.length > 0) {
         this.rawdjrt = petsData[0].name; // Asume que quieres el nombre de la primera mascota
+      }
+
+       */
+      if (this.selectedPetSex === "Male") {
+          this.rawdjrt = "Manolo";
+      } else if (this.selectedPetSex === "Female") {
+        this.rawdjrt = "Ramona";
+      } else {
+        this.rawdjrt = "Nada";
       }
     });
 
     // O bien, si sabes el petId, puedes acceder a una mascota en específico
+    /*
     this.firestoreService.getPetName(userId, petId).subscribe((petData: any) => {
       console.log('Pet Data:', petData);
-      this.rawdjrt = petData.name; // Asume que el campo del nombre se llama 'name'
+      this.rawdjrt = petData.name;
     });
+
+     */
   }
 }

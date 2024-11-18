@@ -106,10 +106,9 @@
                 <option value="Option 2">Option 2</option>
                 <option value="Option 3">Option 3</option>
               </select>
-              <select id="pet-sex-select" name="petSex" class="search-select11">
-                <option value="Option 1">Option 1</option>
-                <option value="Option 2">Option 2</option>
-                <option value="Option 3">Option 3</option>
+              <select id="pet-sex-select" [(ngModel)]="selectedSex" name="petSex" class="search-select11">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
               <select id="pet-age-select" name="petAge" class="search-select12">
                 <option value="Option 1">Option 1</option>
@@ -168,14 +167,9 @@
                   <option value="Option 2">Option 2</option>
                   <option value="Option 3">Option 3</option>
                 </select>
-                <select
-                  id="person-sex-select"
-                  name="personSex"
-                  class="search-select16"
-                >
-                  <option value="Option 1">Option 1</option>
-                  <option value="Option 2">Option 2</option>
-                  <option value="Option 3">Option 3</option>
+                <select id="person-sex-select" name="personSex" class="search-select16">
+                  <option value="male_person">Male</option>
+                  <option value="female_person">Female</option>
                 </select>
                 <select id="job-select" name="job" class="search-select17">
                   <option value="Option 1">Option 1</option>
@@ -210,7 +204,7 @@
         </select>
       </div>
       <div class="search-container40">
-        <a routerLink="/home" class="search-navlink2 button">Search</a>
+        <button (click)="onFilterClick();" routerLink="/home" class="search-navlink2 button" type="submit">Search</button>
         <span class="search-text36">Advanced search</span>
       </div>
     </div>
