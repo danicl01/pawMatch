@@ -34,6 +34,16 @@
       <div class="home-fragment18"><span class="home-text18">Link</span></div>
     </ng-template>
   </app-header>
+
+
+
+
+
+
+
+
+
+
   <div class="home-container2">
     <div class="home-container3">
       <button type="button" class="home-button1 button">People</button>
@@ -49,12 +59,12 @@
   </div>
   <div class="home-container6">
     <div class="home-container7">
-      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" />
+      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" (click)="loadData()"/>
       <pet-component rootClassName="pet-componentroot-class-name1">
         <ng-template #text>
           <div class="home-fragment19">
             <!--<span class="home-text20">LUNA HARPER</span>-->
-            <span class="home-text20" [innerHTML]="rawdjrt"></span>
+            <span class="home-text20" [innerHTML]="name"></span>
           </div>
         </ng-template>
         <ng-template #text1>
@@ -64,11 +74,11 @@
         </ng-template>
         <ng-template #text2>
           <div class="home-fragment21">
-            <span class="home-text22">Golden Retriever</span>
+            <span class="home-text22" [innerHTML]="breed"></span>
           </div>
         </ng-template>
         <ng-template #text3>
-          <div class="home-fragment22"><span class="home-text23">1</span></div>
+          <div class="home-fragment22"><span class="home-text23" [innerHTML]="age"></span></div>
         </ng-template>
         <ng-template #text4>
           <div class="home-fragment23">
@@ -76,13 +86,13 @@
           </div>
         </ng-template>
         <ng-template #text5>
-          <div class="home-fragment24"><span class="home-text25">12</span></div>
+          <div class="home-fragment24"><span class="home-text25" [innerHTML]="weight"></span></div>
         </ng-template>
         <ng-template #text6>
           <div class="home-fragment25"><span class="home-text26">kg</span></div>
         </ng-template>
         <ng-template #text7>
-          <div class="home-fragment26"><span class="home-text27">50</span></div>
+          <div class="home-fragment26"><span class="home-text27" [innerHTML]="size"></span></div>
         </ng-template>
         <ng-template #text8>
           <div class="home-fragment27">
@@ -92,11 +102,8 @@
         <ng-template #text9>
           <div class="home-fragment28">
             <span class="home-text29">
-              <span class="home-text30">
-                Looking for:
-                <span [innerHTML]="rawdjrt"></span>
-              </span>
-              <span class="home-text31">LOVE</span>
+              <span class="home-text30">Looking for: </span>
+              <span class="home-text31" [innerHTML]="search"></span>
             </span>
           </div>
         </ng-template>

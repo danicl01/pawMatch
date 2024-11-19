@@ -9,7 +9,18 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['home.component.css'],
 })
 export class Home implements OnInit {
-  rawdjrt: string = ' '
+  owner_name: string = ' '
+  city: string = ' '
+  country: string = ' '
+  name: string = ' '
+  breed: string = ' '
+  sex: string = ' '
+  age: string = ' '
+  weight: string = ' '
+  size: string = ' '
+  search: string = ' '
+  image: string = ' '
+
   selectedPetSex: string = '';
   filteredPets: any[] = [];
   visitedProfiles: string[] = [];
@@ -42,7 +53,12 @@ export class Home implements OnInit {
       this.loadData2(userId);
     } else {
       console.log('No hay usuarios disponibles');
-      this.rawdjrt = "Petao chaval";
+      this.name = "Petao chaval";
+      this.breed = "Sin raza";
+      this.age = "0";
+      this.weight = "0.0";
+      this.size = "0.0";
+      this.search = "NADA";
       this.visitedProfiles = [];
     }
   }
@@ -59,7 +75,13 @@ export class Home implements OnInit {
       }
 
       if (this.filteredPets.length > 0) {
-        this.rawdjrt = petsData[0].name;
+        this.name = petsData[0].name;
+        this.breed = petsData[0].breed;
+        this.age = petsData[0].age;
+        this.weight = petsData[0].weight;
+        this.size = petsData[0].size;
+        this.search = petsData[0].search;
+
       }
     });
   }
