@@ -13,7 +13,6 @@ export class Home implements OnInit {
   selectedPetSex: string = '';
   filteredPets: any[] = [];
   visitedProfiles: string[] = [];
-  currentUserId: string = 'MPjZtMOT8i54Te7hkEvF';
   constructor(
       private title: Title,
       private meta: Meta,
@@ -43,16 +42,12 @@ export class Home implements OnInit {
       this.loadData2(userId);
     } else {
       console.log('No hay usuarios disponibles');
+      this.rawdjrt = "Petao chaval";
+      this.visitedProfiles = [];
     }
   }
 
-
   loadData2(userId: string) {
-
-
-    this.firestoreService.getUser(userId).subscribe((userData: any) => {
-      console.log('User Data:', userData);
-    });
 
     this.firestoreService.getPets(userId).subscribe((petsData: any[]) => {
       console.log('Pets Data:', petsData);
@@ -63,30 +58,9 @@ export class Home implements OnInit {
         this.filteredPets = petsData;
       }
 
-
-
       if (this.filteredPets.length > 0) {
         this.rawdjrt = petsData[0].name;
       }
-
-       /*
-       if (this.selectedPetSex === "Male") {
-          this.rawdjrt = "Manolo";
-      } else if (this.selectedPetSex === "Female") {
-        this.rawdjrt = "Ramona";
-      } else {
-        this.rawdjrt = "Nada";
-      }
-        */
-
     });
-
-    /*
-    this.firestoreService.getPetName(userId, petId).subscribe((petData: any) => {
-      console.log('Pet Data:', petData);
-      this.rawdjrt = petData.name;
-    });
-
-     */
   }
 }

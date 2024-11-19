@@ -27,6 +27,7 @@ export class FirestoreService {
         doc => !visitedProfiles.includes(doc.id)
     );
     if (availableUsers.length === 0) return null;
+
     const randomUserDoc = availableUsers[Math.floor(Math.random() * availableUsers.length)];
     visitedProfiles.push(randomUserDoc.id);
     return randomUserDoc.id;
