@@ -6,6 +6,7 @@ import { ComponentsModule } from './components/components.module'
 import { AppComponent } from './app.component'
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 
 
 const routes = [
@@ -108,7 +109,8 @@ const routes = [
       BrowserModule,
     RouterModule.forRoot(routes),
     ComponentsModule,
-      AngularFireModule.initializeApp(environment.firebase)
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],
