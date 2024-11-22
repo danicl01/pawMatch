@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { BrowserModule } from '@angular/platform-browser'
+import { FormsModule } from '@angular/forms';
 
 import { ComponentsModule } from './components/components.module'
 import { AppComponent } from './app.component'
@@ -107,6 +108,7 @@ const routes = [
   declarations: [AppComponent],
   imports: [
       BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     ComponentsModule,
       AngularFireModule.initializeApp(environment.firebase),
