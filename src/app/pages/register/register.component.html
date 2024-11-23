@@ -19,6 +19,8 @@
         class="register-textinput1 input"
         formControlName= "email"
       />
+      <small *ngIf="isRequired('email')">This field is required.</small>
+      <small *ngIf="isEmailRequired()">Please enter a valid email address.</small>
       <div class="register-container2">
         <span class="register-text4">Password</span>
       </div>
@@ -29,6 +31,7 @@
         formControlName="password"
         class="register-textinput2 input"
       />
+      <small *ngIf="isRequired('password')">This field is required.</small>
       <span class="register-text5">Confirm Password</span>
       <input
         type="password"
@@ -36,6 +39,7 @@
         formControlName="password"
         class="register-textinput3 input"
       />
+      <small *ngIf="isRequired('password')">This field is required.</small>
       <button
         id="register"
         name="register_button"

@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {hasEmailError, isRequired} from "../../auth/utils/validators";
 
 
 interface FormRegister {
@@ -14,6 +15,14 @@ interface FormRegister {
 })
 export class Register {
   private _formBuilder = inject(FormBuilder);
+
+  isRequired(field: 'email' | 'password') {
+    return isRequired(field, this.form);
+  }
+
+  isEmailRequired() {
+    return hasEmailError(this.form);
+  }
 
   form = this._formBuilder.group<FormRegister>({
     email: this._formBuilder.control('', [
