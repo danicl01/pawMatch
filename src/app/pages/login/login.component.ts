@@ -6,10 +6,9 @@ import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
-  imports: [ReactiveFormsModule],
   styleUrls: ['login.component.css'],
 })
-export default class Login {
+export class Login {
 
   private _formBuilder = inject(FormBuilder);
   raw03d3: string = ' '

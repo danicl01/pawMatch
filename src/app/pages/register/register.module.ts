@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'
 
 import { ComponentsModule } from '../../components/components.module'
 import { Register } from './register.component'
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes = [
   {
@@ -14,7 +15,7 @@ const routes = [
 
 @NgModule({
   declarations: [Register],
-  imports: [CommonModule, ComponentsModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, ComponentsModule, ReactiveFormsModule, RouterModule.forChild(routes)],
   exports: [Register],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

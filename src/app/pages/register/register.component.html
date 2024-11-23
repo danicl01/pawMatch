@@ -1,6 +1,6 @@
-<div class="register-container1">
+<div class="register-container1" xmlns:formControlName="http://www.w3.org/1999/xhtml">
   <div class="register-body">
-    <form>
+    <form [formGroup] = "form" (ngSubmit)="register()">
       <h1 class="register-text1">REGISTER</h1>
       <div class="register-login-container">
         <span class="register-text2">Are you already one of us?</span>
@@ -12,13 +12,12 @@
         id="email_adress"
         name="email_adress"
         size="30"
-        pattern="..+@gmail.com"
-        required="true"
         maxlength="20"
         minlength="3"
         placeholder="you@example.com"
         autocomplete="email"
         class="register-textinput1 input"
+        formControlName= "email"
       />
       <div class="register-container2">
         <span class="register-text4">Password</span>
@@ -26,23 +25,25 @@
       <input
         type="password"
         name="password"
-        placeholder="password"
+        placeholder="********"
+        formControlName="password"
         class="register-textinput2 input"
       />
       <span class="register-text5">Confirm Password</span>
       <input
         type="password"
-        placeholder="password"
+        placeholder="********"
+        formControlName="password"
         class="register-textinput3 input"
       />
-      <a
-        routerLink="/qa"
+      <button
         id="register"
         name="register_button"
         class="register-navlink2 button"
+      type="submit"
       >
         CREATE ACCOUNT
-      </a>
+      </button>
     </form>
     <div class="register-logo-container">
       <img

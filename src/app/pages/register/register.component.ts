@@ -10,19 +10,18 @@ interface FormRegister {
 @Component({
   selector: 'app-register',
   templateUrl: 'register.component.html',
-  imports: [ReactiveFormsModule],
   styleUrls: ['register.component.css'],
 })
-export default class Register {
+export class Register {
+  private _formBuilder = inject(FormBuilder);
 
-  private _formBuilder = inject(FormBuilder)
   form = this._formBuilder.group<FormRegister>({
-    email: this._formBuilder.control('',
-        [Validators.required,
-          Validators.email,
+    email: this._formBuilder.control('', [
+        Validators.required,
+        Validators.email,
         ]),
     password: this._formBuilder.control('', Validators.required),
-  })
+  });
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('Register - PawMatch')
     this.meta.addTags([
@@ -31,5 +30,14 @@ export default class Register {
         content: 'Register - PawMatch',
       },
     ])
+  }
+
+  register() {
+    if (this.form.invalid) return;
+
+    const { email, password} = this.form.value;
+    if (!email || !password) return;
+
+    console.log({email, password});
   }
 }
