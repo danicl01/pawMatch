@@ -1,5 +1,7 @@
 <header class="header-container1" [ngClass]="rootClassName">
   <header data-thq="thq-navbar" class="header-navbar-interactive">
+    <button (click)="logout()">Logout</button>
+
     <img [attr.alt]="imageAlt" [attr.src]="imageSrc" class="header-image1" />
     <div data-thq="thq-navbar-nav" class="header-desktop-menu">
       <nav class="header-links1">
@@ -82,10 +84,7 @@
     <div data-thq="thq-mobile-menu" class="header-mobile-menu">
       <div class="header-nav">
         <div class="header-top">
-          <img
-            [attr.alt]="imageAlt2"
-            [attr.src]="imageSrc2"
-            class="header-image2"
+          <img [attr.alt]="imageAlt2" [attr.src]="imageSrc2" class="header-image2"
           />
           <div data-thq="thq-close-menu" class="header-close-menu">
             <svg viewBox="0 0 1024 1024" class="header-icon3">

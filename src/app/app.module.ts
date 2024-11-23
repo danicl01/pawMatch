@@ -9,6 +9,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {NgxSonnerToaster} from "ngx-sonner";
+import {privateGuard, publicGuard} from "./auth/auth.guard";
 
 
 const routes = [
@@ -39,20 +40,21 @@ const routes = [
     path: 'register',
     loadChildren: () =>
       import('./pages/register/register.module').then((m) => m.RegisterModule),
+    canActivate: [publicGuard],
   },
   {
     path: 'user-owner-profile',
     loadChildren: () =>
-      import('./pages/user-owner-profile/user-owner-profile.module').then(
-        (m) => m.UserOwnerProfileModule
-      ),
+      import('./pages/user-owner-profile/user-owner-profile.module').then((m) => m.UserOwnerProfileModule),
   },
   {
     path: 'saves',
     loadChildren: () =>
       import('./pages/saves/saves.module').then((m) => m.SavesModule),
+    canActivate: [privateGuard],
   },
   {
+    canActivate: [privateGuard],
     path: 'search',
     loadChildren: () =>
       import('./pages/search/search.module').then((m) => m.SearchModule),
@@ -61,6 +63,7 @@ const routes = [
     path: 'mailbox',
     loadChildren: () =>
       import('./pages/mailbox/mailbox.module').then((m) => m.MailboxModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'adoption-qa',
@@ -73,6 +76,7 @@ const routes = [
     path: '',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
+    canActivate: [publicGuard],
   },
   {
     path: 'form',
@@ -83,11 +87,13 @@ const routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'map',
     loadChildren: () =>
       import('./pages/map/map.module').then((m) => m.MapModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'user-pet-profile',

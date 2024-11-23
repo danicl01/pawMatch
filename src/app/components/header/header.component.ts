@@ -1,4 +1,7 @@
 import { Component, Input, ContentChild, TemplateRef } from '@angular/core'
+import {Router} from "@angular/router";
+import {AuthStateService} from "../../auth/data-access/auth-state.service";
+import {toast} from "ngx-sonner";
 
 @Component({
   selector: 'app-header',
@@ -38,5 +41,17 @@ export class Header {
   textUrl2: string = 'https://example.com'
   @ContentChild('link2')
   link2: TemplateRef<any>
-  constructor() {}
+  constructor(
+      private authService: AuthStateService,
+      private router: Router
+  ) {}
+
+  logout() {
+    this.authService.logout().then(() => {
+      toast.success("Session success")
+      this.router.navigate(['/']);
+    }).catch((error) => {
+      console.error('Error al cerrar sesión:', error);
+    });
+  }
 }
