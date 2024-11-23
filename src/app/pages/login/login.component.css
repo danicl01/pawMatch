@@ -1,5 +1,23 @@
-:host { 
-  display: contents; 
+:host {
+  display: contents;
+}
+
+form {
+  flex: 0 0 auto;
+  width: 40%;
+  height: 80%;
+  display: flex;
+  align-self: center;
+  align-items: flex-start;
+  margin-left: var(--dl-space-space-threeunits);
+  padding-top: var(--dl-space-space-fourunits);
+  margin-right: var(--dl-space-space-threeunits);
+  padding-left: var(--dl-space-space-twounits);
+  border-radius: var(--dl-radius-radius-radius8);
+  padding-right: var(--dl-space-space-twounits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-fourunits);
+  background-color: #ffffff;
 }
 .login-container {
   width: 100%;
@@ -21,23 +39,7 @@
   border-radius: 4px;
   background-color: #f6f6f6;
 }
-.login-login-form-container {
-  flex: 0 0 auto;
-  width: 40%;
-  height: 80%;
-  display: flex;
-  align-self: center;
-  align-items: flex-start;
-  margin-left: var(--dl-space-space-threeunits);
-  padding-top: var(--dl-space-space-fourunits);
-  margin-right: var(--dl-space-space-threeunits);
-  padding-left: var(--dl-space-space-twounits);
-  border-radius: var(--dl-radius-radius-radius8);
-  padding-right: var(--dl-space-space-twounits);
-  flex-direction: column;
-  padding-bottom: var(--dl-space-space-fourunits);
-  background-color: #ffffff;
-}
+
 .login-text1 {
   font-size: 4em;
   font-family: "Roboto";
@@ -151,7 +153,7 @@
   object-fit: cover;
 }
 @media(max-width: 1200px) {
-  .login-login-form-container {
+  form {
     margin-left: var(--dl-space-space-unit);
     margin-right: var(--dl-space-space-unit);
     padding-left: var(--dl-space-space-unit);
@@ -169,7 +171,7 @@
     width: 80%;
     justify-content: center;
   }
-  .login-login-form-container {
+  form {
     width: 90%;
     align-self: center;
     margin-top: var(--dl-space-space-sixunits);
@@ -182,13 +184,13 @@
   }
 }
 @media(max-width: 767px) {
-  .login-login-form-container {
+  form {
     margin-left: var(--dl-space-space-twounits);
     margin-right: var(--dl-space-space-twounits);
   }
 }
 @media(max-width: 479px) {
-  .login-login-form-container {
+  form {
     width: 100%;
     align-self: center;
     margin-left: 0px;

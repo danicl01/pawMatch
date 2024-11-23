@@ -1,6 +1,6 @@
 <div class="login-container">
   <div class="login-body">
-      <div class="login-login-form-container">
+    <form>
         <h1 class="login-text1">LOGIN</h1>
         <div class="login-sign-up-container">
           <span class="login-text2">Doesn`t have an account yet?<span [innerHTML]="raw03d3"></span>
@@ -8,6 +8,7 @@
           <a routerLink="/register" class="login-navlink1">Sign Up</a>
         </div>
         <span class="login-text3">Email Adress</span>
+
         <input
           type="email"
           id="email_adress"
@@ -28,7 +29,7 @@
         </div>
         <input type="password" id="password" placeholder="" class="login-textinput2 input" [(ngModel)]="password"/>
         <button (click)="login()" routerLink="/home" type="submit" id="login_button" name="login" class="login-navlink2 button">LOGIN</button>
-      </div>
+    </form>
 
     <div class="login-logo-container">
       <img alt="pawmatch logo" src="/assets/image%20(2)-700w.png" loading="eager" class="login-image1"/>
