@@ -1,10 +1,9 @@
 <div class="login-container">
   <div class="login-body">
-    <form>
+    <form [formGroup] = "form" (ngSubmit)="login()">
         <h1 class="login-text1">LOGIN</h1>
         <div class="login-sign-up-container">
-          <span class="login-text2">Doesn`t have an account yet?<span></span>
-          </span>
+          <span class="login-text2">Doesn`t have an account yet?</span>
           <a routerLink= "/register" class="login-navlink1">Sign Up</a>
         </div>
         <span class="login-text3">Email Adress</span>
@@ -21,13 +20,17 @@
           placeholder=""
           autocomplete="email"
           class="login-textinput1 input"
+          formControlName= "email"
         />
+        <small *ngIf="isRequired('email')">This field is required.</small>
+        <small *ngIf="isEmailRequired()">Please enter a valid email address.</small>
         <div class="login-password-container">
           <span class="login-text4">Password</span>
           <a href="https://example.com" target="_blank" rel="noreferrer noopener" class="login-link">Forgot Password?</a>
         </div>
-        <input type="password" id="password" placeholder="" class="login-textinput2 input"/>
-        <button routerLink="/home" type="submit" id="login_button" name="login" class="login-navlink2 button">LOGIN</button>
+        <input type="password" id="password" placeholder="" class="login-textinput2 input" formControlName="password"/>
+        <small *ngIf="isRequired('password')">This field is required.</small>
+        <button type="submit" id="login_button" name="login" class="login-navlink2 button">LOGIN</button>
     </form>
 
     <div class="login-logo-container">

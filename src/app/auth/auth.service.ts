@@ -18,4 +18,11 @@ export class AuthService {
         user.password
     );
   }
+
+  loginExistingUser(user: User) {
+    return this.afAuth.signInWithEmailAndPassword(
+        user.email,
+        user.password
+    )
+  }
 }

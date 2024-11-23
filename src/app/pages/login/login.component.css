@@ -79,7 +79,6 @@ form {
   font-family: "Roboto";
   border-color: #7f7f7f;
   border-radius: var(--dl-radius-radius-imageradius);
-  margin-bottom: var(--dl-space-space-twounits);
 }
 .login-password-container {
   flex: 0 0 auto;
@@ -97,14 +96,15 @@ form {
   font-weight: 700;
   margin-right: var(--dl-space-space-threeunits);
   margin-bottom: var(--dl-space-space-halfunit);
+  margin-top: var(--dl-space-space-twounits);
 }
 .login-link {
-  top: 0px;
   color: #f47aff;
   right: 0px;
   position: absolute;
   font-size: 24px;
   text-decoration: underline;
+  margin-top: var(--dl-space-space-twounits);
 }
 .login-textinput2 {
   width: 100%;
@@ -112,7 +112,6 @@ form {
   font-family: "Roboto";
   border-color: #7f7f7f;
   border-radius: var(--dl-radius-radius-imageradius);
-  margin-bottom: var(--dl-space-space-threeunits);
 }
 .login-navlink2 {
   color: #ffffff;
@@ -124,6 +123,7 @@ form {
   border-radius: 10px;
   text-decoration: none;
   background-color: #f47aff;
+  margin-top: var(--dl-space-space-threeunits);
 }
 .login-navlink2:hover {
   background-color: #f6b5f9;
@@ -152,6 +152,12 @@ form {
   height: var(--dl-size-size-xxlarge);
   object-fit: cover;
 }
+
+small {
+  color: red;
+  font-size: 0.875rem;
+}
+
 @media(max-width: 1200px) {
   form {
     margin-left: var(--dl-space-space-unit);
