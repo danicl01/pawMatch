@@ -1,13 +1,17 @@
-import { Component } from '@angular/core'
+import {Component, inject} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import { AuthService } from '../../auth/auth.service';
+import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
+  imports: [ReactiveFormsModule],
   styleUrls: ['login.component.css'],
 })
-export class Login {
+export default class Login {
+
+  private _formBuilder = inject(FormBuilder);
   raw03d3: string = ' '
   email: string = '';
   password: string = '';
