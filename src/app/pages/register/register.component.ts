@@ -2,6 +2,8 @@ import {Component, inject} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {hasEmailError, isRequired} from "../../auth/utils/validators";
+import {AuthService} from "../../auth/auth.service";
+import {toast} from "ngx-sonner";
 
 
 interface FormRegister {
@@ -15,6 +17,7 @@ interface FormRegister {
 })
 export class Register {
   private _formBuilder = inject(FormBuilder);
+  private _authService = inject(AuthService);
 
   isRequired(field: 'email' | 'password') {
     return isRequired(field, this.form);
@@ -41,12 +44,17 @@ export class Register {
     ])
   }
 
-  register() {
+  async register() {
     if (this.form.invalid) return;
 
-    const { email, password} = this.form.value;
-    if (!email || !password) return;
-
-    console.log({email, password});
+    try {
+      const { email, password} = this.form.value;
+      if (!email || !password) return;
+      console.log({email, password});
+      await this._authService.registerNewUser({email, password});
+      toast.success("User created succesfully!");
+    } catch (error) {
+      toast.error("Something was wrong with the registration");
+    }
   }
 }

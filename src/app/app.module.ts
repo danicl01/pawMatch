@@ -8,6 +8,7 @@ import { AppComponent } from './app.component'
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {NgxSonnerToaster} from "ngx-sonner";
 
 
 const routes = [
@@ -111,8 +112,9 @@ const routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     ComponentsModule,
+      NgxSonnerToaster,
       AngularFireModule.initializeApp(environment.firebase),
-      AngularFireAuthModule
+      AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
