@@ -1,7 +1,14 @@
-import { inject, Injectable, signal } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference,} from '@angular/fire/compat/firestore';
+import { inject, Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import {updateDoc} from "@angular/fire/firestore";
 
 
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+/*
 export interface User {
   id: string;
   city: string;
@@ -36,13 +43,33 @@ export interface ProfilePet {
   search: string;
 }
 
+ */
+
 export type UserCreate = Omit<User, 'id'>;
 
 const PATH = 'users';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
+
 export class UserService {
   private _firestore = inject(AngularFirestore);
 
-  private _collection: AngularFirestoreCollection<User> = this._firestore.collection<User>(PATH);
+  private _collection: AngularFirestoreCollection<UserCreate> = this._firestore.collection(PATH);
+
+  createUser(user: UserCreate) {
+    return this._collection.add(user);
+  }
+
+  getUser(id: string) {
+    const docRef = this._collection.doc(id);
+    return docRef.get();
+  }
+
+  update(user: Partial<User>, id: string) {
+    const docRef = this._collection.doc(id);
+    return docRef.update(user);
+  }
+
 }

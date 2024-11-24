@@ -9,16 +9,7 @@
       fill="currentColor"
     ></path>
   </svg>
-  <form
-    id="registrationForm"
-    name="userForm"
-    action="/home"
-    method="POST"
-    target="self"
-    enctype="multipart/form-data"
-    autocomplete="on"
-    class="form-form"
-  >
+  <form id="registrationForm" name="userForm" method="POST" target="self" enctype="multipart/form-data" autocomplete="on" class="form-form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-form-content">
       <div class="form-form-owner-section">
         <div class="form-title">
@@ -30,46 +21,14 @@
               <span class="form-text12">Pet&apos;s owner full name:</span>
               <span class="form-text13">*</span>
             </span>
-            <input
-              type="text"
-              id="owner-first-name"
-              name="ownerFirstName"
-              required="true"
-              placeholder="First name"
-              autocomplete="given-name"
-              class="form-textinput10 input"
-            />
+            <input type="text" id="owner-first-name" name="ownerFirstName" required="required" placeholder="First name" autocomplete="given-name" class="form-textinput10 input" formControlName= "firstName"/>
           </div>
           <div class="form-last-name">
-            <input
-              type="text"
-              id="owner-last-name"
-              name="ownerLastName"
-              required="true"
-              placeholder="Last name"
-              autocomplete="family-name"
-              class="form-textinput11 input"
-            />
+            <input type="text" id="owner-last-name" name="ownerLastName" required="required" placeholder="Last name" autocomplete="family-name" class="form-textinput11 input" formControlName= "lastName"/>
           </div>
         </div>
-        <input
-          type="number"
-          id="owner-age"
-          max="99"
-          min="10"
-          name="ownerAge"
-          step="1"
-          required="true"
-          placeholder="Age"
-          class="form-textinput12 input"
-        />
-        <select
-          id="owner-sex"
-          name="ownerSex"
-          required="true"
-          autocomplete="off"
-          class="form-select1"
-        >
+        <input type="number" id="owner-age" max="99" min="10" name="ownerAge" step="1" required="required" placeholder="Age" class="form-textinput12 input"/>
+        <select id="owner-sex" name="ownerSex" required="required" autocomplete="off" class="form-select1">
           <option value="Option 1">EEUU</option>
           <option value="Option 2">Canada</option>
           <option value="Option 3">England</option>
@@ -77,35 +36,14 @@
         <div class="form-owner-address-section">
           <div class="form-container11">
             <span class="form-text14">Adress:</span>
-            <input
-              type="text"
-              id="owner-address"
-              name="ownerAddress"
-              placeholder="Street Address"
-              autocomplete="address-line1"
-              class="form-textinput13 input"
-            />
+            <input type="text" id="owner-address" name="ownerAddress" placeholder="Street Address" autocomplete="address-line1" class="form-textinput13 input"/>
           </div>
           <div class="form-container12">
             <div class="form-container13">
-              <input
-                type="text"
-                id="owner-city"
-                name="ownerCity"
-                required="true"
-                placeholder="City"
-                autocomplete="address-line2"
-                class="form-textinput14 input"
-              />
+              <input type="text" id="owner-city" name="ownerCity" required="required" placeholder="City" autocomplete="address-line2" class="form-textinput14 input"/>
             </div>
             <div class="form-container14">
-              <select
-                id="owner-country"
-                name="ownerCountry"
-                required="true"
-                autocomplete="country"
-                class="form-select2"
-              >
+              <select id="owner-country" name="ownerCountry" required="required" autocomplete="country" class="form-select2">
                 <option value="Option 1">EEUU</option>
                 <option value="Option 2">Canada</option>
                 <option value="Option 3">England</option>
@@ -115,28 +53,14 @@
         </div>
         <div class="form-owner-phone-number-section1">
           <span class="form-text15">Current job:*</span>
-          <input
-            type="text"
-            id="owner-job"
-            name="ownerJob"
-            required="true"
-            placeholder="Job"
-            autocomplete="off"
-            class="form-textinput15 input"
-          />
+          <input type="text" id="owner-job" name="ownerJob" required="required" placeholder="Job" autocomplete="off" class="form-textinput15 input"/>
         </div>
         <div class="form-owner-phone-number-section2">
           <span class="form-text16">
             <span class="form-text17">Availability:</span>
             <span class="form-text18">*</span>
           </span>
-          <select
-            id="owner-availability"
-            name="ownerAvailability"
-            required="true"
-            autocomplete="off"
-            class="form-select3"
-          >
+          <select id="owner-availability" name="ownerAvailability" required="required" autocomplete="off" class="form-select3">
             <option value="Option 1">EEUU</option>
             <option value="Option 2">Canada</option>
             <option value="Option 3">England</option>
@@ -145,14 +69,7 @@
             <span class="form-text19">
               Short description of yourself (optional):
             </span>
-            <textarea
-              id="owner-desciption"
-              cols="40"
-              name="petDescription"
-              rows="6"
-              placeholder="Write here..."
-              class="form-textarea1 textarea"
-            ></textarea>
+            <textarea id="owner-desciption" cols="40" name="petDescription" rows="6" placeholder="Write here..." class="form-textarea1 textarea"></textarea>
           </div>
         </div>
         <div class="form-container16">
@@ -166,41 +83,19 @@
           <div class="form-container18">
             <div class="form-container19">
               <div class="form-container20">
-                <input
-                  type="radio"
-                  id="pet-dog"
-                  name="petType"
-                  value="dog"
-                  checked="true"
-                  required="true"
-                  class="form-radiobutton1"
-                />
+                <input type="radio" id="pet-dog" name="petType" value="dog" checked="checked" required="required" class="form-radiobutton1"/>
                 <label class="form-text24">Dog</label>
               </div>
             </div>
             <div class="form-container21">
               <div class="form-container22">
-                <input
-                  type="radio"
-                  id="pet-cat"
-                  name="petType"
-                  value="cat"
-                  required="true"
-                  class="form-radiobutton2"
-                />
+                <input type="radio" id="pet-cat" name="petType" value="cat" required="required" class="form-radiobutton2"/>
                 <label class="form-text25">Cat</label>
               </div>
             </div>
             <div class="form-container23">
               <div class="form-container24">
-                <input
-                  type="radio"
-                  id="pet-hamster"
-                  name="petType"
-                  value="hamster"
-                  required="true"
-                  class="form-radiobutton3"
-                />
+                <input type="radio" id="pet-hamster" name="petType" value="hamster" required="required" class="form-radiobutton3"/>
                 <label class="form-text26">Hamster</label>
               </div>
             </div>
@@ -209,14 +104,7 @@
       </div>
       <div class="form-container25">
         <span class="form-text27">Profile picture</span>
-        <input
-          type="file"
-          id="profile-image"
-          name="profileImage"
-          accept="image/*"
-          placeholder="placeholder"
-          class="input"
-        />
+        <input type="file" id="profile-image" name="profileImage" accept="image/*" placeholder="placeholder" class="input"/>
       </div>
       <div class="form-line"></div>
       <div class="form-form-pet-section">
@@ -229,26 +117,10 @@
               <span class="form-text30">Pet full name:</span>
               <span class="form-text31">*</span>
             </span>
-            <input
-              type="text"
-              id="pet-first-name"
-              name="petFirstName"
-              required="true"
-              placeholder="First name"
-              autocomplete="given-name"
-              class="form-textinput17 input"
-            />
+            <input type="text" id="pet-first-name" name="petFirstName" required="required" placeholder="First name" autocomplete="given-name" class="form-textinput17 input"/>
           </div>
           <div class="form-container29">
-            <input
-              type="text"
-              id="pet-last-name"
-              name="petLastName"
-              required="true"
-              placeholder="Last name"
-              autocomplete="family-name"
-              class="form-textinput18 input"
-            />
+            <input type="text" id="pet-last-name" name="petLastName" required="required" placeholder="Last name" autocomplete="family-name" class="form-textinput18 input"/>
           </div>
         </div>
         <div class="form-container30">
@@ -258,82 +130,34 @@
                 <span class="form-text33">General Information:</span>
                 <span class="form-text34">*</span>
               </span>
-              <select
-                id="pet-breed"
-                name="petBreed"
-                required="true"
-                autocomplete="off"
-                class="form-select4"
-              >
+              <select id="pet-breed" name="petBreed" required="required" autocomplete="off" class="form-select4">
                 <option value="Option 1">EEUU</option>
                 <option value="Option 2">Canada</option>
                 <option value="Option 3">England</option>
               </select>
             </div>
             <div class="form-container33">
-              <input
-                type="number"
-                id="pet-age"
-                max="30"
-                min="0"
-                name="petAge"
-                step="1"
-                required="true"
-                placeholder="Age"
-                class="form-textinput19 input"
-              />
+              <input type="number" id="pet-age" max="30" min="0" name="petAge" step="1" required="required" placeholder="Age" class="form-textinput19 input"/>
             </div>
           </div>
           <div class="form-container34">
             <div class="form-container35">
-              <input
-                type="number"
-                id="pet-weight"
-                max="100"
-                min="0.1"
-                name="petWeight"
-                step="0.1"
-                required="true"
-                placeholder="Weight"
-                class="form-textinput20 input"
-              />
+              <input type="number" id="pet-weight" max="100" min="0.1" name="petWeight" step="0.1" required="required" placeholder="Weight" class="form-textinput20 input"/>
             </div>
             <div class="form-container36">
-              <input
-                type="number"
-                id="pet-size"
-                max="200"
-                min="10"
-                name="petSize"
-                step="1"
-                required="true"
-                placeholder="Size"
-                class="form-textinput21 input"
-              />
+              <input type="number" id="pet-size" max="200" min="10" name="petSize" step="1" required="required" placeholder="Size" class="form-textinput21 input"/>
             </div>
           </div>
           <div class="form-container37">
             <div class="form-container38">
-              <select
-                id="pet-sex"
-                name="petSex"
-                required="true"
-                autocomplete="off"
-                class="form-select5"
-              >
+              <select id="pet-sex" name="petSex" required="required" autocomplete="off" class="form-select5">
                 <option value="Option 1">EEUU</option>
                 <option value="Option 2">Canada</option>
                 <option value="Option 3">England</option>
               </select>
             </div>
             <div class="form-container39">
-              <select
-                id="pet-sexual-status"
-                name="petSexualStatus"
-                required="true"
-                autocomplete="off"
-                class="form-select6"
-              >
+              <select id="pet-sexual-status" name="petSexualStatus" required="required" autocomplete="off" class="form-select6">
                 <option value="Option 1">EEUU</option>
                 <option value="Option 2">Canada</option>
                 <option value="Option 3">England</option>
@@ -343,38 +167,17 @@
         </div>
         <div class="form-container40">
           <span class="form-text35">Diseases (if any):</span>
-          <textarea
-            id="pet-diseases"
-            cols="40"
-            name="petDiseases"
-            rows="4"
-            placeholder="Write here..."
-            class="form-textarea2 textarea"
-          ></textarea>
+          <textarea id="pet-diseases" cols="40" name="petDiseases" rows="4" placeholder="Write here..." class="form-textarea2 textarea"></textarea>
         </div>
         <div class="form-container41">
           <span class="form-text36">
             Short description of your pet (optional):
           </span>
-          <textarea
-            id="pet-description"
-            cols="40"
-            name="petDescription"
-            rows="6"
-            placeholder="Write here..."
-            class="form-textarea3 textarea"
-          ></textarea>
+          <textarea id="pet-description" cols="40" name="petDescription" rows="6" placeholder="Write here..." class="form-textarea3 textarea"></textarea>
         </div>
         <div class="form-container42">
           <span class="form-text37">Pet profile picture</span>
-          <input
-            type="file"
-            id="pet-image"
-            name="petImage"
-            accept="image/*"
-            placeholder="placeholder"
-            class="input"
-          />
+          <input type="file" id="pet-image" name="petImage" accept="image/*" placeholder="placeholder" class="input"/>
         </div>
       </div>
       <div class="form-container43">
@@ -384,48 +187,21 @@
         <div class="form-container45">
           <div class="form-container46">
             <span class="form-text39">Love</span>
-            <input
-              type="radio"
-              id="love"
-              name="petSearch"
-              value="love"
-              required="true"
-              class="form-radiobutton4"
-            />
+            <input type="radio" id="love" name="petSearch" value="love" required="required" class="form-radiobutton4"/>
           </div>
           <div class="form-container47">
             <span class="form-text40">Care</span>
-            <input
-              type="radio"
-              id="care"
-              name="petSearch"
-              value="care"
-              required="true"
-              class="form-radiobutton5"
-            />
+            <input type="radio" id="care" name="petSearch" value="care" required="required" class="form-radiobutton5"/>
           </div>
           <div class="form-container48">
-            <span class="form-text41">Adoption</span>
-            <input
-              type="radio"
-              id="adoption"
-              name="petSearch"
-              value="adoption"
-              required="true"
-              class="form-radiobutton6"
-            />
+            <label for="adoption" class="form-text41">Adoption</label>
+            <input type="radio" id="adoption" name="petSearch" value="adoption" required="required" class="form-radiobutton6"/>
           </div>
         </div>
       </div>
-      <a
-        routerLink="/home"
-        id="submit-form"
-        name="submitButton"
-        disabled="true"
-        class="form-navlink button"
-      >
-        SUBMIT
-      </a>
+      <button id="submit-form" type="submit" [disabled]="loading()" name="submitButton" class="form-navlink button" >
+        {{ loading() ? "Creating..." : "Create" }}
+      </button>
     </div>
   </form>
   <svg width="24" height="24" viewBox="0 0 24 24" class="form-icon7">
