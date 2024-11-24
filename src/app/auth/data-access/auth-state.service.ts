@@ -1,5 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {getAuth} from "@angular/fire/auth";
 
 @Injectable({
     providedIn: 'root',
@@ -9,6 +10,10 @@ export class AuthStateService {
 
     get authState$() {
         return this._auth.authState;
+    }
+
+    get currentUser() {
+        return getAuth().currentUser;
     }
 
     logout(): Promise<void> {
