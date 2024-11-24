@@ -46,8 +46,8 @@ export class Header {
       private router: Router
   ) {}
 
-  logout() {
-    this.authService.logout().then(() => {
+  async logout() {
+    await this.authService.logout().then(() => {
       toast.success("Session success")
       this.router.navigate(['/']);
     }).catch((error) => {
