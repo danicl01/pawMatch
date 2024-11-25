@@ -47,7 +47,6 @@ export class OwnerProfile implements OnInit{
     if (this.userId) {
       this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
       this.user$.subscribe(user => {
-        console.log(user);
         this.ownerName = user.firstName;
       });
     }

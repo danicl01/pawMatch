@@ -4,12 +4,7 @@ import {AuthStateService} from "../auth/data-access/auth-state.service";
 import {catchError, tap, throwError} from "rxjs";
 
 
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-}
-/*
+
 export interface User {
   id: string;
   city: string;
@@ -25,8 +20,8 @@ export interface ProfilePerson {
   age: number;
   job: string;
   schedule: string;
-  description: string;
-  picture: string;
+  description?: string;
+  picture?: string;
 }
 
 export interface ProfilePet {
@@ -38,13 +33,13 @@ export interface ProfilePet {
   species: string;
   breed: string;
   sexStatus: string;
-  diseases: string;
-  description: string;
-  picture: string;
+  diseases?: string;
+  description?: string;
+  picture?: string;
   search: string;
 }
 
- */
+
 
 export type UserCreate = Omit<User, 'id'>;
 
