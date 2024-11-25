@@ -1,51 +1,5 @@
 <div class="pet-profile-container10">
-  <app-header rootClassName="headerroot-class-name1">
-    <ng-template #text>
-      <div class="pet-profile-fragment1">
-        <span class="pet-profile-text10">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #link1>
-      <div class="pet-profile-fragment2">
-        <span class="pet-profile-text11">Home</span>
-      </div>
-    </ng-template>
-    <ng-template #link2>
-      <div class="pet-profile-fragment3">
-        <span class="pet-profile-text12">Search</span>
-      </div>
-    </ng-template>
-    <ng-template #link3>
-      <div class="pet-profile-fragment4">
-        <span class="pet-profile-text13">Map</span>
-      </div>
-    </ng-template>
-    <ng-template #link4>
-      <div class="pet-profile-fragment5">
-        <span class="pet-profile-text14">Saves</span>
-      </div>
-    </ng-template>
-    <ng-template #link5>
-      <div class="pet-profile-fragment6">
-        <span class="pet-profile-text15">Mailbox</span>
-      </div>
-    </ng-template>
-    <ng-template #text2>
-      <div class="pet-profile-fragment7">
-        <span class="pet-profile-text16">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #text3>
-      <div class="pet-profile-fragment8">
-        <span class="pet-profile-text17">Link</span>
-      </div>
-    </ng-template>
-    <ng-template #text11>
-      <div class="pet-profile-fragment9">
-        <span class="pet-profile-text18">Link</span>
-      </div>
-    </ng-template>
-  </app-header>
+  <app-header rootClassName="headerroot-class-name1"></app-header>
   <div class="pet-profile-container11">
     <div class="pet-profile-container12">
       <span class="pet-profile-text19">Pet Profile</span>
@@ -69,7 +23,7 @@
               />
               <div class="pet-profile-container19">
                 <span class="pet-profile-text21">Name</span>
-                <span id="pet-first-name" class="pet-profile-text22">Toby</span>
+                <span id="pet-first-name" class="pet-profile-text22" [innerHTML]="petName"></span>
               </div>
             </div>
           </div>
@@ -83,7 +37,7 @@
               <div class="pet-profile-container22">
                 <div class="pet-profile-container23">
                   <span class="pet-profile-text23">Species</span>
-                  <span id="pet-type" class="pet-profile-text24">Dog</span>
+                  <span id="pet-type" class="pet-profile-text24" [innerHTML]="petType"></span>
                 </div>
               </div>
             </div>
@@ -97,12 +51,7 @@
               />
               <div class="pet-profile-container26">
                 <span class="pet-profile-text25">Breed</span>
-                <span id="pet-breed" class="pet-profile-text26">
-                  <span>Golden</span>
-                  <br />
-                  <span>Retriever</span>
-                  <br />
-                </span>
+                <span id="pet-breed" class="pet-profile-text26" [innerHTML]="petBreed"></span>
               </div>
             </div>
           </div>
@@ -117,11 +66,7 @@
               />
               <div class="pet-profile-container30">
                 <span class="pet-profile-text31">Sex</span>
-                <span id="pet-sex" class="pet-profile-text32">
-                  <span>Male</span>
-                  <br />
-                  <br />
-                </span>
+                <span id="pet-sex" class="pet-profile-text32" [innerHTML]="petSex"></span>
               </div>
             </div>
           </div>
@@ -134,7 +79,7 @@
               />
               <div class="pet-profile-container33">
                 <span class="pet-profile-text36">Status</span>
-                <span id="pet-sex-status" class="pet-profile-text37">
+                <span id="pet-sex-status" class="pet-profile-text37" [innerHTML]="petStatus">
                   Intact
                 </span>
               </div>
@@ -149,7 +94,7 @@
               />
               <div class="pet-profile-container36">
                 <span class="pet-profile-text38">Weight</span>
-                <span id="pet-weight" class="pet-profile-text39">22 kg</span>
+                <span id="pet-weight" class="pet-profile-text39">{{ petWeight }} kg</span>
               </div>
             </div>
           </div>
@@ -164,7 +109,7 @@
               />
               <div class="pet-profile-container40">
                 <span class="pet-profile-text40">Size</span>
-                <span id="pet-size" class="pet-profile-text41">40 cm</span>
+                <span id="pet-size" class="pet-profile-text41">{{ petSize }} cm</span>
               </div>
             </div>
           </div>
@@ -177,7 +122,7 @@
               />
               <div class="pet-profile-container43">
                 <span class="pet-profile-text42">Age</span>
-                <span id="pet-age" class="pet-profile-text43">1 yr old</span>
+                <span id="pet-age" class="pet-profile-text43"> {{ petAge }} yr old</span>
               </div>
             </div>
           </div>
@@ -192,11 +137,8 @@
         />
         <div class="pet-profile-container45">
           <span id="pet-search" class="pet-profile-text44">
-            <span class="pet-profile-text45">
-              Looking for
-              <span [innerHTML]="raw1b3g"></span>
-            </span>
-            <span class="pet-profile-text46">LOVE </span>
+            <span class="pet-profile-text45">Looking for   </span>
+            <span class="pet-profile-text46" [innerHTML]="petSearch"></span>
           </span>
           <button type="button" class="pet-profile-button2 button">Edit</button>
         </div>
@@ -208,7 +150,7 @@
         <button type="button" class="pet-profile-button3 button">Edit</button>
       </div>
       <div class="pet-profile-container48">
-        <span id="pet-diseases" class="pet-profile-text48">- Parvovirus</span>
+        <span id="pet-diseases" class="pet-profile-text48" [innerHTML]="petDiseases"></span>
       </div>
     </div>
     <div class="pet-profile-container49">
@@ -217,9 +159,7 @@
         <button type="button" class="pet-profile-button4 button">Edit</button>
       </div>
       <div class="pet-profile-container51">
-        <span id="pet-description" class="pet-profile-text50">
-          Write here...
-        </span>
+        <span id="pet-description" class="pet-profile-text50" [innerHTML]="petDescription"></span>
       </div>
     </div>
   </div>
