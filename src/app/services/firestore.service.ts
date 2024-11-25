@@ -20,13 +20,16 @@ export class FirestoreService {
         );
   }
 
-
   getPets(userId: string): Observable<any[]> {
-    return this.firestore.collection('users').doc(userId).collection('profile_pet').valueChanges();
+    return this.firestore.collection('users').doc(userId).valueChanges().pipe(
+        map((userData: any) => userData?.profilePet || []) //
+    );
   }
 
   getPerson(userId: string): Observable<any[]> {
-    return this.firestore.collection('users').doc(userId).collection('profile_person').valueChanges();
+    return this.firestore.collection('users').doc(userId).valueChanges().pipe(
+        map((userData: any) => userData?.profilePerson || []) //
+    );
   }
 
   async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
@@ -40,14 +43,5 @@ export class FirestoreService {
     const randomUserDoc = availableUsers[Math.floor(Math.random() * availableUsers.length)];
     visitedProfiles.push(randomUserDoc.id);
     return randomUserDoc.id;
-  }
-
-  getPetName(userId: string, petId: string): Observable<any> {
-    return this.firestore
-        .collection('users')
-        .doc(userId)
-        .collection('profile_pet')
-        .doc(petId)
-        .valueChanges();
   }
 }
