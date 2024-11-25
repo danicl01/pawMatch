@@ -77,9 +77,7 @@
                 <div class="owner-profile-container23">
                   <div class="owner-profile-container24">
                     <span class="owner-profile-text23">Sex</span>
-                    <span id="owner-sex" class="owner-profile-text24">
-                      Male
-                    </span>
+                    <span id="owner-sex" class="owner-profile-text24" [innerHTML]="ownerSex"></span>
                   </div>
                 </div>
               </div>
@@ -88,10 +86,7 @@
               <div class="owner-profile-container26">
                 <div class="owner-profile-container27">
                   <span class="owner-profile-text25">Age</span>
-                  <span id="owner-age" class="owner-profile-text26">
-                    <span>33</span>
-                    <br />
-                  </span>
+                  <span id="owner-age" class="owner-profile-text26" [innerHTML]="ownerAge"><br /></span>
                 </div>
               </div>
             </div>
@@ -99,13 +94,10 @@
           <div class="owner-profile-container28">
             <div class="owner-profile-container29">
               <span class="owner-profile-text29">Job</span>
-              <span id="owner-job" class="owner-profile-text30">
-                <span>Potohrapher</span>
-                <br />
-              </span>
+              <span id="owner-job" class="owner-profile-text30" [innerHTML]="ownerJob"><br /></span>
             </div>
             <div class="owner-profile-container30">
-              <span class="owner-profile-text33">Schedule</span>
+              <span class="owner-profile-text33" [innerHTML]="ownerSchedule"></span>
               <span id="owner-schedule" class="owner-profile-text34">
                 Mornings
               </span>
@@ -120,8 +112,7 @@
             </button>
           </div>
           <div class="owner-profile-container33">
-            <span id="owner-description" class="owner-profile-text36">
-              <span>I’m a bubbly person, easy going and talktive.</span>
+            <span id="owner-description" class="owner-profile-text36" [innerHTML]="ownerDescription ? ownerDescription : 'Description not available.'">
               <br />
             </span>
           </div>
@@ -135,9 +126,7 @@
           class="owner-profile-image"
         />
         <div class="owner-profile-container35">
-          <span id="owner-address" class="owner-profile-text39">
-            Las Palmas de Gran Canaria
-          </span>
+          <span id="owner-address" class="owner-profile-text39" [innerHTML]="ownerLocation"></span>
           <button type="button" class="owner-profile-button3 button">
             Edit
           </button>

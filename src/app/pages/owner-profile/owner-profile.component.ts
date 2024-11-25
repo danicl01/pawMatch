@@ -13,6 +13,13 @@ import {FirestoreService} from "../../services/firestore.service";
 export class OwnerProfile implements OnInit{
   user$: Observable<any> | undefined;
   ownerName: string = ' ';
+  ownerSex: string = ' ';
+  ownerAge: string = ' ';
+  ownerJob: string = ' ';
+  ownerSchedule: string = ' ';
+  ownerDescription: string = ' ';
+  ownerImage: string = ' ';
+  ownerLocation: string = ' ';
 
   userId: string | null = null;
   private _userService = inject(UserService);
@@ -47,7 +54,13 @@ export class OwnerProfile implements OnInit{
     if (this.userId) {
       this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
       this.user$.subscribe(user => {
-        this.ownerName = user.firstName;
+        this.ownerName = user.profilePerson?.name;
+        this.ownerSex = user.profilePerson?.sex;
+        this.ownerAge = user.profilePerson?.age;
+        this.ownerJob = user.profilePerson?.job;
+        this.ownerSchedule = user.profilePerson?.schedule;
+        this.ownerDescription = user.profilePerson?.description;
+        this.ownerLocation = user.city + ", " + user.country;
       });
     }
   }
