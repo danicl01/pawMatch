@@ -55,23 +55,28 @@ export class PetProfile {
     }
   }
 
-  loadUser(): void {
+  async loadUser(): Promise<void> {
     if (this.userId) {
       this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
       this.user$.subscribe(user => {
-        if (user.profilePet && user.profilePet.length > 0) {
-          const pet = user.profilePet[0];
-          this.petName = pet.name || 'No name available';
-          this.petType = pet.species || 'Unknown type';
-          this.petBreed = pet.breed || 'Unknown breed';
-          this.petSex = pet.sex || 'Unknown sex';
-          this.petStatus = pet.sexualStatus || 'Unknown status';
-          this.petWeight = pet.weight || 'Unknown weight';
-          this.petSize = pet.size || 'Unknown size';
-          this.petAge = pet.age || 'Unknown age';
-          this.petDiseases = pet.diseases || 'No known diseases';
-          this.petDescription = pet.description || 'No description available';
-          this.petSearch = pet.search || 'No search info';
+        if (user && user.profilePet) {
+          const petId = Object.keys(user.profilePet)[0]; // Obtener el primer ID de la mascota
+          const pet = user.profilePet[petId];
+
+          if (pet) {
+            this.petName = pet.name || 'No name available';
+            this.petType = pet.species || 'Unknown type';
+            this.petBreed = pet.breed || 'Unknown breed';
+            this.petSex = pet.sex || 'Unknown sex';
+            this.petStatus = pet.sexualStatus || 'Unknown status';
+            this.petWeight = pet.weight || 'Unknown weight';
+            this.petSize = pet.size || 'Unknown size';
+            this.petAge = pet.age || 'Unknown age';
+            this.petDiseases = pet.diseases || 'No known diseases';
+            this.petDescription = pet.description || 'No description available';
+            this.petSearch = pet.search || 'No search info';
+            this.petImage = user.profilePet[0]?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
+          }
         }
       });
     }

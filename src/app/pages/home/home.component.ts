@@ -122,6 +122,7 @@ export class Home implements OnInit {
     this.weight = pet.weight;
     this.size = pet.size;
     this.search = pet.search;
+    this.image = pet.picture;
   }
 
   setDefaultValues() {

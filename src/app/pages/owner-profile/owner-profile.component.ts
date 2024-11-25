@@ -61,6 +61,7 @@ export class OwnerProfile implements OnInit{
         this.ownerSchedule = user.profilePerson?.schedule;
         this.ownerDescription = user.profilePerson?.description;
         this.ownerLocation = user.city + ", " + user.country;
+        this.ownerImage = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
       });
     }
   }

@@ -51,10 +51,8 @@
               <span id="owner-job" class="owner-profile-text30" [innerHTML]="ownerJob"><br /></span>
             </div>
             <div class="owner-profile-container30">
-              <span class="owner-profile-text33" [innerHTML]="ownerSchedule"></span>
-              <span id="owner-schedule" class="owner-profile-text34">
-                Mornings
-              </span>
+              <span class="owner-profile-text33" >Schedule</span>
+              <span id="owner-schedule" class="owner-profile-text34" [innerHTML]="ownerSchedule"></span>
             </div>
           </div>
         </div>
@@ -76,7 +74,7 @@
         <img
           id="owner-image"
           alt="image"
-          src="https://play.teleporthq.io/static/svg/default-img.svg"
+          [src]="ownerImage || 'https://play.teleporthq.io/static/svg/default-img.svg'"
           class="owner-profile-image"
         />
         <div class="owner-profile-container35">
