@@ -82,7 +82,7 @@ const routes = [
     path: 'form',
     loadChildren: () =>
       import('./pages/form/form.module').then((m) => m.FormModule),
-    canActivate: [publicGuard],
+    canActivate: [privateGuard],
   },
   {
     path: 'home',

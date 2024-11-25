@@ -12,6 +12,15 @@ export class FirestoreService {
     return this.firestore.collection('users').doc(userId).valueChanges();
   }
 
+  getDataFromCurrentAuthUser(userId: string): Observable<any> {
+    return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
+        .valueChanges()
+        .pipe(
+            map(users => users[0])
+        );
+  }
+
+
   getPets(userId: string): Observable<any[]> {
     return this.firestore.collection('users').doc(userId).collection('profile_pet').valueChanges();
   }

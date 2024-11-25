@@ -1,6 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import {updateDoc} from "@angular/fire/firestore";
+import {AuthStateService} from "../auth/data-access/auth-state.service";
+import {catchError, tap, throwError} from "rxjs";
 
 
 export interface User {
@@ -52,24 +53,68 @@ const PATH = 'users';
 @Injectable({
   providedIn: 'root',
 })
-
 export class UserService {
   private _firestore = inject(AngularFirestore);
+  private _authState = inject(AuthStateService);
 
-  private _collection: AngularFirestoreCollection<UserCreate> = this._firestore.collection(PATH);
+  private _collection: AngularFirestoreCollection<UserCreate>;
+  private _query: AngularFirestoreCollection<UserCreate>;
 
-  createUser(user: UserCreate) {
-    return this._collection.add(user);
+  loading = signal<boolean>(true);
+
+  constructor() {
+    this.initializeQuery();
+  }
+
+  private async initializeQuery() {
+    const currentUser = await this._authState.currentUser;
+    if (currentUser) {
+      this._query = this._firestore.collection<UserCreate>(PATH, (ref) =>
+          ref.where('userId', '==', currentUser.uid)
+      );
+    } else {
+      this._query = this._firestore.collection(PATH);
+    }
+  }
+
+  getUsers() {
+    return this._query.valueChanges({ idField: 'id' }).pipe(
+        tap(() => {
+          this.loading.set(false);
+        }),
+        catchError((error) => {
+          this.loading.set(false);
+          return throwError(() => error);
+        })
+    );
+  }
+
+  async createUser(user: UserCreate) {
+    const currentUser = await this._authState.currentUser;
+    if (!currentUser) {
+      throw new Error('No user is authenticated');
+    }
+    const newUser = {
+      ...user,
+      userId: currentUser.uid,
+    };
+    return this._firestore.collection(PATH).add(newUser);
   }
 
   getUser(id: string) {
-    const docRef = this._collection.doc(id);
+    const docRef = this._firestore.collection(PATH).doc(id);
     return docRef.get();
   }
 
-  update(user: Partial<User>, id: string) {
-    const docRef = this._collection.doc(id);
-    return docRef.update(user);
+  async update(user: Partial<User>, id: string) {
+    const authUser = await this._authState.currentUser;
+    if (!authUser) {
+      throw new Error('No user is authenticated');
+    }
+    const updatedData = {
+      ...user,
+      userId: authUser.uid,
+    };
+    return this._firestore.collection(PATH).doc(id).update(updatedData);
   }
-
 }
