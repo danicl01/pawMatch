@@ -19,22 +19,27 @@ const routes = [
       import('./pages/owner-profile/owner-profile.module').then(
         (m) => m.OwnerProfileModule
       ),
+    canActivate: [privateGuard],
   },
   {
     path: 'care-qa',
     loadChildren: () =>
       import('./pages/care-qa/care-qa.module').then((m) => m.CareQaModule),
+    canActivate: [privateGuard],
   },
+
   {
     path: 'pet-profile',
     loadChildren: () =>
       import('./pages/pet-profile/pet-profile.module').then(
         (m) => m.PetProfileModule
       ),
+    canActivate: [privateGuard],
   },
   {
     path: 'qa',
     loadChildren: () => import('./pages/qa/qa.module').then((m) => m.QaModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'register',
@@ -46,6 +51,7 @@ const routes = [
     path: 'user-owner-profile',
     loadChildren: () =>
       import('./pages/user-owner-profile/user-owner-profile.module').then((m) => m.UserOwnerProfileModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'saves',
@@ -54,10 +60,10 @@ const routes = [
     canActivate: [privateGuard],
   },
   {
-    canActivate: [privateGuard],
     path: 'search',
     loadChildren: () =>
       import('./pages/search/search.module').then((m) => m.SearchModule),
+    canActivate: [privateGuard],
   },
   {
     path: 'mailbox',
@@ -71,6 +77,7 @@ const routes = [
       import('./pages/adoption-qa/adoption-qa.module').then(
         (m) => m.AdoptionQaModule
       ),
+    canActivate: [privateGuard],
   },
   {
     path: '',
@@ -102,6 +109,7 @@ const routes = [
       import('./pages/user-pet-profile/user-pet-profile.module').then(
         (m) => m.UserPetProfileModule
       ),
+    canActivate: [privateGuard],
   },
   {
     path: '**',

@@ -32,7 +32,7 @@ export interface ProfilePet {
   size: number;
   species: string;
   breed: string;
-  sexStatus: string;
+  sexualStatus: string;
   diseases?: string;
   description?: string;
   picture?: string;
