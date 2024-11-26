@@ -320,6 +320,8 @@
 }
 .user-owner-profile-container31 {
   flex: 0 0 auto;
+  min-width: 100%;
+  max-width: 800px;
   width: auto;
   height: auto;
   display: flex;

@@ -12,6 +12,7 @@ import {AuthStateService} from "../../auth/data-access/auth-state.service";
 export class Home implements OnInit {
   currentView: 'pet' | 'person' = 'pet';
   currentUserId: string | null = null;
+  userId: string | null = null;
 
   city: string = ' '
   country: string = ' '
@@ -127,6 +128,7 @@ export class Home implements OnInit {
   }
 
   loadData2(userId: string) {
+    this.userId = userId;
     this.firestoreService.getPets(userId).subscribe(
         (petsData: any[]) => {
           console.log('Pets Data:', petsData);

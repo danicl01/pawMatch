@@ -1,51 +1,5 @@
 <div class="user-owner-profile-container10">
-  <app-header rootClassName="headerroot-class-name7">
-    <ng-template #text>
-      <div class="user-owner-profile-fragment1">
-        <span class="user-owner-profile-text10">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #link1>
-      <div class="user-owner-profile-fragment2">
-        <span class="user-owner-profile-text11">Home</span>
-      </div>
-    </ng-template>
-    <ng-template #link2>
-      <div class="user-owner-profile-fragment3">
-        <span class="user-owner-profile-text12">Search</span>
-      </div>
-    </ng-template>
-    <ng-template #link3>
-      <div class="user-owner-profile-fragment4">
-        <span class="user-owner-profile-text13">Map</span>
-      </div>
-    </ng-template>
-    <ng-template #link4>
-      <div class="user-owner-profile-fragment5">
-        <span class="user-owner-profile-text14">Saves</span>
-      </div>
-    </ng-template>
-    <ng-template #link5>
-      <div class="user-owner-profile-fragment6">
-        <span class="user-owner-profile-text15">Mailbox</span>
-      </div>
-    </ng-template>
-    <ng-template #text2>
-      <div class="user-owner-profile-fragment7">
-        <span class="user-owner-profile-text16">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #text3>
-      <div class="user-owner-profile-fragment8">
-        <span class="user-owner-profile-text17">Link</span>
-      </div>
-    </ng-template>
-    <ng-template #text11>
-      <div class="user-owner-profile-fragment9">
-        <span class="user-owner-profile-text18">Link</span>
-      </div>
-    </ng-template>
-  </app-header>
+  <app-header rootClassName="headerroot-class-name7"></app-header>
   <div class="user-owner-profile-container11">
     <div class="user-owner-profile-container12">
       <span class="user-owner-profile-text19">Owner Profile </span>
@@ -64,9 +18,7 @@
               <div class="user-owner-profile-container19">
                 <div class="user-owner-profile-container20">
                   <span class="user-owner-profile-text21">Name</span>
-                  <span id="user-first-name" class="user-owner-profile-text22">
-                    Marc Evans
-                  </span>
+                  <span id="user-first-name" class="user-owner-profile-text22" [innerHTML]="ownerName"> </span>
                 </div>
               </div>
             </div>
@@ -75,9 +27,7 @@
                 <div class="user-owner-profile-container23">
                   <div class="user-owner-profile-container24">
                     <span class="user-owner-profile-text23">Sex</span>
-                    <span id="user-sex" class="user-owner-profile-text24">
-                      Male
-                    </span>
+                    <span id="user-sex" class="user-owner-profile-text24" [innerHTML]="ownerSex"></span>
                   </div>
                 </div>
               </div>
@@ -86,10 +36,7 @@
               <div class="user-owner-profile-container26">
                 <div class="user-owner-profile-container27">
                   <span class="user-owner-profile-text25">Age</span>
-                  <span id="user-age" class="user-owner-profile-text26">
-                    <span>33</span>
-                    <br />
-                  </span>
+                  <span id="user-age" class="user-owner-profile-text26" [innerHTML]="ownerAge"><br /></span>
                 </div>
               </div>
             </div>
@@ -97,16 +44,11 @@
           <div class="user-owner-profile-container28">
             <div class="user-owner-profile-container29">
               <span class="user-owner-profile-text29">Job</span>
-              <span id="user-job" class="user-owner-profile-text30">
-                <span>Photographer</span>
-                <br />
-              </span>
+              <span id="user-job" class="user-owner-profile-text30" [innerHTML]="ownerJob"><br /></span>
             </div>
             <div class="user-owner-profile-container30">
               <span class="user-owner-profile-text33">Schedule</span>
-              <span id="user-schedule" class="user-owner-profile-text34">
-                Mornings
-              </span>
+              <span id="user-schedule" class="user-owner-profile-text34" [innerHTML]="ownerSchedule"></span>
             </div>
           </div>
         </div>
@@ -115,8 +57,7 @@
             <span class="user-owner-profile-text35">About me</span>
           </div>
           <div class="user-owner-profile-container33">
-            <span id="user-description" class="user-owner-profile-text36">
-              <span>I’m a bubbly person, easy going and talktive.</span>
+            <span id="user-description" class="user-owner-profile-text36" [innerHTML]="ownerDescription"><span></span>
               <br />
             </span>
           </div>
@@ -126,13 +67,11 @@
         <img
           id="user-image"
           alt="image"
-          src="https://play.teleporthq.io/static/svg/default-img.svg"
+          [src]="ownerImage || 'https://play.teleporthq.io/static/svg/default-img.svg'"
           class="user-owner-profile-image"
         />
         <div class="user-owner-profile-container35">
-          <span id="user-address" class="user-owner-profile-text39">
-            Las Palmas de Gran Canaria
-          </span>
+          <span id="user-address" class="user-owner-profile-text39" [innerHTML]="ownerLocation"></span>
         </div>
         <div class="user-owner-profile-container36">
           <div class="user-owner-profile-container37">

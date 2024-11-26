@@ -22,7 +22,6 @@ export class OwnerProfile implements OnInit{
   ownerLocation: string = ' ';
 
   userId: string | null = null;
-  private _userService = inject(UserService);
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
   constructor(private title: Title, private meta: Meta) {

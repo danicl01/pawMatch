@@ -1,4 +1,6 @@
-import { Component, Input, ContentChild, TemplateRef } from '@angular/core'
+import {Component, Input, ContentChild, TemplateRef, inject} from '@angular/core'
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'owner-component',
@@ -14,6 +16,7 @@ export class OwnerComponent {
   @Input() search: string = '';
   @Input() city: string = '';
   @Input() country: string = '';
+  @Input() userId: string | null = null;
 
   @ContentChild('text8')
   text8: TemplateRef<any>
@@ -51,5 +54,13 @@ export class OwnerComponent {
   imageSrc4: string = '/assets/like%20(1)-200h.png'
   rawiihl: string = ' '
   rawf2i2: string = ' '
+
+  _userService = inject(UserService);
+  _router = inject(Router);
   constructor() {}
+
+  navigateWithUserId() {
+    this._userService.setRandomUserId(this.userId);
+    this._router.navigate(['/user-owner-profile']);
+  }
 }

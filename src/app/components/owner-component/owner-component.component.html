@@ -122,11 +122,12 @@
                   class="pet-component-image2"
           />
         </div>
-        <a routerLink="/owner-profile" class="pet-component-navlink">
+        <a (click)="navigateWithUserId()" class="pet-component-navlink">
           <ng-container>
             <ng-template #defaultText1>
               <div class="pet-component-fragment14">
                 <span class="pet-component-text25">Click for more details</span>
+                <span class="pet-component-text25">{{ userId }}</span>
               </div>
             </ng-template>
             <ng-container

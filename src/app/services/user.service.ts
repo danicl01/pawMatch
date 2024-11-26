@@ -53,10 +53,20 @@ export class UserService {
   private _collection: AngularFirestoreCollection<UserCreate>;
   private _query: AngularFirestoreCollection<UserCreate>;
 
+  private randomUserId: string | null = null;
+
   loading = signal<boolean>(true);
 
   constructor() {
     this.initializeQuery();
+  }
+
+  setRandomUserId(id: string) {
+    this.randomUserId = id;
+  }
+
+  getRandomUserId(): string | null {
+    return this.randomUserId;
   }
 
   private async initializeQuery() {
