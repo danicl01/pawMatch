@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import {Component, inject, OnInit} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FirestoreService} from "../../services/firestore.service";
 import {ActivatedRoute} from "@angular/router";
+import {AuthStateService} from "../../auth/data-access/auth-state.service";
 
 @Component({
   selector: 'app-home',
@@ -9,25 +10,37 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['home.component.css'],
 })
 export class Home implements OnInit {
-  owner_name: string = ' '
+  currentView: 'pet' | 'person' = 'pet';
+  currentUserId: string | null = null;
+
   city: string = ' '
   country: string = ' '
-  name: string = ' '
-  breed: string = ' '
-  sex: string = ' '
-  age: string = ' '
-  weight: string = ' '
-  size: string = ' '
-  search: string = ' '
-  image: string = ' '
 
-  selectedCountry: string = '';
+  pet_name: string = ' '
+  pet_breed: string = ' '
+  pet_sex: string = ' '
+  pet_age: string = ' '
+  pet_weight: string = ' '
+  pet_size: string = ' '
+  pet_search: string = ' '
+  pet_image: string = ' '
+
+  owner_age: string = ' '
+  owner_job: string = ' '
+  owner_name: string = ' '
+  owner_picture: string = ' '
+  owner_schedule: string = ' '
+  owner_sex: string = ' '
+
   selectedCity: string = '';
+  selectedCountry: string = '';
+
   selectedType: string = '';
   selectedBreed: string = '';
   selectedPetSex: string = '';
   selectedPetAge: string = '';
   selectedSexStatus: string = '';
+
   selectedPersonAge: string = '';
   selectedPersonSex: string = '';
   selectedPersonJob: string = '';
@@ -35,6 +48,8 @@ export class Home implements OnInit {
 
   filteredPets: any[] = [];
   visitedProfiles: string[] = [];
+
+  private _authState = inject(AuthStateService);
   constructor(
       private title: Title,
       private meta: Meta,
@@ -49,7 +64,18 @@ export class Home implements OnInit {
       },
     ]);
   }
-  ngOnInit(): void {
+
+  async getUserId(): Promise<void> {
+    const currentUser = await this._authState.currentUser;
+    if (currentUser && currentUser.uid) {
+      this.currentUserId = currentUser.uid;
+      console.log('ID del usuario autenticado:', this.currentUserId);
+    } else {
+      console.error('No hay usuario autenticado');
+    }
+  }
+  async ngOnInit(): Promise<void> {
+    await this.getUserId();
     this.route.queryParams.subscribe(params => {
       this.selectedCountry = params['selectedCountry'] || '';
       this.selectedCity = params['selectedCity'] || '';
@@ -67,12 +93,33 @@ export class Home implements OnInit {
     });
   }
 
+  switchToPet(): void {
+    this.currentView = 'pet';
+  }
+
+  switchToPerson(): void {
+    this.currentView = 'person';
+  }
+
   async loadData() {
     const userId = await this.firestoreService.getRandomUser(this.visitedProfiles);
 
     if (userId) {
-      console.log('Usuario aleatorio:', userId);
-      this.loadData2(userId);
+      this.firestoreService.getUserIdFromDocId(userId).subscribe(
+          (docUserId: string | null) => {
+            if (docUserId === this.currentUserId) {
+              console.log('El usuario aleatorio es el mismo que el usuario actual. Buscando otro...');
+              this.loadNextUser();
+            } else {
+              console.log('Cargando usuario aleatorio:', userId);
+              this.loadData2(userId);
+            }
+          },
+          (error) => {
+            console.error('Error al obtener el userId:', error);
+            this.setDefaultValues();
+          }
+      );
     } else {
       console.log('No hay usuarios disponibles');
       this.setDefaultValues();
@@ -113,26 +160,50 @@ export class Home implements OnInit {
           this.setDefaultValues();
         }
     );
+    this.firestoreService.getPerson(userId).subscribe(
+        (personData: any) => {
+          console.log('Person Data:', personData);
+          this.setPersonValues(personData);
+        },
+        (error) => console.error('Error al obtener persona:', error)
+    );
   }
 
   setPetValues(pet: any) {
-    this.name = pet.name;
-    this.breed = pet.breed;
-    this.age = pet.age;
-    this.weight = pet.weight;
-    this.size = pet.size;
-    this.search = pet.search;
-    this.image = pet.picture;
+    this.pet_name = pet.name;
+    this.pet_breed = pet.breed;
+    this.pet_age = pet.age;
+    this.pet_weight = pet.weight;
+    this.pet_size = pet.size;
+    this.pet_search = pet.search;
+    this.pet_image = pet.picture;
+  }
+
+  setPersonValues(person: any) {
+    this.owner_name = person.name;
+    this.owner_age = person.age;
+    this.owner_sex = person.sex;
+    this.owner_job = person.job;
+    this.owner_schedule = person.schedule;
+    this.owner_picture = person.picture;
   }
 
   setDefaultValues() {
-    this.name = "No name";
-    this.breed = "No breed";
-    this.age = "0";
-    this.weight = "0.0";
-    this.size = "0.0";
-    this.search = "Nothing";
+    this.pet_name = "No name";
+    this.pet_breed = "No breed";
+    this.pet_age = "0";
+    this.pet_weight = "0.0";
+    this.pet_size = "0.0";
+    this.pet_search = "Nothing";
+    this.pet_image = 'https://play.teleporthq.io/static/svg/default-img.svg';
     this.visitedProfiles = [];
+
+    this.owner_name = "No data";
+    this.owner_age = "0";
+    this.owner_sex = "No data";
+    this.owner_job = "No data";
+    this.owner_schedule = "No data";
+    this.owner_picture = 'https://play.teleporthq.io/static/svg/default-img.svg';
   }
 
   loadNextUser() {

@@ -3,11 +3,12 @@
 
   <div class="home-container2">
     <div class="home-container3">
-      <button type="button" class="home-button1 button">People</button>
+      <button type="button" class="home-button1 button" (click)="switchToPerson()">People</button>
     </div>
     <div class="home-container4">
-      <button type="button" class="home-button2 button">Pets</button>
+      <button type="button" class="home-button2 button" (click)="switchToPet()">Pets</button>
     </div>
+
   </div>
   <div class="home-container5">
     <span id="owner-first-name-123" class="home-text19">
@@ -17,54 +18,24 @@
   <div class="home-container6">
     <div class="home-container7">
       <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" (click)="loadData()"/>
-      <pet-component rootClassName="pet-componentroot-class-name1">
-        <ng-template #text>
-          <div class="home-fragment19">
-            <!--<span class="home-text20">LUNA HARPER</span>-->
-            <span class="home-text20" [innerHTML]="name"></span>
-          </div>
-        </ng-template>
-        <ng-template #text1>
-          <div class="home-fragment20">
-            <span class="home-text21">Click for more details</span>
-          </div>
-        </ng-template>
-        <ng-template #text2>
-          <div class="home-fragment21">
-            <span class="home-text22" [innerHTML]="breed"></span>
-          </div>
-        </ng-template>
-        <ng-template #text3>
-          <div class="home-fragment22"><span class="home-text23" [innerHTML]="age"></span></div>
-        </ng-template>
-        <ng-template #text4>
-          <div class="home-fragment23">
-            <span class="home-text24">yrs old</span>
-          </div>
-        </ng-template>
-        <ng-template #text5>
-          <div class="home-fragment24"><span class="home-text25" [innerHTML]="weight"></span></div>
-        </ng-template>
-        <ng-template #text6>
-          <div class="home-fragment25"><span class="home-text26">kg</span></div>
-        </ng-template>
-        <ng-template #text7>
-          <div class="home-fragment26"><span class="home-text27" [innerHTML]="size"></span></div>
-        </ng-template>
-        <ng-template #text8>
-          <div class="home-fragment27">
-            <span class="home-text28">cm tall</span>
-          </div>
-        </ng-template>
-        <ng-template #text9>
-          <div class="home-fragment28">
-            <span class="home-text29">
-              <span class="home-text30">Looking for: </span>
-              <span class="home-text31" [innerHTML]="search"></span>
-            </span>
-          </div>
-        </ng-template>
+      <pet-component *ngIf="currentView === 'pet'"
+                     [imageSrc1]="pet_image"
+                     [name]="pet_name"
+                     [breed]="pet_breed"
+                     [age]="pet_age"
+                     [weight]="pet_weight"
+                     [size]="pet_size"
+                     [search]="pet_search">
       </pet-component>
+
+      <owner-component *ngIf="currentView === 'person'"
+                        [name]="owner_name"
+                        [age]="owner_age"
+                        [sex]="owner_sex"
+                        [job]="owner_job"
+                        [search]="pet_search"
+                        [imageSrc1]="owner_picture">
+      </owner-component>
       <img alt="image" src="/assets/arrow-right-600h.png" class="home-image2" (click)="loadData()"/>
     </div>
   </div>

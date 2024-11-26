@@ -7,7 +7,7 @@
           <ng-container>
             <ng-template #defaultText>
               <div class="pet-component-fragment11">
-                <span class="pet-component-text20">LUNA HARPER</span>
+                <span class="pet-component-text20">{{ name }}</span>
               </div>
             </ng-template>
             <ng-container
@@ -20,7 +20,7 @@
             <ng-container>
               <ng-template #defaultText2>
                 <div class="pet-component-fragment13">
-                  <span class="pet-component-text24">Golden Retriever</span>
+                  <span class="pet-component-text24">{{ breed }}</span>
                 </div>
               </ng-template>
               <ng-container
@@ -41,7 +41,7 @@
             <ng-container>
               <ng-template #defaultText3>
                 <div class="pet-component-fragment19">
-                  <span class="pet-component-text30">1</span>
+                  <span class="pet-component-text30">{{ age }}</span>
                 </div>
               </ng-template>
               <ng-container
@@ -67,7 +67,7 @@
             <ng-container>
               <ng-template #defaultText5>
                 <div class="pet-component-fragment17">
-                  <span class="pet-component-text28">12</span>
+                  <span class="pet-component-text28">{{ weight }}</span>
                 </div>
               </ng-template>
               <ng-container
@@ -93,7 +93,7 @@
             <ng-container>
               <ng-template #defaultText7>
                 <div class="pet-component-fragment16">
-                  <span class="pet-component-text27">50</span>
+                  <span class="pet-component-text27">{{ size }}</span>
                 </div>
               </ng-template>
               <ng-container
@@ -126,7 +126,7 @@
                       Looking for:
                       <span [innerHTML]="rawf2i2"></span>
                     </span>
-                    <span class="pet-component-text23">LOVE</span>
+                    <span class="pet-component-text23">{{ search }}</span>
                   </span>
                 </div>
               </ng-template>

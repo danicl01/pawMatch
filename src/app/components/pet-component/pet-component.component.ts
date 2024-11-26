@@ -6,6 +6,12 @@ import { Component, Input, ContentChild, TemplateRef } from '@angular/core'
   styleUrls: ['pet-component.component.css'],
 })
 export class PetComponent {
+  @Input() name: string = '';
+  @Input() breed: string = '';
+  @Input() age: string = '';
+  @Input() weight: string = '';
+  @Input() size: string = '';
+  @Input() search: string = '';
   @ContentChild('text8')
   text8: TemplateRef<any>
   @ContentChild('text')

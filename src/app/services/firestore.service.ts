@@ -12,6 +12,13 @@ export class FirestoreService {
     return this.firestore.collection('users').doc(userId).valueChanges();
   }
 
+  getUserIdFromDocId(docId: string): Observable<string | null> {
+    return this.firestore.collection('users').doc(docId).valueChanges().pipe(
+        map((docData: any) => docData?.['userId'] || null)
+    );
+  }
+
+
   getDataFromCurrentAuthUser(userId: string): Observable<any> {
     return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
         .valueChanges()
