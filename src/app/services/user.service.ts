@@ -3,8 +3,6 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import {AuthStateService} from "../auth/data-access/auth-state.service";
 import {catchError, tap, throwError} from "rxjs";
 
-
-
 export interface User {
   id: string;
   city: string;

@@ -5,8 +5,6 @@ import {ProfilePerson, ProfilePet, UserCreate, UserService} from "../../services
 import {toast} from "ngx-sonner";
 import {Router} from "@angular/router";
 
-declare var google: any;
-
 @Component({
   selector: 'app-form',
   templateUrl: 'form.component.html',
