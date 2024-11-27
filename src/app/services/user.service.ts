@@ -9,7 +9,7 @@ export interface User {
   address: string;
   profilePerson: ProfilePerson;
   profilePet: ProfilePet[];
-  savedUsers: [];
+  savedUsers: string[];
 }
 
 export interface ProfilePerson {

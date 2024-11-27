@@ -162,7 +162,8 @@ export class Form {
         country: ownerCountry,
         address: ownerAddress || '',
         profilePet: profilePet,
-        profilePerson: profilePerson
+        profilePerson: profilePerson,
+        savedUsers: []
       };
       await this._userService.createUser(user);
       toast.success("¡Usuario y mascota registrados con éxito!");
