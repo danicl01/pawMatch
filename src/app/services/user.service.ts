@@ -9,6 +9,7 @@ export interface User {
   address: string;
   profilePerson: ProfilePerson;
   profilePet: ProfilePet[];
+  savedUsers: [];
 }
 
 export interface ProfilePerson {
