@@ -52,24 +52,31 @@ export class FirestoreService {
     return randomUserDoc.id;
   }
 
-  addToSavedUsers(currentUserId: string, userIdToSave: string): Observable<void> {
-    const userDocRef = this.firestore.collection('users').doc(currentUserId);
+    addToSavedUsers(userId: string, selectedUserId: string): Observable<void> {
+        return this.firestore
+            .collection('users', ref => ref.where('userId', '==', userId))
+            .get()
+            .pipe(
+                switchMap(querySnapshot => {
+                    if (querySnapshot.empty) {
+                        throw new Error(`No user found with userId ${userId}`);
+                    }
+                    const userDoc = querySnapshot.docs[0];
+                    const userData: any = userDoc.data();
+                    const savedUsers: string[] = userData.savedUsers || [];
 
-    return userDocRef.get().pipe(
-        switchMap((docSnapshot: any) => {
-          if (!docSnapshot.exists) {
-            return of(null);
-          }
-          const userData = docSnapshot.data();
-          const savedUsers: string[] = userData.savedUsers || [];
+                    if (savedUsers.includes(selectedUserId)) {
+                        return of();
+                    }
+                    const updatedSavedUsers = [...savedUsers, selectedUserId];
+                    return this.firestore
+                        .collection('users')
+                        .doc(userDoc.id)
+                        .update({ savedUsers: updatedSavedUsers });
+                })
+            );
+    }
 
-          if (savedUsers.includes(userIdToSave)) {
-            return of();
-          }
-          const updatedSavedUsers = [...savedUsers, userIdToSave];
-          return userDocRef.update({ savedUsers: updatedSavedUsers });
-        })
-    );
-  }
+
 
 }
