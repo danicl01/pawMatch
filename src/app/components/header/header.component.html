@@ -1,6 +1,6 @@
 <header class="header-container1" [ngClass]="rootClassName">
   <header data-thq="thq-navbar" class="header-navbar-interactive">
-    <button (click)="logout()">Logout</button>
+
 
     <img [attr.alt]="imageAlt" [attr.src]="imageSrc" class="header-image1" />
     <div data-thq="thq-navbar-nav" class="header-desktop-menu">
@@ -177,34 +177,17 @@
           </a>
         </nav>
       </div>
-      <div class="header-container2">
-        <a routerLink="/owner-profile" class="header-navlink1">
-          <ng-container>
-            <ng-template #defaultText3>
-              <div class="header-fragment8">
-                <span class="header-text8">Link</span>
-              </div>
-            </ng-template>
-            <ng-container
-              *ngTemplateOutlet="text3 ? text3 : defaultText3"
-            ></ng-container>
-          </ng-container>
-        </a>
-      </div>
-    </div>
-    <div class="header-container3">
-      <a routerLink="/pet-profile" class="header-navlink2">
-        <ng-container>
-          <ng-template #defaultText11>
-            <div class="header-fragment2">
-              <span class="header-text2">Link</span>
-            </div>
-          </ng-template>
-          <ng-container
-            *ngTemplateOutlet="text11 ? text11 : defaultText11"
-          ></ng-container>
-        </ng-container>
+      <a routerLink="/owner-profile" class="header-navlink1">
+        <div class="header-container2"
+             [style.backgroundImage]="'url(' + (imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg') + ')'">
+        </div>
       </a>
     </div>
+    <button (click)="logout()">Logout</button>
+    <a routerLink="/pet-profile" >
+      <div class="header-container3"
+           [style.backgroundImage]="'url(' + (imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg') + ')'">
+      </div>
+    </a>
   </header>
 </header>

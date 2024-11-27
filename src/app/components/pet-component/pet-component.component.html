@@ -141,7 +141,7 @@
             class="pet-component-image2"
           />
         </div>
-        <a routerLink="/owner-profile" class="pet-component-navlink">
+        <a (click)="navigateWithUserId()" class="pet-component-navlink">
           <ng-container>
             <ng-template #defaultText1>
               <div class="pet-component-fragment14">
@@ -159,7 +159,7 @@
       <img
         id="pet-image-123"
         [attr.alt]="imageAlt1"
-        [attr.src]="imageSrc1"
+        [attr.src]="imageSrc1 || 'https://play.teleporthq.io/static/svg/default-img.svg'"
         class="pet-component-image3"
       />
     </div>

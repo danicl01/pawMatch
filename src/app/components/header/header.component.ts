@@ -1,7 +1,8 @@
-import { Component, Input, ContentChild, TemplateRef } from '@angular/core'
+import {Component, Input, ContentChild, TemplateRef, inject} from '@angular/core'
 import {Router} from "@angular/router";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {toast} from "ngx-sonner";
+import {FirestoreService} from "../../services/firestore.service";
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,7 @@ import {toast} from "ngx-sonner";
   styleUrls: ['header.component.css'],
 })
 export class Header {
+  imageSrcProfile: string = '';
   @Input()
   imageAlt: string = 'image'
   @ContentChild('text')
@@ -41,6 +43,8 @@ export class Header {
   textUrl2: string = 'https://example.com'
   @ContentChild('link2')
   link2: TemplateRef<any>
+
+  private _fireStore = inject(FirestoreService)
   constructor(
       private authService: AuthStateService,
       private router: Router

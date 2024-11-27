@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser'
 import {Observable} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {FirestoreService} from "../../services/firestore.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'user-owner-profile',
@@ -24,6 +25,7 @@ export class UserOwnerProfile {
 
   _userService = inject(UserService);
   _fireService = inject(FirestoreService);
+  _router = inject(Router);
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('User-owner-Profile - PawMatch')
     this.meta.addTags([
@@ -50,5 +52,9 @@ export class UserOwnerProfile {
         this.ownerImage = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
       });
     }
+  }
+  navigateWithUserId() {
+    this._userService.setRandomUserId(this.userId);
+    this._router.navigate(['/user-pet-profile']);
   }
 }

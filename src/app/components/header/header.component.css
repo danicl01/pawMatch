@@ -172,7 +172,6 @@
   border-radius: 50%;
   background-size: cover;
   justify-content: center;
-  background-image: url('https://play.teleporthq.io/static/svg/default-img.svg');
   background-position: center;
 }
 .header-navlink1 {
@@ -188,7 +187,6 @@
   border-radius: 100px;
   background-size: cover;
   justify-content: center;
-  background-image: url('https://play.teleporthq.io/static/svg/default-img.svg');
   background-position: center;
 }
 .header-navlink2 {

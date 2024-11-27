@@ -1,55 +1,9 @@
 <div class="user-pet-profile-container10">
-  <app-header rootClassName="headerroot-class-name8">
-    <ng-template #text>
-      <div class="user-pet-profile-fragment1">
-        <span class="user-pet-profile-text10">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #link1>
-      <div class="user-pet-profile-fragment2">
-        <span class="user-pet-profile-text11">Home</span>
-      </div>
-    </ng-template>
-    <ng-template #link2>
-      <div class="user-pet-profile-fragment3">
-        <span class="user-pet-profile-text12">Search</span>
-      </div>
-    </ng-template>
-    <ng-template #link3>
-      <div class="user-pet-profile-fragment4">
-        <span class="user-pet-profile-text13">Map</span>
-      </div>
-    </ng-template>
-    <ng-template #link4>
-      <div class="user-pet-profile-fragment5">
-        <span class="user-pet-profile-text14">Saves</span>
-      </div>
-    </ng-template>
-    <ng-template #link5>
-      <div class="user-pet-profile-fragment6">
-        <span class="user-pet-profile-text15">Mailbox</span>
-      </div>
-    </ng-template>
-    <ng-template #text2>
-      <div class="user-pet-profile-fragment7">
-        <span class="user-pet-profile-text16">Notifications</span>
-      </div>
-    </ng-template>
-    <ng-template #text3>
-      <div class="user-pet-profile-fragment8">
-        <span class="user-pet-profile-text17">Link</span>
-      </div>
-    </ng-template>
-    <ng-template #text11>
-      <div class="user-pet-profile-fragment9">
-        <span class="user-pet-profile-text18">Link</span>
-      </div>
-    </ng-template>
-  </app-header>
+  <app-header rootClassName="headerroot-class-name8"></app-header>
   <div class="user-pet-profile-container11">
     <div class="user-pet-profile-container12">
       <span class="user-pet-profile-text19">Pet Profile</span>
-      <a routerLink="/owner-profile" class="user-pet-profile-navlink1">
+      <a (click)="navigateWithUserId()" class="user-pet-profile-navlink1">
         Go to owner profile
       </a>
     </div>
@@ -68,9 +22,7 @@
               />
               <div class="user-pet-profile-container19">
                 <span class="user-pet-profile-text21">Name</span>
-                <span id="user-pet-first-name" class="user-pet-profile-text22">
-                  Toby
-                </span>
+                <span id="user-pet-first-name" class="user-pet-profile-text22" [innerHTML]="petName"></span>
               </div>
             </div>
           </div>
@@ -84,9 +36,7 @@
               <div class="user-pet-profile-container22">
                 <div class="user-pet-profile-container23">
                   <span class="user-pet-profile-text23">Species</span>
-                  <span id="user-pet-type" class="user-pet-profile-text24">
-                    Dog
-                  </span>
+                  <span id="user-pet-type" class="user-pet-profile-text24" [innerHTML]="petType"></span>
                 </div>
               </div>
             </div>
@@ -100,10 +50,7 @@
               />
               <div class="user-pet-profile-container26">
                 <span class="user-pet-profile-text25">Breed</span>
-                <span id="user-pet-breed" class="user-pet-profile-text26">
-                  <span>Golden</span>
-                  <br />
-                  <span>Retriever</span>
+                <span id="user-pet-breed" class="user-pet-profile-text26" [innerHTML]="petBreed">
                   <br />
                 </span>
               </div>
@@ -120,9 +67,7 @@
               />
               <div class="user-pet-profile-container30">
                 <span class="user-pet-profile-text31">Sex</span>
-                <span id="user-pet-sex" class="user-pet-profile-text32">
-                  <span>Male</span>
-                  <br />
+                <span id="user-pet-sex" class="user-pet-profile-text32" [innerHTML]="petSex">
                   <br />
                 </span>
               </div>
@@ -137,9 +82,7 @@
               />
               <div class="user-pet-profile-container33">
                 <span class="user-pet-profile-text36">Status</span>
-                <span id="user-pet-sex-status" class="user-pet-profile-text37">
-                  Intact
-                </span>
+                <span id="user-pet-sex-status" class="user-pet-profile-text37" [innerHTML]="petSexualStatus"></span>
               </div>
             </div>
           </div>
@@ -152,9 +95,7 @@
               />
               <div class="user-pet-profile-container36">
                 <span class="user-pet-profile-text38">Weight</span>
-                <span id="user-pet-weight" class="user-pet-profile-text39">
-                  22 kg
-                </span>
+                <span id="user-pet-weight" class="user-pet-profile-text39" [innerHTML]="petWeight + ' kg'"></span>
               </div>
             </div>
           </div>
@@ -169,9 +110,7 @@
               />
               <div class="user-pet-profile-container40">
                 <span class="user-pet-profile-text40">Size</span>
-                <span id="user-pet-size" class="user-pet-profile-text41">
-                  40 cm
-                </span>
+                <span id="user-pet-size" class="user-pet-profile-text41" [innerHTML]="petSize + ' cm'"></span>
               </div>
             </div>
           </div>
@@ -184,9 +123,7 @@
               />
               <div class="user-pet-profile-container43">
                 <span class="user-pet-profile-text42">Age</span>
-                <span id="user-pet-age" class="user-pet-profile-text43">
-                  1 yr old
-                </span>
+                <span id="user-pet-age" class="user-pet-profile-text43" [innerHTML]="petAge + ' yr old'"></span>
               </div>
             </div>
           </div>
@@ -195,16 +132,15 @@
       <div class="user-pet-profile-container44">
         <img
           alt="image"
-          src="https://play.teleporthq.io/static/svg/default-img.svg"
+          [src]="petImage || 'https://play.teleporthq.io/static/svg/default-img.svg'"
           class="user-pet-profile-image9"
         />
         <div class="user-pet-profile-container45">
           <span id="user-pet-search" class="user-pet-profile-text44">
             <span class="user-pet-profile-text45">
               Looking for
-              <span [innerHTML]="rawvf7p"></span>
             </span>
-            <span class="user-pet-profile-text46">LOVE </span>
+            <span class="user-pet-profile-text46" [innerHTML]="petSearch"></span>
           </span>
         </div>
         <div class="user-pet-profile-container46">
@@ -244,9 +180,7 @@
         <span class="user-pet-profile-text47">Diseases</span>
       </div>
       <div class="user-pet-profile-container51">
-        <span id="user-pet-diseases" class="user-pet-profile-text48">
-          - Parvovirus
-        </span>
+        <span id="user-pet-diseases" class="user-pet-profile-text48" [innerHTML]="petDiseases"></span>
       </div>
     </div>
     <div class="user-pet-profile-container52">
@@ -254,9 +188,7 @@
         <span class="user-pet-profile-text49">Pet Description</span>
       </div>
       <div class="user-pet-profile-container54">
-        <span id="user-pet-description" class="user-pet-profile-text50">
-          Write here...
-        </span>
+        <span id="user-pet-description" class="user-pet-profile-text50" [innerHTML]="petDescription"></span>
       </div>
     </div>
     <div class="user-pet-profile-container55">

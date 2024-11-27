@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {map, Observable, of, switchMap} from 'rxjs';
+import {BehaviorSubject, map, Observable, of, switchMap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

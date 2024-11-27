@@ -100,7 +100,6 @@ export class Form {
     });
   }
 
-
   onFileSelected(event: Event, fieldName: 'petImage' | 'ownerImage') {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
@@ -117,7 +116,6 @@ export class Form {
     const petType = this.form.get('petType')?.value;
     this.filteredBreeds = this.getBreeds(petType);
   }
-
 
   async submit() {
     if (this.form.invalid) {

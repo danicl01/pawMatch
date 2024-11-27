@@ -1,5 +1,7 @@
 <div class="home-container1">
-  <app-header link1Url="/home" rootClassName="headerroot-class-name"></app-header>
+  <app-header link1Url="/home" rootClassName="headerroot-class-name">
+
+  </app-header>
 
   <div class="home-container2">
     <div class="home-container3">
@@ -25,7 +27,8 @@
                      [age]="pet_age"
                      [weight]="pet_weight"
                      [size]="pet_size"
-                     [search]="pet_search">
+                     [search]="pet_search"
+                     [userId]="userId">
       </pet-component>
 
       <owner-component *ngIf="currentView === 'person'"

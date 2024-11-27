@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser'
 import {FirestoreService} from "../../services/firestore.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -51,6 +52,7 @@ export class Home implements OnInit {
   visitedProfiles: string[] = [];
 
   private _authState = inject(AuthStateService);
+  private _fireStore = inject(FirestoreService);
   constructor(
       private title: Title,
       private meta: Meta,
@@ -133,7 +135,6 @@ export class Home implements OnInit {
         (petsData: any[]) => {
           console.log('Pets Data:', petsData);
 
-          // Filtra las mascotas que cumplen con los filtros.
           this.filteredPets = petsData.filter(pet => {
             const sexMatch = (this.selectedPetSex === '' || pet.sex === this.selectedPetSex);
 

@@ -1,4 +1,6 @@
-import { Component, Input, ContentChild, TemplateRef } from '@angular/core'
+import {Component, Input, ContentChild, TemplateRef, inject} from '@angular/core'
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'pet-component',
@@ -12,6 +14,8 @@ export class PetComponent {
   @Input() weight: string = '';
   @Input() size: string = '';
   @Input() search: string = '';
+  @Input() userId: string | null = null;
+
   @ContentChild('text8')
   text8: TemplateRef<any>
   @ContentChild('text')
@@ -48,5 +52,13 @@ export class PetComponent {
   imageSrc4: string = '/assets/like%20(1)-200h.png'
   rawiihl: string = ' '
   rawf2i2: string = ' '
+
+  _userService = inject(UserService);
+  _router = inject(Router);
   constructor() {}
+
+  navigateWithUserId() {
+    this._userService.setRandomUserId(this.userId);
+    this._router.navigate(['/user-pet-profile']);
+  }
 }

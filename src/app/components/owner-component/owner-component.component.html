@@ -127,7 +127,6 @@
             <ng-template #defaultText1>
               <div class="pet-component-fragment14">
                 <span class="pet-component-text25">Click for more details</span>
-                <span class="pet-component-text25">{{ userId }}</span>
               </div>
             </ng-template>
             <ng-container
@@ -141,7 +140,7 @@
       <img
               id="pet-image-123"
               [attr.alt]="imageAlt1"
-              [attr.src]="imageSrc1"
+              [attr.src]="imageSrc1 || 'https://play.teleporthq.io/static/svg/default-img.svg'"
               class="pet-component-image3"
       />
     </div>
