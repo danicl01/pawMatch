@@ -51,4 +51,25 @@ export class FirestoreService {
     visitedProfiles.push(randomUserDoc.id);
     return randomUserDoc.id;
   }
+
+  addToSavedUsers(currentUserId: string, userIdToSave: string): Observable<void> {
+    const userDocRef = this.firestore.collection('users').doc(currentUserId);
+
+    return userDocRef.get().pipe(
+        switchMap((docSnapshot: any) => {
+          if (!docSnapshot.exists) {
+            return of(null);
+          }
+          const userData = docSnapshot.data();
+          const savedUsers: string[] = userData.savedUsers || [];
+
+          if (savedUsers.includes(userIdToSave)) {
+            return of();
+          }
+          const updatedSavedUsers = [...savedUsers, userIdToSave];
+          return userDocRef.update({ savedUsers: updatedSavedUsers });
+        })
+    );
+  }
+
 }

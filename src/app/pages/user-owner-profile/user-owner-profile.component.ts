@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {FirestoreService} from "../../services/firestore.service";
 import {Router} from "@angular/router";
+import {AuthStateService} from "../../auth/data-access/auth-state.service";
 
 @Component({
   selector: 'user-owner-profile',
@@ -21,8 +22,10 @@ export class UserOwnerProfile {
   ownerImage: string = ' ';
   ownerLocation: string = ' ';
 
+  currentId: string | null = null;
   userId: string | null = null;
 
+  private _authState = inject(AuthStateService);
   _userService = inject(UserService);
   _fireService = inject(FirestoreService);
   _router = inject(Router);
@@ -36,7 +39,8 @@ export class UserOwnerProfile {
     ])
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getUserId();
     this.userId = this._userService.getRandomUserId();
     if (this.userId) {
       this.user$ = this._fireService.getUser(this.userId);
@@ -53,6 +57,29 @@ export class UserOwnerProfile {
       });
     }
   }
+
+  async getUserId(): Promise<void> {
+    const currentUser = await this._authState.currentUser;
+    if (currentUser && currentUser.uid) {
+      this.currentId = currentUser.uid;
+      console.log('ID del usuario autenticado:', this.currentId);
+    } else {
+      console.error('No hay usuario autenticado');
+    }
+  }
+
+
+  saveUser(): void {
+    this._fireService.addToSavedUsers(this.currentId, this.userId).subscribe({
+      next: () => {
+        console.log('User successfully added to the saved list.');
+      },
+      error: err => {
+        console.error('Error adding user to the saved list:', err);
+      }
+    });
+  }
+
   navigateWithUserId() {
     this._userService.setRandomUserId(this.userId);
     this._router.navigate(['/user-pet-profile']);
