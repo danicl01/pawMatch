@@ -12,44 +12,7 @@
         </div>
       </div>
       <div class="saves-container16">
-        <div class="saves-container17">
-          <a routerLink="/owner-profile" class="saves-navlink1">
-            <div class="saves-container18">
-              <img
-                id="user-pet-image"
-                alt="image"
-                src="https://play.teleporthq.io/static/svg/default-img.svg"
-                class="saves-image"
-              />
-              <div class="saves-container19">
-                <span id="user-pet-first-name" class="saves-text20">
-                  Luna Harper
-                </span>
-                <span id="user-pet-search" class="saves-text21">
-                  <span>
-                    Looking for
-                    <span [innerHTML]="rawa76r"></span>
-                  </span>
-                  <span class="saves-text23">LOVE</span>
-                </span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <a routerLink="/mailbox" class="saves-navlink2">
-          <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon1">
-            <path
-              d="M3.656 17.979A1 1 0 0 1 2 17.243V15a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8.003zM16 10.017a7 7 0 0 0 0 .369zq.007-.16.004-4.019a3 3 0 0 0-3-2.997H5V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v2.243a1 1 0 0 1-1.656.736L16 13.743z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </a>
-        <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon3">
-          <path
-            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm3.17-6.41a.996.996 0 1 1 1.41-1.41L12 12.59l1.41-1.41a.996.996 0 1 1 1.41 1.41L13.41 14l1.41 1.41a.996.996 0 1 1-1.41 1.41L12 15.41l-1.41 1.41a.996.996 0 1 1-1.41-1.41L10.59 14zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"
-            fill="currentColor"
-          ></path>
-        </svg>
+        <app-saved-user *ngFor="let user of currentUser.savedUsers" [user]="user"></app-saved-user>
       </div>
     </div>
     <div class="saves-container20">
@@ -58,8 +21,8 @@
         <a routerLink="/mailbox" class="saves-navlink3">
           <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon5">
             <path
-              d="M3.656 17.979A1 1 0 0 1 2 17.243V15a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8.003zM16 10.017a7 7 0 0 0 0 .369zq.007-.16.004-4.019a3 3 0 0 0-3-2.997H5V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v2.243a1 1 0 0 1-1.656.736L16 13.743z"
-              fill="currentColor"
+                    d="M3.656 17.979A1 1 0 0 1 2 17.243V15a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8.003zM16 10.017a7 7 0 0 0 0 .369zq.007-.16.004-4.019a3 3 0 0 0-3-2.997H5V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v2.243a1 1 0 0 1-1.656.736L16 13.743z"
+                    fill="currentColor"
             ></path>
           </svg>
         </a>
