@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-saved-user',
@@ -9,4 +9,13 @@ export class SavedUserComponent {
   rawa76r: string = ' '
   rawewy0: string = ' '
   @Input() userId: string | undefined;
+  @Output() removeUser = new EventEmitter<string>();
+
+  constructor() { }
+
+  onRemoveUser() {
+    if (this.userId) {
+      this.removeUser.emit(this.userId);
+    }
+  }
 }

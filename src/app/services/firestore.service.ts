@@ -77,6 +77,15 @@ export class FirestoreService {
             );
     }
 
+    async updateSavedUser(userId: string, savedUsers: string[]): Promise<void> {
+        const userRef = this.firestore.collection('users', ref => ref.where('userId', '==', userId));
+        const userSnapshot = await userRef.get().toPromise();
 
-
+        if (!userSnapshot.empty) {
+            const docId = userSnapshot.docs[0].id;
+            await this.firestore.collection('users').doc(docId).update({ savedUsers });
+        } else {
+            throw new Error('Usuario no encontrado.');
+        }
+    }
 }

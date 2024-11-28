@@ -31,6 +31,21 @@ export class Saves implements OnInit {
     this.loadUser();
   }
 
+  async handleRemoveUser(userId: string): Promise<void> {
+    if (!this.savedUserList || !this.userId) return;
+
+    this.savedUserList = this.savedUserList.filter(id =>
+        id !== userId
+    );
+
+    try {
+      await this._fireService.updateSavedUser(this.userId, this.savedUserList);
+      console.log(`Usuario ${userId} eliminado correctamente de savedUsers.`);
+    } catch (error) {
+      console.error('Error al eliminar el usuario de savedUsers:', error);
+    }
+  }
+
   async getUserId(): Promise<void> {
     const currentUser = await this._authState.currentUser;
     if (currentUser && currentUser.uid) {

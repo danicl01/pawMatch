@@ -12,7 +12,11 @@
         </div>
       </div>
       <div class="saves-container16">
-        <app-saved-user *ngFor="let userId of savedUserList" [userId]="userId"></app-saved-user>
+        <app-saved-user
+                *ngFor="let userId of savedUserList"
+                [userId]="userId"
+                (removeUser)="handleRemoveUser($event)">
+        </app-saved-user>
       </div>
     </div>
     <div class="saves-container20">
