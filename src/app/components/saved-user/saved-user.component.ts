@@ -8,5 +8,5 @@ import {Component, Input} from '@angular/core';
 export class SavedUserComponent {
   rawa76r: string = ' '
   rawewy0: string = ' '
-  @Input() user: any;
+  @Input() userId: string | undefined;
 }

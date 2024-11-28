@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { AuthStateService } from "../../auth/data-access/auth-state.service";
+import { FirestoreService } from "../../services/firestore.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-saves',
@@ -7,8 +10,11 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['saves.component.css'],
 })
 export class Saves implements OnInit {
-  currentUser: any = { savedUsers: [] };
-
+  user$: Observable<any> | undefined;
+  userId: string | null = null;
+  private _authState = inject(AuthStateService);
+  private _fireService = inject(FirestoreService);
+  savedUserList: string[] = []; // Array de ids de usuarios guardados
 
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('Saves - PawMatch');
@@ -20,10 +26,27 @@ export class Saves implements OnInit {
     ]);
   }
 
-  ngOnInit() {
-    this.currentUser.savedUsers = [
-      { id: 1, name: 'User 1' },
-      { id: 2, name: 'User 2' },
-    ];
+  async ngOnInit(): Promise<void> {
+    await this.getUserId();
+    this.loadUser();
+  }
+
+  async getUserId(): Promise<void> {
+    const currentUser = await this._authState.currentUser;
+    if (currentUser && currentUser.uid) {
+      this.userId = currentUser.uid;
+      console.log('ID del usuario autenticado:', this.userId);
+    } else {
+      console.error('No hay usuario autenticado');
+    }
+  }
+
+  loadUser(): void {
+    if (this.userId) {
+      this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
+      this.user$.subscribe(user => {
+        this.savedUserList = user.savedUsers || [];
+      });
+    }
   }
 }
