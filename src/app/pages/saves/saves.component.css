@@ -312,6 +312,12 @@
   margin-top: var(--dl-space-space-fiveunits);
   text-decoration: none;
 }
+
+.centered-text {
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
 @media(max-width: 1200px) {
   .saves-container12 {
     width: 35%;

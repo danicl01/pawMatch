@@ -54,6 +54,7 @@ export class Saves implements OnInit {
     this.savedUserIdList = this.savedUserIdList.filter(id =>
         id !== selectedUser
     );
+    this.selectedUserId = null;
     try {
       await this._fireService.updateSavedUser(this.userId, this.savedUserIdList);
       console.log(`Usuario ${selectedUser} eliminado correctamente de savedUsers.`);

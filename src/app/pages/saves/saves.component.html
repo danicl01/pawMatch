@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="saves-container20">
-      <pet-component *ngIf="currentView === 'pet'"
+      <pet-component *ngIf="currentView === 'pet' && selectedUserId"
                      [imageSrc1]="pet_image"
                      [name]="pet_name"
                      [breed]="pet_breed"
@@ -32,8 +32,10 @@
                      [search]="pet_search"
                      [userId]="selectedUserId">
       </pet-component>
-
-      <owner-component *ngIf="currentView === 'person'"
+      <p *ngIf="currentView === 'pet' && !selectedUserId" class="centered-text">
+        Selecciona un usuario para ver los detalles de la mascota.
+      </p>
+      <owner-component *ngIf="currentView === 'person' && selectedUserId"
                        [name]="owner_name"
                        [age]="owner_age"
                        [sex]="owner_sex"
@@ -42,9 +44,13 @@
                        [imageSrc1]="owner_picture"
                        [userId]="userId">
       </owner-component>
+      <p *ngIf="currentView === 'person' && !selectedUserId" class="centered-text">
+        Selecciona un usuario para ver los detalles del propietario.
+      </p>
       <div class="saves-container21">
         <a routerLink="/mailbox" class="saves-navlink3">
-          <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon5">
+
+          <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon5" *ngIf="selectedUserId">
             <path
                     d="M3.656 17.979A1 1 0 0 1 2 17.243V15a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8.003zM16 10.017a7 7 0 0 0 0 .369zq.007-.16.004-4.019a3 3 0 0 0-3-2.997H5V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v2.243a1 1 0 0 1-1.656.736L16 13.743z"
                     fill="currentColor"
