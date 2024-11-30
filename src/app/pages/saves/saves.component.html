@@ -5,23 +5,24 @@
       <div class="saves-container13">
         <div class="saves-container14">
           <span class="saves-text19">Show profiles</span>
-          <button type="button" class="saves-button1 button">Pets</button>
+          <button type="button" class="saves-button1 button" (click)="switchToPet()">Pets</button>
         </div>
         <div class="saves-container15">
-          <button type="button" class="saves-button2 button">Person</button>
+          <button type="button" class="saves-button2 button" (click)="switchToPerson()">Person</button>
         </div>
       </div>
       <div class="saves-container16">
         <app-saved-user
                 *ngFor="let userId of savedUserIdList"
                 [userId]="userId"
+                [type]="currentView"
                 (removeUser)="handleRemoveUser($event)"
                 (selectUser)="handleSelectUser($event)">
         </app-saved-user>
       </div>
     </div>
     <div class="saves-container20">
-      <pet-component rootClassName="pet-componentroot-class-name"
+      <pet-component *ngIf="currentView === 'pet'"
                      [imageSrc1]="pet_image"
                      [name]="pet_name"
                      [breed]="pet_breed"
@@ -29,8 +30,18 @@
                      [weight]="pet_weight"
                      [size]="pet_size"
                      [search]="pet_search"
-                     [userId]="userId">>
+                     [userId]="selectedUserId">
       </pet-component>
+
+      <owner-component *ngIf="currentView === 'person'"
+                       [name]="owner_name"
+                       [age]="owner_age"
+                       [sex]="owner_sex"
+                       [job]="owner_job"
+                       [search]="pet_search"
+                       [imageSrc1]="owner_picture"
+                       [userId]="userId">
+      </owner-component>
       <div class="saves-container21">
         <a routerLink="/mailbox" class="saves-navlink3">
           <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon5">

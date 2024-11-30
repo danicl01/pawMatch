@@ -4,12 +4,12 @@
             <img
                     id="user-pet-image"
                     alt="image"
-                    src="https://play.teleporthq.io/static/svg/default-img.svg"
+                    [attr.src]="image || 'https://play.teleporthq.io/static/svg/default-img.svg'"
                     class="saves-image"
             />
             <div class="saves-container19">
                 <span id="user-pet-first-name" class="saves-text20">
-                  {{ userId }}
+                  {{ name }}
                 </span>
                 <span id="user-pet-search" class="saves-text21">
                   <span>

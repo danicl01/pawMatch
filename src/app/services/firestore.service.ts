@@ -33,13 +33,15 @@ export class FirestoreService {
     );
   }
 
-  getPerson(userId: string): Observable<any[]> {
-    return this.firestore.collection('users').doc(userId).valueChanges().pipe(
-        map((userData: any) => userData?.profilePerson || []) //
-    );
-  }
+    getPerson(userId: string): Observable<any> {
+        return this.firestore.collection('users').doc(userId).valueChanges().pipe(
+            map((userData: any | undefined) => userData?.profilePerson || null)
+        );
+    }
 
-  async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
+
+
+    async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
     const usersSnapshot = await this.firestore.collection('users').get().toPromise();
     if (usersSnapshot.empty) return null;
     const availableUsers = usersSnapshot.docs.filter(
