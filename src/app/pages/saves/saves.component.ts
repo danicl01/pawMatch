@@ -77,6 +77,7 @@ export class Saves implements OnInit {
           const pet = user.profilePet[petId];
 
           if (pet) {
+            this.userId = userId;
             this.pet_name = pet.name;
             this.pet_breed = pet.breed;
             this.pet_age = pet.age;
