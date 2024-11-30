@@ -13,14 +13,24 @@
       </div>
       <div class="saves-container16">
         <app-saved-user
-                *ngFor="let userId of savedUserList"
+                *ngFor="let userId of savedUserIdList"
                 [userId]="userId"
-                (removeUser)="handleRemoveUser($event)">
+                (removeUser)="handleRemoveUser($event)"
+                (selectUser)="handleSelectUser($event)">
         </app-saved-user>
       </div>
     </div>
     <div class="saves-container20">
-      <pet-component rootClassName="pet-componentroot-class-name"></pet-component>
+      <pet-component rootClassName="pet-componentroot-class-name"
+                     [imageSrc1]="pet_image"
+                     [name]="pet_name"
+                     [breed]="pet_breed"
+                     [age]="pet_age"
+                     [weight]="pet_weight"
+                     [size]="pet_size"
+                     [search]="pet_search"
+                     [userId]="userId">>
+      </pet-component>
       <div class="saves-container21">
         <a routerLink="/mailbox" class="saves-navlink3">
           <svg width="24" height="24" viewBox="0 0 24 24" class="saves-icon5">

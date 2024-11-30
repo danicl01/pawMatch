@@ -14,7 +14,17 @@ export class Saves implements OnInit {
   userId: string | null = null;
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
-  savedUserList: string[] = []; // Array de ids de usuarios guardados
+  savedUserIdList: string[] = [];
+  selectedUserId: any = null;
+
+  pet_name: string = ' '
+  pet_breed: string = ' '
+  pet_sex: string = ' '
+  pet_age: string = ' '
+  pet_weight: string = ' '
+  pet_size: string = ' '
+  pet_search: string = ' '
+  pet_image: string = ' '
 
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('Saves - PawMatch');
@@ -31,16 +41,17 @@ export class Saves implements OnInit {
     this.loadUser();
   }
 
-  async handleRemoveUser(userId: string): Promise<void> {
-    if (!this.savedUserList || !this.userId) return;
+  async handleRemoveUser(selectedUser: string): Promise<void> {
+    console.log(selectedUser);
+    if (!this.savedUserIdList || !this.selectedUserId) return;
 
-    this.savedUserList = this.savedUserList.filter(id =>
-        id !== userId
+    this.savedUserIdList = this.savedUserIdList.filter(id =>
+        id !== selectedUser
     );
 
     try {
-      await this._fireService.updateSavedUser(this.userId, this.savedUserList);
-      console.log(`Usuario ${userId} eliminado correctamente de savedUsers.`);
+      await this._fireService.updateSavedUser(this.userId, this.savedUserIdList);
+      console.log(`Usuario ${selectedUser} eliminado correctamente de savedUsers.`);
     } catch (error) {
       console.error('Error al eliminar el usuario de savedUsers:', error);
     }
@@ -56,11 +67,35 @@ export class Saves implements OnInit {
     }
   }
 
+  async handleSelectUser(userId: string): Promise<void> {
+      if (userId) {
+        console.log(userId);
+      this.user$ = this._fireService.getUser(userId);
+      this.user$.subscribe(user => {
+        if (user && user.profilePet) {
+          const petId = Object.keys(user.profilePet)[0];
+          const pet = user.profilePet[petId];
+
+          if (pet) {
+            this.pet_name = pet.name;
+            this.pet_breed = pet.breed;
+            this.pet_age = pet.age;
+            this.pet_weight = pet.weight;
+            this.pet_size = pet.size;
+            this.pet_search = pet.search;
+            this.pet_image = pet.picture;
+          }
+        }
+      });
+  }
+  }
+
+
   loadUser(): void {
     if (this.userId) {
       this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
       this.user$.subscribe(user => {
-        this.savedUserList = user.savedUsers || [];
+        this.savedUserIdList = user.savedUsers || [];
       });
     }
   }
