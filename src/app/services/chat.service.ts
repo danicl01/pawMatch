@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -7,12 +7,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class ChatService {
-  constructor(private firestore: AngularFirestore, private auth: AngularFireAuth) {}
+
+  _fireStore = inject(AngularFirestore);
+  _authService = inject(AngularFireAuth);
+  constructor() {}
 
   async createChat(user1Id: string, user2Id: string) {
     const chatId = this.getChatId(user1Id, user2Id);
 
-    const chatRef = this.firestore.collection('chats').doc(chatId);
+    const chatRef = this._fireStore.collection('chats').doc(chatId);
 
     const doc = await chatRef.get().toPromise();
     if (!doc.exists) {
@@ -31,7 +34,7 @@ export class ChatService {
 
   sendMessage(userId: string, chatId: string, message: string): void {
     const timestamp = new Date();
-    this.firestore.collection('chats').doc(chatId).collection('messages').add({
+    this._fireStore.collection('chats').doc(chatId).collection('messages').add({
       senderId: userId,
       message: message,
       timestamp: timestamp
@@ -39,7 +42,7 @@ export class ChatService {
   }
 
   getMessages(chatId: string): Observable<any[]> {
-    return this.firestore.collection('chats').doc(chatId).collection('messages', ref =>
+    return this._fireStore.collection('chats').doc(chatId).collection('messages', ref =>
         ref.orderBy('timestamp')).valueChanges();
   }
 }
