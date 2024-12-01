@@ -1,7 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {ChatService, MessageCreate, Message} from "../../services/chat.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Timestamp } from '@angular/fire/firestore';
 import {Observable} from "rxjs";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
@@ -19,14 +19,21 @@ export class ChatComponent implements OnInit {
   messages: Message[] = [];
   newMessage: string = '';
   userId: string | null = null;
+  @Input() receiverId: string | null = null;
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
   private _chatService = inject(ChatService);
   private _activatedRoute = inject(ActivatedRoute);
+  private _router = inject(Router);
 
   constructor() {}
 
   async ngOnInit(): Promise<void> {
+    console.log('El usuario recibido es: ', this.receiverId);
+    this._activatedRoute.paramMap.subscribe(params => {
+      this.userId = params.get('userId');
+      console.log('UserId desde la ruta:', this.userId);
+    });
     await this.getUserId();
 
 
@@ -52,8 +59,7 @@ export class ChatComponent implements OnInit {
   async sendMessage() {
     if (this.newMessage.trim()) {
       if (!this.chatId) {
-        const receiverId = 'KQJaf9YHBk3oWqqhJLEu';
-        await this.createChatIfNeeded(receiverId);
+        await this.createChatIfNeeded(this.receiverId);
       }
       const message: MessageCreate = {
         senderId: this.userId,
@@ -67,9 +73,7 @@ export class ChatComponent implements OnInit {
   }
 
   async startChat() {
-    const receiverId = 'KQJaf9YHBk3oWqqhJLEu';
-
-    this._chatService.getChatIdByParticipants(this.userId, receiverId).subscribe(docId => {
+    this._chatService.getChatIdByParticipants(this.userId, this.receiverId).subscribe(docId => {
       if (docId) {
         console.log('DocId encontrado:', docId);
         this.chatId = docId;

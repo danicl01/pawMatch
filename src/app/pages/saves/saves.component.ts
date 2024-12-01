@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { AuthStateService } from "../../auth/data-access/auth-state.service";
 import { FirestoreService } from "../../services/firestore.service";
 import { Observable } from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-saves',
@@ -16,6 +17,7 @@ export class Saves implements OnInit {
   selectedUserId: string | null = null;
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
+  private _router = inject(Router);
   savedUserIdList: string[] = [];
 
   pet_name: string = ' '
@@ -144,4 +146,11 @@ export class Saves implements OnInit {
     this.owner_schedule = '';
     this.owner_sex = '';
   }
+
+  onIconClick() {
+    this._router.navigate(['/mailbox'], {
+      queryParams: { selectedUserId: this.selectedUserId }
+    });
+  }
+
 }

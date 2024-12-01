@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
+import {Component, inject} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-mailbox',
@@ -8,6 +9,9 @@ import { Title, Meta } from '@angular/platform-browser'
 })
 export class Mailbox {
   raw1ik8: string = ' '
+  receiverId: string | null = null;
+
+  private _activatedRoute = inject(ActivatedRoute);
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('Mailbox - PawMatch')
     this.meta.addTags([
@@ -16,5 +20,14 @@ export class Mailbox {
         content: 'Mailbox - PawMatch',
       },
     ])
+  }
+
+  async ngOnInit(): Promise<void> {
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.receiverId = params['selectedUserId'];
+      console.log('Selected User ID:', this.receiverId);
+    });
+
+
   }
 }

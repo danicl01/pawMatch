@@ -19,7 +19,6 @@ export class FirestoreService {
   }
 
     getDocIdFromUserId(userId: string): Observable<string | null> {
-        console.log("Función getDocIdFromUserID --- El userId es: ", userId);
         return this.firestore.collection('users', ref => ref
             .where('userId', '==', userId)
         )
@@ -27,10 +26,8 @@ export class FirestoreService {
         .pipe(
             map((querySnapshot) => {
                 if (querySnapshot.empty) {
-                    console.log("Función getDocIdFromUserID --- No encontró nada");
                     return null;
                 }
-                console.log("Función getDocIdFromUserID --- El docId es: ", querySnapshot.docs[0].id);
                 return querySnapshot.docs[0].id;
             })
         );

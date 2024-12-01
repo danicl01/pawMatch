@@ -37,27 +37,7 @@ export class ChatService {
     this._chatCollection = this._firestore.collection<ChatCreate>(CHAT_PATH);
   }
 
-  getUserChats(userId: string, receiverId: string) {
-    return this._chatCollection.ref
-        .where('participants', 'array-contains', userId)
-        .where('participants', 'array-contains', receiverId)
-        .get()
-        .then((snapshot) =>
-            snapshot.docs.map((doc) => {
-              const data = doc.data() as Chat;
-              return {
-                ...data,
-                lastMessageTimestamp: data.lastMessageTimestamp
-                    ? data.lastMessageTimestamp.toDate()
-                    : null,
-              };
-            })
-        );
-  }
-
   getChatIdByParticipants(userId: string, receiverId: string) {
-    console.log('Buscando chat para userId:', userId, 'y receiverId:', receiverId);
-
     return this._firestore.collection('chats', ref => ref
         .where('participants', 'array-contains', userId)
     )
@@ -65,15 +45,17 @@ export class ChatService {
         .pipe(
             map((querySnapshot) => {
               if (querySnapshot.empty) {
-                console.log('Nulito');
                 return null;
               }
-              console.log('El query ese:', querySnapshot.docs);
-              return querySnapshot.docs[0].id;
+              const chatDoc = querySnapshot.docs.find(doc => {
+                const data = doc.data() as Chat;
+                const participants = data.participants;
+                return participants.includes(receiverId);
+              });
+              return chatDoc ? chatDoc.id : null;
             })
         );
   }
-
 
   chatExists(chatId: string): Promise<boolean> {
     return this._firestore
