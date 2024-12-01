@@ -1,12 +1,21 @@
 <div class="chat-container">
     <div class="messages">
-        <div *ngFor="let msg of messages">
-            <div class="message">
-                <strong>{{ msg.senderId }}:</strong> {{ msg.message }}
-            </div>
+        <div
+                *ngFor="let message of messages"
+                class="message"
+                [ngClass]="{ 'sent': message.senderId === userId, 'received': message.senderId !== userId }"
+        >
+            <p>{{ message.message }}</p>
+            <small>{{ message.timestamp | date: 'shortTime' }}</small>
         </div>
     </div>
 
-    <textarea [(ngModel)]="message" placeholder="Escribe tu mensaje"></textarea>
-    <button (click)="sendMessage()">Enviar</button>
+    <div class="message-input">
+    <textarea
+            [(ngModel)]="newMessage"
+            placeholder="Escribe un mensaje..."
+            rows="1"
+    ></textarea>
+        <button (click)="sendMessage()">Enviar</button>
+    </div>
 </div>

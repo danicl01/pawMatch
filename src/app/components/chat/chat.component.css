@@ -1,38 +1,67 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
-    margin: auto;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 .messages {
-    max-height: 400px;
-    overflow-y: scroll;
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
 }
 
 .message {
-    background-color: #f1f1f1;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    max-width: 70%;
+    position: relative;
 }
 
-textarea {
-    width: 100%;
-    height: 100px;
-    margin-top: 10px;
-    padding: 10px;
+.message.sent {
+    align-self: flex-end;
+    background-color: #d4f1f4;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
+.message.received {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+}
+
+.message small {
+    display: block;
+    font-size: 0.8rem;
+    text-align: right;
+    color: #888;
+}
+
+.message-input {
+    display: flex;
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.message-input textarea {
+    flex: 1;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.message-input button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
     background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
 }
 
-button:hover {
+.message-input button:hover {
     background-color: #0056b3;
 }

@@ -10,6 +10,7 @@ import {environment} from "../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {NgxSonnerToaster} from "ngx-sonner";
 import {privateGuard, publicGuard} from "./auth/auth.guard";
+import {ChatComponent} from "./components/chat/chat.component";
 
 
 const routes = [

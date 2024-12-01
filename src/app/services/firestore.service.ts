@@ -18,8 +18,27 @@ export class FirestoreService {
     );
   }
 
+    getDocIdFromUserId(userId: string): Observable<string | null> {
+        console.log("Función getDocIdFromUserID --- El userId es: ", userId);
+        return this.firestore.collection('users', ref => ref
+            .where('userId', '==', userId)
+        )
+        .get()
+        .pipe(
+            map((querySnapshot) => {
+                if (querySnapshot.empty) {
+                    console.log("Función getDocIdFromUserID --- No encontró nada");
+                    return null;
+                }
+                console.log("Función getDocIdFromUserID --- El docId es: ", querySnapshot.docs[0].id);
+                return querySnapshot.docs[0].id;
+            })
+        );
+    }
 
-  getDataFromCurrentAuthUser(userId: string): Observable<any> {
+
+
+    getDataFromCurrentAuthUser(userId: string): Observable<any> {
     return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
         .valueChanges()
         .pipe(
