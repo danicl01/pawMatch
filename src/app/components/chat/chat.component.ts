@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit, SimpleChanges} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {ChatService, MessageCreate, Message} from "../../services/chat.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -35,8 +35,13 @@ export class ChatComponent implements OnInit {
       console.log('UserId desde la ruta:', this.userId);
     });
     await this.getUserId();
+  }
 
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.receiverId && changes.receiverId.currentValue) {
+      console.log('Receiver ID updated in child component:', this.receiverId);
+      this.startChat();
+    }
   }
 
   async getUserId(): Promise<void> {

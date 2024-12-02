@@ -1,7 +1,6 @@
 import {Component, inject, Input} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs";
 import {ChatService, Message} from "../../services/chat.service";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {FirestoreService} from "../../services/firestore.service";
@@ -13,7 +12,7 @@ import {FirestoreService} from "../../services/firestore.service";
 })
 export class Mailbox {
   raw1ik8: string = ' '
-  receiverId: string | null = null;
+  selectedId: string | null = null;
   userId: string | null = null;
   chatDetails: {
     chatId: string;
@@ -39,8 +38,8 @@ export class Mailbox {
   async ngOnInit(): Promise<void> {
     await this.getUserId();
     this._activatedRoute.queryParams.subscribe(params => {
-      this.receiverId = params['selectedUserId'];
-      console.log('Selected User ID:', this.receiverId);
+      this.selectedId = params['selectedUserId'];
+      console.log('Selected User ID:', this.selectedId);
     });
   }
 
@@ -91,5 +90,10 @@ export class Mailbox {
         console.log('No se encontraron chats para este usuario.');
       }
     });
+  }
+
+  onSelectParticipant(participantId: string) {
+    this.selectedId = participantId;
+    console.log('Selected Participant ID:', this.selectedId);
   }
 }

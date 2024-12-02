@@ -12,41 +12,18 @@
         </div>
         <button type="button" class="mailbox-button3 button">Requests</button>
       </div>
-      <div class="mailbox-container16">
-        <div class="mailbox-container17">
-          <a routerLink="/owner-profile" class="mailbox-navlink">
-            <div class="mailbox-container18">
-              <img
-                id="user-pet-image"
-                alt="image"
-                src="https://play.teleporthq.io/static/svg/default-img.svg"
-                class="mailbox-image1"
-              />
-              <div class="mailbox-container19">
-                <span id="user-pet-first-name" class="mailbox-text20">
-                  Luna Harper
-                </span>
-                <span id="user-pet-search" class="mailbox-text21">
-                  <span>
-                    Looking for
-                    <span [innerHTML]="raw1ik8"></span>
-                  </span>
-                  <span class="mailbox-text23">LOVE</span>
-                </span>
-                <div class="mailbox-container20">
-                  <span id="last-message">
-                    Sure, let&apos;s meet on Sunday!
-                  </span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <span id="date" class="mailbox-text25">9 sep.</span>
+      <div *ngFor="let chat of chatDetails">
+        <app-chat-list
+                [chatId]="chat.chatId"
+                [participantId]="chat.participantId"
+                [lastMessage]="chat.lastMessage"
+                [lastMessageDate]="chat.lastMessageDate"
+          (selectParticipant)="onSelectParticipant($event)">
+        </app-chat-list>
       </div>
     </div>
     <div class="mailbox-container21">
-      <app-chat [receiverId]="receiverId"></app-chat>
+      <app-chat [receiverId]="selectedId"></app-chat>
 
       <!--
 
