@@ -57,15 +57,6 @@ export class ChatService {
         );
   }
 
-  chatExists(chatId: string): Promise<boolean> {
-    return this._firestore
-        .collection('chats')
-        .doc(chatId)
-        .get()
-        .toPromise()
-        .then((doc) => doc.exists);
-  }
-
   async createChat(userId: string, receiverId: string): Promise<string> {
     const newChatRef = await this._firestore.firestore.collection('chats').add({
       lastMessage: '',
@@ -88,14 +79,21 @@ export class ChatService {
 
   async sendMessage(chatId: string, message: MessageCreate) {
     try {
-      return await this._firestore
+      const messageRef = await this._firestore
           .collection<MessageCreate>(`${CHAT_PATH}/${chatId}/messages`)
           .add(message);
+      await this._firestore.collection<ChatCreate>(CHAT_PATH).doc(chatId).update({
+        lastMessage: message.message,
+        lastMessageTimestamp: message.timestamp,
+        lastMessageSender: message.senderId,
+      });
+      return messageRef;
     } catch (error) {
       console.error('Error sending message:', error);
       throw new Error('Could not send the message. Please try again later.');
     }
   }
+
 
   async markMessageAsRead(chatId: string, messageId: string) {
     return this._firestore
@@ -103,4 +101,12 @@ export class ChatService {
         .doc(messageId)
         .update({ state: 'read' });
   }
+
+  getChatsByUserId(userId: string): Observable<any> {
+    return this._firestore.collection('chats', ref => ref
+        .where('participants', 'array-contains', userId))
+        .get();
+  }
+
+
 }
