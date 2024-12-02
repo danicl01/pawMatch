@@ -5,41 +5,42 @@
       <div class="mailbox-container13">
         <div class="mailbox-container14">
           <span class="mailbox-text19">Inbox</span>
-          <button type="button" class="mailbox-button1 button">All</button>
+          <button type="button" class="mailbox-button1 button" (click)="onFilterChange('all')">All</button>
         </div>
         <div class="mailbox-container15">
-          <button type="button" class="mailbox-button2 button">Unread</button>
+          <button type="button" class="mailbox-button2 button" (click)="onFilterChange('unread')">Unread</button>
         </div>
-        <button type="button" class="mailbox-button3 button">Requests</button>
       </div>
+      <!-- Este *ngFor está mostrando los chats filtrados -->
       <div *ngFor="let chat of chatDetails">
         <app-chat-list
                 [chatId]="chat.chatId"
                 [participantId]="chat.participantId"
                 [lastMessage]="chat.lastMessage"
                 [lastMessageDate]="chat.lastMessageDate"
-          (selectParticipant)="onSelectParticipant($event)">
+                [authUser]="userId"
+                (selectParticipant)="onSelectParticipant($event)">
         </app-chat-list>
       </div>
     </div>
     <div class="mailbox-container21">
-      <app-chat [receiverId]="selectedId"></app-chat>
-
-      <!--
-
-      <div class="mailbox-container22">
+      <div *ngIf="!selectedId" class="mailbox-container22">
         <div class="mailbox-container23">
           <img
-            alt="image"
-            src="/assets/1676556259dog-sleeping.svg"
-            class="mailbox-image2"
+                  alt="image"
+                  src="/assets/1676556259dog-sleeping.svg"
+                  class="mailbox-image2"
           />
           <span class="mailbox-text26">
             Nothing here. Select a chat to find your ideal partner
           </span>
         </div>
       </div>
-      -->
+
+      <app-chat *ngIf="selectedId"
+                [receiverId]="selectedId"
+                (chatCreated)="onChatCreated()">
+      </app-chat>
     </div>
   </div>
 </div>

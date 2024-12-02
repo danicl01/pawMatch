@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {ChatService, MessageCreate, Message} from "../../services/chat.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
   newMessage: string = '';
   userId: string | null = null;
   @Input() receiverId: string | null = null;
+  @Output() chatCreated = new EventEmitter<void>();
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
   private _chatService = inject(ChatService);
@@ -29,17 +30,14 @@ export class ChatComponent implements OnInit {
   constructor() {}
 
   async ngOnInit(): Promise<void> {
-    console.log('El usuario recibido es: ', this.receiverId);
     this._activatedRoute.paramMap.subscribe(params => {
       this.userId = params.get('userId');
-      console.log('UserId desde la ruta:', this.userId);
     });
     await this.getUserId();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.receiverId && changes.receiverId.currentValue) {
-      console.log('Receiver ID updated in child component:', this.receiverId);
       this.startChat();
     }
   }
@@ -49,11 +47,10 @@ export class ChatComponent implements OnInit {
     if (currentUser && currentUser.uid) {
       this._fireService.getDocIdFromUserId(currentUser.uid).subscribe(docId => {
         if (docId) {
-          console.log("El auth es este: ", docId)
           this.userId = docId;
           this.startChat();
         } else {
-          console.error('No se encontró docId para este userId');
+          console.error('chat/getUserId --- No se encontró docId para este userId');
         }
       });
     } else {
@@ -70,7 +67,6 @@ export class ChatComponent implements OnInit {
         senderId: this.userId,
         message: this.newMessage,
         timestamp: Timestamp.fromDate(new Date()),
-        state: 'unread',
       };
       await this._chatService.sendMessage(this.chatId, message);
       this.newMessage = '';
@@ -78,25 +74,34 @@ export class ChatComponent implements OnInit {
   }
 
   async startChat() {
-    this._chatService.getChatIdByParticipants(this.userId, this.receiverId).subscribe(docId => {
-      if (docId) {
-        console.log('DocId encontrado:', docId);
-        this.chatId = docId;
+    if (!this.receiverId || !this.userId) return;
 
-        this._chatService.getChatMessages(this.chatId).subscribe((messages) => {
-          this.messages = messages;
-          console.log('Mensajes obtenidos:', messages);
-        });
+    this._chatService.getChatIdByParticipants(this.userId, this.receiverId).subscribe(async chatId => {
+      if (chatId) {
+        this.chatId = chatId;
+        this.loadMessages();
       } else {
-        console.error('No se encontró docId para este userId');
+        this.chatId = await this._chatService.createChat(this.userId!, this.receiverId!);
+        this.chatCreated.emit();
       }
     });
   }
 
+  loadMessages() {
+    if (!this.chatId) return;
+    this._chatService.getChatMessages(this.chatId).subscribe(messages => {
+      this.messages = messages;
+    });
+  }
 
   async createChatIfNeeded(receiverId: string) {
-    console.log("Creando chat...");
-    this.chatId = await this._chatService.createChat(this.userId, receiverId);
-    console.log("Nuevo chat creado con ID:", this.chatId);
+    if (!this.chatId) {
+      this.chatId = await this._chatService.createChat(this.userId, receiverId);
+    }
+
+    this._chatService.getChatMessages(this.chatId).subscribe((messages) => {
+      this.messages = messages;
+    });
+    this.chatCreated.emit();
   }
 }

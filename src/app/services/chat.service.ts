@@ -12,6 +12,7 @@ export interface Chat {
   lastMessageTimestamp: firebase.firestore.Timestamp | null;
   lastMessageSender: string;
   participants: string[];
+  state: 'read' | 'unread';
 }
 
 export interface ChatCreate extends Omit<Chat, 'id'> {}
@@ -21,7 +22,6 @@ export interface Message {
   senderId: string;
   message: string;
   timestamp: firebase.firestore.Timestamp;
-  state: 'read' | 'unread' | 'request';
 }
 
 export interface MessageCreate extends Omit<Message, 'id'> {}
@@ -37,37 +37,32 @@ export class ChatService {
     this._chatCollection = this._firestore.collection<ChatCreate>(CHAT_PATH);
   }
 
-  getChatIdByParticipants(userId: string, receiverId: string) {
-    return this._firestore.collection('chats', ref => ref
-        .where('participants', 'array-contains', userId)
-    )
-        .get()
-        .pipe(
-            map((querySnapshot) => {
-              if (querySnapshot.empty) {
-                return null;
-              }
-              const chatDoc = querySnapshot.docs.find(doc => {
-                const data = doc.data() as Chat;
-                const participants = data.participants;
-                return participants.includes(receiverId);
-              });
-              return chatDoc ? chatDoc.id : null;
-            })
-        );
+  getChatIdByParticipants(userId: string, receiverId: string): Observable<string | null> {
+    return this._firestore.collection(CHAT_PATH, ref =>
+        ref.where('participants', 'array-contains', userId)
+    ).snapshotChanges().pipe(
+        map(actions => {
+          const chatDoc = actions.find(action => {
+            const data = action.payload.doc.data() as Chat;
+            return data.participants.includes(receiverId);
+          });
+          return chatDoc ? chatDoc.payload.doc.id : null;
+        })
+    );
   }
 
+
   async createChat(userId: string, receiverId: string): Promise<string> {
-    const newChatRef = await this._firestore.firestore.collection('chats').add({
+    const newChat = await this._chatCollection.add({
       lastMessage: '',
       lastMessageTimestamp: null,
       lastMessageSender: '',
       participants: [userId, receiverId],
-      createdAt: Timestamp.fromDate(new Date()),
+      state: 'unread',
     });
-
-    return newChatRef.id;
+    return newChat.id;
   }
+
 
   getChatMessages(chatId: string) {
     return this._firestore
@@ -86,6 +81,7 @@ export class ChatService {
         lastMessage: message.message,
         lastMessageTimestamp: message.timestamp,
         lastMessageSender: message.senderId,
+        state: 'unread',
       });
       return messageRef;
     } catch (error) {
@@ -94,19 +90,16 @@ export class ChatService {
     }
   }
 
+  async markMessageAsRead(chatId: string, senderId: string) {
+    await this._firestore.collection<ChatCreate>(CHAT_PATH).doc(chatId).update({
+      state: 'read',
+    });
+  }
 
-  async markMessageAsRead(chatId: string, messageId: string) {
+  getChatsByUserId(userId: string): Observable<Chat[]> {
     return this._firestore
-        .collection(`${CHAT_PATH}/${chatId}/messages`)
-        .doc(messageId)
-        .update({ state: 'read' });
+        .collection<Chat>(CHAT_PATH, ref => ref.where('participants', 'array-contains', userId))
+        .valueChanges({ idField: 'id' });
   }
-
-  getChatsByUserId(userId: string): Observable<any> {
-    return this._firestore.collection('chats', ref => ref
-        .where('participants', 'array-contains', userId))
-        .get();
-  }
-
 
 }

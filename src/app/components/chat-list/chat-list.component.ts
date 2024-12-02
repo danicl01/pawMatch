@@ -3,6 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {FirestoreService} from "../../services/firestore.service";
 import {Observable} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {ChatService} from "../../services/chat.service";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ChatListComponent {
   @Input() participantId: string;
   @Input() lastMessage: string;
   @Input() lastMessageDate: Date | null;
+  @Input() authUser: string;
   @Output() selectParticipant = new EventEmitter<string>();
 
   user$: Observable<any> | undefined;
@@ -23,9 +25,9 @@ export class ChatListComponent {
   formattedDate: string;
 
   private _firestore = inject(FirestoreService);
+  private _chatService = inject(ChatService);
 
-  async ngOnInit(): Promise<void> {
-
+  ngOnInit(): void {
     if (this.participantId) {
       this.user$ = this._firestore.getUser(this.participantId);
       this.user$.subscribe(user => {
@@ -33,19 +35,22 @@ export class ChatListComponent {
         this.ownerImage = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
       });
     }
-    if (this.lastMessageDate) {
-      const date = new Date(this.lastMessageDate);
-      const options: Intl.DateTimeFormatOptions = {
-        day: 'numeric',
-        month: 'short',
-      };
-      this.formattedDate = date.toLocaleDateString('es-ES', options);
-    } else {
-      this.formattedDate = 'Fecha no disponible';
-    }
+
+    this.formattedDate = this.lastMessageDate
+        ? new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short' }).format(new Date(this.lastMessageDate))
+        : 'Fecha no disponible';
   }
 
-  onSelectParticipant() {
+
+  async  onSelectParticipant() {
     this.selectParticipant.emit(this.participantId);
+    try {
+      if (this.chatId && this.authUser) {
+        await this._chatService.markMessageAsRead(this.chatId, this.authUser);
+        console.log(`Chat ${this.chatId} marcado como leído.`);
+      }
+    } catch (error) {
+      console.error('Error al marcar el mensaje como leído:', error);
+    }
   }
 }
