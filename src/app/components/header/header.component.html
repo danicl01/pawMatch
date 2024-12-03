@@ -1,37 +1,46 @@
 <header class="header-container1" [ngClass]="rootClassName">
   <header data-thq="thq-navbar" class="header-navbar-interactive">
-
-
-    <img [attr.alt]="imageAlt" [attr.src]="imageSrc" class="header-image1" />
+    <img
+            [attr.alt]="imageAlt"
+            [attr.src]="imageSrc"
+            class="header-image1"
+            routerLink="/home"
+    />
     <div data-thq="thq-navbar-nav" class="header-desktop-menu">
       <nav class="header-links1">
         <a routerLink="/home" class="header-link11 thq-link thq-body-small">
           <ng-container>
             <ng-template #defaultLink1>
-              <div><span>Home</span></div>
+              <div>
+                <span>Home</span>
+              </div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="link1 ? link1 : defaultLink1"
+                    *ngTemplateOutlet="link1 ? link1 : defaultLink1"
             ></ng-container>
           </ng-container>
         </a>
         <a routerLink="/search" class="header-link21 thq-link thq-body-small">
           <ng-container>
             <ng-template #defaultLink2>
-              <div><span>Search</span></div>
+              <div>
+                <span>Search</span>
+              </div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="link2 ? link2 : defaultLink2"
+                    *ngTemplateOutlet="link2 ? link2 : defaultLink2"
             ></ng-container>
           </ng-container>
         </a>
         <a routerLink="/map" class="header-link31 thq-link thq-body-small">
           <ng-container>
             <ng-template #defaultLink3>
-              <div><span>Map</span></div>
+              <div>
+                <span>Map</span>
+              </div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="link3 ? link3 : defaultLink3"
+                    *ngTemplateOutlet="link3 ? link3 : defaultLink3"
             ></ng-container>
           </ng-container>
         </a>
@@ -41,7 +50,7 @@
               <div><span>Saves</span></div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="link4 ? link4 : defaultLink4"
+                    *ngTemplateOutlet="link4 ? link4 : defaultLink4"
             ></ng-container>
           </ng-container>
         </a>
@@ -51,15 +60,15 @@
               <div><span>Mailbox</span></div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="link5 ? link5 : defaultLink5"
+                    *ngTemplateOutlet="link5 ? link5 : defaultLink5"
             ></ng-container>
           </ng-container>
         </a>
         <a
-          [attr.href]="textUrl"
-          target="_blank"
-          rel="noreferrer noopener"
-          class="header-link6 thq-link thq-body-small"
+                [attr.href]="textUrl"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="header-link6 thq-link thq-body-small"
         >
           <ng-container>
             <ng-template #defaultText>
@@ -68,16 +77,17 @@
               </div>
             </ng-template>
             <ng-container
-              *ngTemplateOutlet="text ? text : defaultText"
+                    *ngTemplateOutlet="text ? text : defaultText"
             ></ng-container>
           </ng-container>
         </a>
       </nav>
     </div>
+    <button (click)="logout()" class="logout">Logout</button>
     <div data-thq="thq-burger-menu" class="header-burger-menu">
       <svg viewBox="0 0 1024 1024" class="header-icon1">
         <path
-          d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
         ></path>
       </svg>
     </div>
@@ -89,7 +99,7 @@
           <div data-thq="thq-close-menu" class="header-close-menu">
             <svg viewBox="0 0 1024 1024" class="header-icon3">
               <path
-                d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                      d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
               ></path>
             </svg>
           </div>
@@ -103,7 +113,7 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="link1 ? link1 : defaultLink1"
+                      *ngTemplateOutlet="link1 ? link1 : defaultLink1"
               ></ng-container>
             </ng-container>
           </a>
@@ -115,7 +125,7 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="link2 ? link2 : defaultLink2"
+                      *ngTemplateOutlet="link2 ? link2 : defaultLink2"
               ></ng-container>
             </ng-container>
           </a>
@@ -127,7 +137,7 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="link3 ? link3 : defaultLink3"
+                      *ngTemplateOutlet="link3 ? link3 : defaultLink3"
               ></ng-container>
             </ng-container>
           </a>
@@ -139,13 +149,13 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="link4 ? link4 : defaultLink4"
+                      *ngTemplateOutlet="link4 ? link4 : defaultLink4"
               ></ng-container>
             </ng-container>
           </a>
           <a
-            routerLink="/mailbox"
-            class="header-link52 thq-link thq-body-small"
+                  routerLink="/mailbox"
+                  class="header-link52 thq-link thq-body-small"
           >
             <ng-container>
               <ng-template #defaultLink5>
@@ -154,15 +164,15 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="link5 ? link5 : defaultLink5"
+                      *ngTemplateOutlet="link5 ? link5 : defaultLink5"
               ></ng-container>
             </ng-container>
           </a>
           <a
-            [attr.href]="textUrl2"
-            target="_blank"
-            rel="noreferrer noopener"
-            class="thq-link thq-body-small header-link7"
+                  [attr.href]="textUrl2"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="thq-link thq-body-small header-link7"
           >
             <ng-container>
               <ng-template #defaultText2>
@@ -171,23 +181,28 @@
                 </div>
               </ng-template>
               <ng-container
-                *ngTemplateOutlet="text2 ? text2 : defaultText2"
+                      *ngTemplateOutlet="text2 ? text2 : defaultText2"
               ></ng-container>
             </ng-container>
           </a>
         </nav>
       </div>
-      <a routerLink="/owner-profile" class="header-navlink1">
-        <div class="header-container2"
-             [style.backgroundImage]="'url(' + (imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg') + ')'">
-        </div>
+      <a routerLink="/owner-profile">
+        <img
+                [src]="imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg'"
+                alt="Pet Profile Image"
+                class="header-container2"
+        />
       </a>
     </div>
-    <button (click)="logout()">Logout</button>
-    <a routerLink="/pet-profile" >
-      <div class="header-container3"
-           [style.backgroundImage]="'url(' + (imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg') + ')'">
-      </div>
+
+    <a routerLink="/owner-profile">
+      <img
+              [src]="imageSrcProfile || 'https://play.teleporthq.io/static/svg/default-img.svg'"
+              alt="Pet Profile Image"
+              class="header-container3"
+      />
     </a>
+
   </header>
 </header>

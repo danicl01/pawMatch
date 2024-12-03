@@ -8,7 +8,6 @@ import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {FirestoreService} from "../../services/firestore.service";
 import {UserService} from "../../services/user.service";
 
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -17,7 +16,7 @@ import {UserService} from "../../services/user.service";
 export class ChatComponent implements OnInit {
   private participantUser$: Observable<any>;
   chatId: string | null = null;
-  messages: ({ senderId: string; message: string; timestamp: string } | MessageCreate)[] = [];
+  messages: ({ senderId: string; message: string; timestamp: Date } | MessageCreate)[] = [];
   newMessage: string = '';
   userId: string | null = null;
   participantImage: string;
@@ -30,7 +29,6 @@ export class ChatComponent implements OnInit {
   private _activatedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
   _userService = inject(UserService);
-
 
   constructor() {}
 
@@ -102,20 +100,13 @@ export class ChatComponent implements OnInit {
         if (message.timestamp?.seconds) {
           return {
             ...message,
-            timestamp: new Date(message.timestamp.seconds * 1000).toLocaleString('es-ES', {
-              day: '2-digit',
-              month: '2-digit',
-              hour: '2-digit',
-              minute: '2-digit',
-            }),
-
+            timestamp: new Date(message.timestamp.seconds * 1000),
           };
         }
         return message;
       });
     });
   }
-
 
   async createChatIfNeeded(receiverId: string) {
     if (!this.chatId) {

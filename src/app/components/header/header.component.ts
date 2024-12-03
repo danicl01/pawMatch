@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {toast} from "ngx-sonner";
 import {FirestoreService} from "../../services/firestore.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -44,18 +45,43 @@ export class Header {
   @ContentChild('link2')
   link2: TemplateRef<any>
 
-  private _fireStore = inject(FirestoreService)
-  constructor(
-      private authService: AuthStateService,
-      private router: Router
-  ) {}
+  user$: Observable<any> | undefined;
+  userId: string | null = null;
+  private _authState = inject(AuthStateService);
+  private _fireService = inject(FirestoreService);
+  private _router = inject(Router);
+  constructor() {}
+
+  async ngOnInit(): Promise<void> {
+    await this.getUserId();
+    this.loadUser();
+  }
 
   async logout() {
-    await this.authService.logout().then(() => {
+    await this._authState.logout().then(() => {
       toast.success("Session success")
-      this.router.navigate(['/']);
+      this._router.navigate(['/']);
     }).catch((error) => {
       console.error('Error al cerrar sesión:', error);
     });
+  }
+
+  async getUserId(): Promise<void> {
+    const currentUser = await this._authState.currentUser;
+    if (currentUser && currentUser.uid) {
+      this.userId = currentUser.uid;
+      console.log('ID del usuario autenticado:', this.userId);
+    } else {
+      console.error('No hay usuario autenticado');
+    }
+  }
+
+  loadUser(): void {
+    if (this.userId) {
+      this.user$ = this._fireService.getDataFromCurrentAuthUser(this.userId);
+      this.user$.subscribe(user => {
+        this.imageSrcProfile = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
+      });
+    }
   }
 }
