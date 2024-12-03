@@ -1,4 +1,14 @@
 <div class="chat-container">
+    <div class="chat-header">
+        <img
+                *ngIf="participantImage"
+                [src]="participantImage"
+                alt="Participant Image"
+                class="participant-image"
+        />
+        <span class="participant-name">{{ participantName }}</span>
+    </div>
+
     <div class="messages">
         <div
                 *ngFor="let message of messages"
@@ -13,9 +23,9 @@
     <div class="message-input">
         <textarea
                 [(ngModel)]="newMessage"
-                placeholder="Escribe un mensaje..."
+                placeholder="Write a message..."
                 rows="1"
         ></textarea>
-        <button (click)="sendMessage()">Enviar</button>
+        <button (click)="sendMessage()">Send</button>
     </div>
 </div>

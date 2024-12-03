@@ -1,12 +1,12 @@
 <div class="mailbox-container16">
     <div class="mailbox-container17">
-        <a (click)="onSelectParticipant()" class="mailbox-navlink">
+        <a (click)="onSelectParticipant()" class="mailbox-container17">
             <div class="mailbox-container18">
                 <img
-                        id="user-pet-image"
-                        alt="image"
-                        [src]="ownerImage || 'https://play.teleporthq.io/static/svg/default-img.svg'"
-                        class="mailbox-image1"
+                    id="user-pet-image"
+                    alt="image"
+                    [src]="ownerImage || 'https://play.teleporthq.io/static/svg/default-img.svg'"
+                    class="mailbox-image1"
                 />
                 <div class="mailbox-container19">
                 <span id="user-pet-first-name" class="mailbox-text20" [innerHTML]="ownerName"></span>
@@ -15,7 +15,7 @@
                   <span class="mailbox-text23">LOVE</span>
                 </span>
                     <div class="mailbox-container20">
-                  <span id="last-message" [innerHTML]="lastMessage">
+                  <span id="last-message" [innerHTML]="lastMessageTruncated">
                   </span>
                     </div>
                 </div>

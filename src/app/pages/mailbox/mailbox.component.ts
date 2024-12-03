@@ -76,7 +76,12 @@ export class Mailbox {
           state: chat.state,
         };
       });
-      this.chatDetails = [...this.allChats];
+      this.chatDetails = this.allChats.sort((a, b) => {
+        if (a.lastMessageDate && b.lastMessageDate) {
+          return b.lastMessageDate.getTime() - a.lastMessageDate.getTime();
+        }
+        return 0;
+      });
     });
   }
 

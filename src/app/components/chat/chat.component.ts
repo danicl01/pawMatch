@@ -14,11 +14,13 @@ import {FirestoreService} from "../../services/firestore.service";
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
-  user$: Observable<any> | undefined;
+  private participantUser$: Observable<any>;
   chatId: string | null = null;
-  messages: Message[] = [];
+  messages: ({ senderId: string; message: string; timestamp: Date } | MessageCreate)[] = [];
   newMessage: string = '';
   userId: string | null = null;
+  participantImage: string;
+  participantName: string;
   @Input() receiverId: string | null = null;
   @Output() chatCreated = new EventEmitter<void>();
   private _authState = inject(AuthStateService);
@@ -34,11 +36,13 @@ export class ChatComponent implements OnInit {
       this.userId = params.get('userId');
     });
     await this.getUserId();
+    this.loadData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.receiverId && changes.receiverId.currentValue) {
       this.startChat();
+      this.loadData();
     }
   }
 
@@ -89,10 +93,20 @@ export class ChatComponent implements OnInit {
 
   loadMessages() {
     if (!this.chatId) return;
+
     this._chatService.getChatMessages(this.chatId).subscribe(messages => {
-      this.messages = messages;
+      this.messages = messages.map(message => {
+        if (message.timestamp?.seconds) {
+          return {
+            ...message,
+            timestamp: new Date(message.timestamp.seconds * 1000),
+          };
+        }
+        return message;
+      });
     });
   }
+
 
   async createChatIfNeeded(receiverId: string) {
     if (!this.chatId) {
@@ -103,5 +117,15 @@ export class ChatComponent implements OnInit {
       this.messages = messages;
     });
     this.chatCreated.emit();
+  }
+
+  loadData() {
+    if (this.receiverId) {
+      this.participantUser$ = this._fireService.getUser(this.receiverId);
+      this.participantUser$.subscribe(user => {
+        this.participantName = user.profilePerson?.name || 'Not specified';
+        this.participantImage = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
+      });
+    }
   }
 }

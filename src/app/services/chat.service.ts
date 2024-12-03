@@ -91,9 +91,20 @@ export class ChatService {
   }
 
   async markMessageAsRead(chatId: string, senderId: string) {
-    await this._firestore.collection<ChatCreate>(CHAT_PATH).doc(chatId).update({
-      state: 'read',
-    });
+    try {
+      const chatDoc = await this._firestore.collection<ChatCreate>(CHAT_PATH).doc(chatId).get().toPromise();
+
+      if (chatDoc.exists) {
+        const chatData = chatDoc.data();
+        if (chatData && chatData.lastMessageSender !== senderId) {
+          await this._firestore.collection<ChatCreate>(CHAT_PATH).doc(chatId).update({
+            state: 'read',
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error al marcar el mensaje como leído:', error);
+    }
   }
 
   getChatsByUserId(userId: string): Observable<Chat[]> {

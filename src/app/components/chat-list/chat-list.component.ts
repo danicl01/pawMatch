@@ -1,10 +1,7 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {FirestoreService} from "../../services/firestore.service";
 import {Observable} from "rxjs";
-import {DatePipe} from "@angular/common";
 import {ChatService} from "../../services/chat.service";
-
 
 @Component({
   selector: 'app-chat-list',
@@ -26,8 +23,15 @@ export class ChatListComponent {
 
   private _firestore = inject(FirestoreService);
   private _chatService = inject(ChatService);
+  lastMessageTruncated: string;
 
   ngOnInit(): void {
+    const maxLength = 20;
+    this.lastMessageTruncated =
+        this.lastMessage && this.lastMessage.length > maxLength
+            ? this.lastMessage.substring(0, maxLength) + '...'
+            : this.lastMessage || '';
+    
     if (this.participantId) {
       this.user$ = this._firestore.getUser(this.participantId);
       this.user$.subscribe(user => {
@@ -40,7 +44,6 @@ export class ChatListComponent {
         ? new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short' }).format(new Date(this.lastMessageDate))
         : 'Fecha no disponible';
   }
-
 
   async  onSelectParticipant() {
     this.selectParticipant.emit(this.participantId);
