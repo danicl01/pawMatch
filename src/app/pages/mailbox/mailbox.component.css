@@ -217,12 +217,8 @@
 .mailbox-container21 {
   flex: 0 0 auto;
   width: 70%;
-  height: 1000px;
   display: flex;
-  align-self: center;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
 }
 .mailbox-container22 {
   flex: 0 0 auto;
