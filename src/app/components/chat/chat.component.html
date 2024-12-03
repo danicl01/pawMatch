@@ -5,8 +5,9 @@
                 [src]="participantImage"
                 alt="Participant Image"
                 class="participant-image"
+                (click)="navigateWithUserId()"
         />
-        <span class="participant-name">{{ participantName }}</span>
+        <span class="participant-name" (click)="navigateWithUserId()">{{ participantName }}</span>
     </div>
 
     <div class="messages">
@@ -16,7 +17,7 @@
                 [ngClass]="{ 'sent': message.senderId === userId, 'received': message.senderId !== userId }"
         >
             <p>{{ message.message }}</p>
-            <small>{{ message.timestamp | date: 'shortTime' }}</small>
+            <small>{{ message.timestamp | date: 'dd/MM HH:mm' }}</small>
         </div>
     </div>
 

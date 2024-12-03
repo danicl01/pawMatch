@@ -112,5 +112,4 @@ export class ChatService {
         .collection<Chat>(CHAT_PATH, ref => ref.where('participants', 'array-contains', userId))
         .valueChanges({ idField: 'id' });
   }
-
 }

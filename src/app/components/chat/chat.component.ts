@@ -6,6 +6,7 @@ import { Timestamp } from '@angular/fire/firestore';
 import {Observable} from "rxjs";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {FirestoreService} from "../../services/firestore.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {FirestoreService} from "../../services/firestore.service";
 export class ChatComponent implements OnInit {
   private participantUser$: Observable<any>;
   chatId: string | null = null;
-  messages: ({ senderId: string; message: string; timestamp: Date } | MessageCreate)[] = [];
+  messages: ({ senderId: string; message: string; timestamp: string } | MessageCreate)[] = [];
   newMessage: string = '';
   userId: string | null = null;
   participantImage: string;
@@ -28,6 +29,8 @@ export class ChatComponent implements OnInit {
   private _chatService = inject(ChatService);
   private _activatedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
+  _userService = inject(UserService);
+
 
   constructor() {}
 
@@ -99,7 +102,13 @@ export class ChatComponent implements OnInit {
         if (message.timestamp?.seconds) {
           return {
             ...message,
-            timestamp: new Date(message.timestamp.seconds * 1000),
+            timestamp: new Date(message.timestamp.seconds * 1000).toLocaleString('es-ES', {
+              day: '2-digit',
+              month: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+
           };
         }
         return message;
@@ -127,5 +136,10 @@ export class ChatComponent implements OnInit {
         this.participantImage = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
       });
     }
+  }
+
+  navigateWithUserId() {
+    this._userService.setRandomUserId(this.receiverId);
+    this._router.navigate(['/user-owner-profile']);
   }
 }
