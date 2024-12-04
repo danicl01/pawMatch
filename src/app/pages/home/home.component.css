@@ -1,6 +1,7 @@
 :host { 
   display: contents; 
 }
+
 .home-container1 {
   width: 100%;
   display: flex;
@@ -69,6 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 10vh;
 }
 .home-container3 {
   flex: 0 0 auto;

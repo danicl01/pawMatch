@@ -10,60 +10,7 @@
   justify-content: flex-start;
   background-image: linear-gradient(180deg, rgba(255, 238, 254, 0.2) 31.00%,rgba(238, 141, 225, 0.8) 100.00%);
 }
-.owner-profile-fragment1 {
-  display: contents;
-}
-.owner-profile-text10 {
-  display: inline-block;
-}
-.owner-profile-fragment2 {
-  display: contents;
-}
-.owner-profile-text11 {
-  display: inline-block;
-}
-.owner-profile-fragment3 {
-  display: contents;
-}
-.owner-profile-text12 {
-  display: inline-block;
-}
-.owner-profile-fragment4 {
-  display: contents;
-}
-.owner-profile-text13 {
-  display: inline-block;
-}
-.owner-profile-fragment5 {
-  display: contents;
-}
-.owner-profile-text14 {
-  display: inline-block;
-}
-.owner-profile-fragment6 {
-  display: contents;
-}
-.owner-profile-text15 {
-  display: inline-block;
-}
-.owner-profile-fragment7 {
-  display: contents;
-}
-.owner-profile-text16 {
-  display: inline-block;
-}
-.owner-profile-fragment8 {
-  display: contents;
-}
-.owner-profile-text17 {
-  display: inline-block;
-}
-.owner-profile-fragment9 {
-  display: contents;
-}
-.owner-profile-text18 {
-  display: inline-block;
-}
+
 .owner-profile-container11 {
   flex: 0 0 auto;
   width: 80%;
@@ -74,6 +21,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
+  padding-top: 10vh;
 }
 .owner-profile-container12 {
   flex: 0 0 auto;
@@ -90,14 +38,14 @@
   font-weight: 500;
 }
 .owner-profile-navlink {
-  top: 0px;
+  top: 0;
   color: #48d5ea;
-  right: 0px;
+  right: 0;
   position: absolute;
   font-size: 3em;
   align-self: flex-start;
   font-style: italic;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 400;
   text-decoration: underline;
 }
@@ -301,13 +249,13 @@
 .owner-profile-text29 {
   font-size: 1.5em;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 500;
   margin-bottom: var(--dl-space-space-unit);
 }
 .owner-profile-text30 {
   font-size: 1.3em;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
 }
 .owner-profile-container30 {
   flex: 0 0 auto;
@@ -415,7 +363,8 @@
   justify-content: flex-start;
 }
 .owner-profile-image {
-  width: 500px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: var(--dl-space-space-twounits);

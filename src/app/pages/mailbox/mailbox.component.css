@@ -9,60 +9,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.mailbox-fragment1 {
-  display: contents;
-}
-.mailbox-text10 {
-  display: inline-block;
-}
-.mailbox-fragment2 {
-  display: contents;
-}
-.mailbox-text11 {
-  display: inline-block;
-}
-.mailbox-fragment3 {
-  display: contents;
-}
-.mailbox-text12 {
-  display: inline-block;
-}
-.mailbox-fragment4 {
-  display: contents;
-}
-.mailbox-text13 {
-  display: inline-block;
-}
-.mailbox-fragment5 {
-  display: contents;
-}
-.mailbox-text14 {
-  display: inline-block;
-}
-.mailbox-fragment6 {
-  display: contents;
-}
-.mailbox-text15 {
-  display: inline-block;
-}
-.mailbox-fragment7 {
-  display: contents;
-}
-.mailbox-text16 {
-  display: inline-block;
-}
-.mailbox-fragment8 {
-  display: contents;
-}
-.mailbox-text17 {
-  display: inline-block;
-}
-.mailbox-fragment9 {
-  display: contents;
-}
-.mailbox-text18 {
-  display: inline-block;
-}
+
 .mailbox-container11 {
   flex: 0 0 auto;
   width: 100%;
@@ -102,7 +49,7 @@
   justify-content: flex-start;
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 90;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
