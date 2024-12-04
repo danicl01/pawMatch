@@ -4,11 +4,23 @@
     <div class="saves-container12">
       <div class="saves-container13">
         <div class="saves-container14">
-          <span class="saves-text19">Show profiles</span>
-          <button type="button" class="saves-button1 button" (click)="switchToPet()">Pets</button>
+          <span class="saves-text19">Profiles</span>
+          <button
+                  type="button"
+                  class="saves-button1 button"
+                  [ngClass]="{'active': currentView === 'pet'}"
+                  (click)="switchToPet()">
+            Pets
+          </button>
         </div>
         <div class="saves-container15">
-          <button type="button" class="saves-button2 button" (click)="switchToPerson()">Person</button>
+          <button
+                  type="button"
+                  class="saves-button2 button"
+                  [ngClass]="{'active': currentView === 'person'}"
+                  (click)="switchToPerson()">
+            Person
+          </button>
         </div>
       </div>
       <div class="saves-container16">
@@ -33,7 +45,7 @@
                      [userId]="selectedUserId">
       </pet-component>
       <p *ngIf="currentView === 'pet' && !selectedUserId" class="centered-text">
-        Selecciona un usuario para ver los detalles de la mascota.
+        Selecciona un usuario para ver los detalles de la mascota
       </p>
       <owner-component *ngIf="currentView === 'person' && selectedUserId"
                        [name]="owner_name"
