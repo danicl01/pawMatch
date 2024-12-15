@@ -5,11 +5,13 @@
 
   <div class="home-container2">
     <div class="home-container3">
-      <button type="button" class="home-button1 button" (click)="switchToPerson()">People</button>
+      <div class="toggle-buttons">
+        <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'person' }" (click)="switchToPerson()">People</button>
+        <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'pet' }" (click)="switchToPet()">Pets</button>
+        <div class="toggle-indicator" [ngClass]="{ 'left': currentView === 'person', 'right': currentView === 'pet' }"></div>
+      </div>
     </div>
-    <div class="home-container4">
-      <button type="button" class="home-button2 button" (click)="switchToPet()">Pets</button>
-    </div>
+
 
   </div>
   <div class="home-container5">
