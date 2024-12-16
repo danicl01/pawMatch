@@ -56,18 +56,6 @@ export class FirestoreService {
       );
   }
 
-  async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
-    const usersSnapshot = await this.firestore.collection('users').get().toPromise();
-    if (usersSnapshot.empty) return null;
-    const availableUsers = usersSnapshot.docs.filter(
-        doc => !visitedProfiles.includes(doc.id)
-    );
-    if (availableUsers.length === 0) return null;
-
-    const randomUserDoc = availableUsers[Math.floor(Math.random() * availableUsers.length)];
-    visitedProfiles.push(randomUserDoc.id);
-    return randomUserDoc.id;
-  }
   async getRandomUsers(visitedProfiles: string[]): Promise<string[] | null> {
     const usersSnapshot = await this.firestore.collection('users').get().toPromise();
     if (usersSnapshot.empty) return null;
@@ -83,7 +71,6 @@ export class FirestoreService {
     }
     return randomUsers;
   }
-
 
     addToSavedUsers(userId: string, selectedUserId: string): Observable<void> {
         return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
