@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {BehaviorSubject, map, Observable, of, switchMap} from 'rxjs';
+import { map, Observable, of, switchMap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,24 +18,19 @@ export class FirestoreService {
     );
   }
 
-    getDocIdFromUserId(userId: string): Observable<string | null> {
-        return this.firestore.collection('users', ref => ref
-            .where('userId', '==', userId)
-        )
-        .get()
-        .pipe(
-            map((querySnapshot) => {
-                if (querySnapshot.empty) {
-                    return null;
-                }
-                return querySnapshot.docs[0].id;
-            })
-        );
-    }
+  getDocIdFromUserId(userId: string): Observable<string | null> {
+      return this.firestore.collection('users', ref => ref
+          .where('userId', '==', userId)
+      ).get().pipe(
+      map((querySnapshot) => {
+        if (querySnapshot.empty) return null;
 
+        return querySnapshot.docs[0].id;
+      })
+      );
+  }
 
-
-    getDataFromCurrentAuthUser(userId: string): Observable<any> {
+  getDataFromCurrentAuthUser(userId: string): Observable<any> {
     return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
         .valueChanges()
         .pipe(
@@ -43,21 +38,25 @@ export class FirestoreService {
         );
   }
 
-  getPets(userId: string): Observable<any[]> {
+  getUserDataById(userId: string): Promise<any | null> {
+    return this.firestore.collection('users').doc(userId).get().toPromise()
+        .then(doc => doc.exists ? doc.data() : null);
+  }
+
+
+    getPets(userId: string): Observable<any[]> {
     return this.firestore.collection('users').doc(userId).valueChanges().pipe(
         map((userData: any) => userData?.profilePet || []) //
     );
   }
 
-    getPerson(userId: string): Observable<any> {
-        return this.firestore.collection('users').doc(userId).valueChanges().pipe(
-            map((userData: any | undefined) => userData?.profilePerson || null)
-        );
-    }
+  getPerson(userId: string): Observable<any> {
+      return this.firestore.collection('users').doc(userId).valueChanges().pipe(
+          map((userData: any | undefined) => userData?.profilePerson || null)
+      );
+  }
 
-
-
-    async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
+  async getRandomUser(visitedProfiles: string[]): Promise<string | null> {
     const usersSnapshot = await this.firestore.collection('users').get().toPromise();
     if (usersSnapshot.empty) return null;
     const availableUsers = usersSnapshot.docs.filter(
@@ -69,28 +68,37 @@ export class FirestoreService {
     visitedProfiles.push(randomUserDoc.id);
     return randomUserDoc.id;
   }
+  async getRandomUsers(visitedProfiles: string[]): Promise<string[] | null> {
+    const usersSnapshot = await this.firestore.collection('users').get().toPromise();
+    if (usersSnapshot.empty) return null;
+
+    let availableUsers = usersSnapshot.docs.filter(doc => !visitedProfiles.includes(doc.id));
+    if (availableUsers.length === 0) return null;
+
+    const randomUsers = [];
+    while (randomUsers.length < 5 && availableUsers.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableUsers.length);
+        randomUsers.push(availableUsers[randomIndex].id);
+        availableUsers.splice(randomIndex, 1);
+    }
+    return randomUsers;
+  }
+
 
     addToSavedUsers(userId: string, selectedUserId: string): Observable<void> {
-        return this.firestore
-            .collection('users', ref => ref.where('userId', '==', userId))
+        return this.firestore.collection('users', ref => ref.where('userId', '==', userId))
             .get()
             .pipe(
                 switchMap(querySnapshot => {
-                    if (querySnapshot.empty) {
-                        throw new Error(`No user found with userId ${userId}`);
-                    }
+                    if (querySnapshot.empty) throw new Error(`No user found with userId ${userId}`);
+
                     const userDoc = querySnapshot.docs[0];
                     const userData: any = userDoc.data();
                     const savedUsers: string[] = userData.savedUsers || [];
+                    if (savedUsers.includes(selectedUserId)) return of();
 
-                    if (savedUsers.includes(selectedUserId)) {
-                        return of();
-                    }
                     const updatedSavedUsers = [...savedUsers, selectedUserId];
-                    return this.firestore
-                        .collection('users')
-                        .doc(userDoc.id)
-                        .update({ savedUsers: updatedSavedUsers });
+                    return this.firestore.collection('users').doc(userDoc.id).update({ savedUsers: updatedSavedUsers });
                 })
             );
     }
@@ -102,8 +110,7 @@ export class FirestoreService {
         if (!userSnapshot.empty) {
             const docId = userSnapshot.docs[0].id;
             await this.firestore.collection('users').doc(docId).update({ savedUsers });
-        } else {
-            throw new Error('Usuario no encontrado.');
-        }
+        } else throw new Error('Usuario no encontrado.');
+
     }
 }

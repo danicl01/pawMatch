@@ -1,6 +1,7 @@
-import {Component, Input, ContentChild, TemplateRef, inject} from '@angular/core'
+import {Component, Input, ContentChild, TemplateRef, inject, SimpleChanges} from '@angular/core'
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {FirestoreService} from "../../services/firestore.service";
 
 @Component({
   selector: 'owner-component',
@@ -52,12 +53,34 @@ export class OwnerComponent {
   text3: TemplateRef<any>
   @Input()
   imageSrc4: string = '/assets/like%20(1)-200h.png'
-  rawiihl: string = ' '
-  rawf2i2: string = ' '
 
   _userService = inject(UserService);
   _router = inject(Router);
+  private _fireService = inject(FirestoreService);
   constructor() {}
+
+  ngOnInit() {
+    this.loadData(this.userId);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId']) {
+      this.loadData(this.userId);
+    }
+  }
+
+   loadData(userId: string) {
+    if (this.userId) {
+      const user$ = this._fireService.getUser(this.userId);
+      user$.subscribe(user => {
+        this.name = user.profilePerson?.name || 'Not specified';
+        this.sex = user.profilePerson?.sex || 'Not specified';
+        this.age = user.profilePerson?.age || 'Not specified';
+        this.job = user.profilePerson?.job || 'Not specified';
+        this.imageSrc1 = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
+      });
+    }
+  }
 
   navigateWithUserId() {
     this._userService.setRandomUserId(this.userId);

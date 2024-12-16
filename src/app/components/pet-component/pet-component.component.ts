@@ -1,6 +1,7 @@
-import {Component, Input, ContentChild, TemplateRef, inject} from '@angular/core'
+import {Component, Input, ContentChild, TemplateRef, inject, SimpleChanges} from '@angular/core'
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {FirestoreService} from "../../services/firestore.service";
 
 @Component({
   selector: 'pet-component',
@@ -50,12 +51,36 @@ export class PetComponent {
   text3: TemplateRef<any>
   @Input()
   imageSrc4: string = '/assets/like%20(1)-200h.png'
-  rawiihl: string = ' '
-  rawf2i2: string = ' '
 
   _userService = inject(UserService);
   _router = inject(Router);
+  private _fireService = inject(FirestoreService);
   constructor() {}
+
+  ngOnInit() {
+    this.loadData(this.userId);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId']) {
+      this.loadData(this.userId);
+      console.log('UserId cambiado a:', this.userId);
+    }
+  }
+
+  loadData(userId: string) {
+    if (this.userId) {
+      const user$ = this._fireService.getUser(this.userId);
+      user$.subscribe(user => {
+        this.name = user.profilePet[0]?.name || 'Not specified';
+        this.breed = user.profilePet[0]?.breed || 'Not specified';
+        this.age = user.profilePet[0]?.age || 'Not specified';
+        this.weight = user.profilePet[0]?.weight || 'Not specified';
+        this.size = user.profilePet[0]?.size || 'Not specified';
+        this.imageSrc1 = user.profilePet[0]?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
+      });
+    }
+  }
 
   navigateWithUserId() {
     this._userService.setRandomUserId(this.userId);

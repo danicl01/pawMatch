@@ -15,34 +15,19 @@
 
   </div>
   <div class="home-container5">
-    <span id="owner-first-name-123" class="home-text19">
-      John Smith - Texas, United States 
-    </span>
+    <span id="owner-first-name-123" class="home-text19"> {{city}}, {{country}} </span>
   </div>
   <div class="home-container6">
     <div class="home-container7">
-      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" (click)="loadData()"/>
+      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" (click)="prevUser()"/>
       <pet-component *ngIf="currentView === 'pet'"
-                     [imageSrc1]="pet_image"
-                     [name]="pet_name"
-                     [breed]="pet_breed"
-                     [age]="pet_age"
-                     [weight]="pet_weight"
-                     [size]="pet_size"
-                     [search]="pet_search"
                      [userId]="userId">
       </pet-component>
 
       <owner-component *ngIf="currentView === 'person'"
-                        [name]="owner_name"
-                        [age]="owner_age"
-                        [sex]="owner_sex"
-                        [job]="owner_job"
-                        [search]="pet_search"
-                        [imageSrc1]="owner_picture"
                        [userId]="userId">
       </owner-component>
-      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image2" (click)="loadData()"/>
+      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image2" (click)="nextUser()"/>
     </div>
   </div>
   <div class="home-container8">

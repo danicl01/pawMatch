@@ -1,9 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core'
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FirestoreService} from "../../services/firestore.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {map} from "rxjs";
+import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,11 @@ import {map} from "rxjs";
   styleUrls: ['home.component.css'],
 })
 export class Home implements OnInit {
+  usersList: string[] = [];
+  currentIndex: number = 0;
+  userAuthId: string | null = null;
+  userAuthDocId: string | null = null;
   currentView: 'pet' | 'person' = 'pet';
-  currentUserId: string | null = null;
   userId: string | null = null;
 
   city: string = ' '
@@ -52,11 +56,10 @@ export class Home implements OnInit {
   visitedProfiles: string[] = [];
 
   private _authState = inject(AuthStateService);
-  private _fireStore = inject(FirestoreService);
+  private firestoreService = inject(FirestoreService);
   constructor(
       private title: Title,
       private meta: Meta,
-      private firestoreService: FirestoreService,
       private route: ActivatedRoute) {
 
     this.title.setTitle('Home - PawMatch')
@@ -68,17 +71,24 @@ export class Home implements OnInit {
     ]);
   }
 
-  async getUserId(): Promise<void> {
+  async getAuthenticatedUserId(): Promise<void> {
     const currentUser = await this._authState.currentUser;
     if (currentUser && currentUser.uid) {
-      this.currentUserId = currentUser.uid;
-      console.log('ID del usuario autenticado:', this.currentUserId);
+      this.userAuthId = currentUser.uid;
+      this.firestoreService.getDocIdFromUserId(currentUser.uid).subscribe(docId => {
+        if (docId) {
+          this.userAuthDocId = docId;
+        } else {
+          console.error('No se encontró docId para este userId');
+        }
+      });
     } else {
-      console.error('No hay usuario autenticado');
+      console.error('There is not auth user.');
     }
   }
+
   async ngOnInit(): Promise<void> {
-    await this.getUserId();
+    await this.getAuthenticatedUserId();
     this.route.queryParams.subscribe(params => {
       this.selectedCountry = params['selectedCountry'] || '';
       this.selectedCity = params['selectedCity'] || '';
@@ -91,9 +101,8 @@ export class Home implements OnInit {
       this.selectedPersonSex = params['selectedPersonSex'] || '';
       this.selectedPersonJob = params['selectedPersonJob'] || '';
       this.selectedSchedule = params['selectedSchedule'] || '';
-
-      this.loadData();
     });
+    await this.loadUsers();
   }
 
   switchToPet(): void {
@@ -103,10 +112,33 @@ export class Home implements OnInit {
   switchToPerson(): void {
     this.currentView = 'person';
   }
+  applyFilters(user: any): boolean {
+    return true;
+  }
 
-  async loadData() {
-    const userId = await this.firestoreService.getRandomUser(this.visitedProfiles);
+  async loadUsers() {
+    try {
+      const userIds  = await this.firestoreService.getRandomUsers(this.usersList);
+      console.log('Lista de usuarios nuevos: ', userIds );
+      console.log('Id de auth: ', this.userAuthId);
 
+      if (!userIds) {
+        console.log('No hay usuarios disponibles');
+        return;
+      }
+
+      const newUsers = userIds .filter((user: string) => {
+        return user !== this.userAuthDocId && this.applyFilters(user);
+      });
+      this.usersList.push(...newUsers);
+
+      console.log('Lista total de usuarios:', this.usersList);
+      this.updateCurrentUser();
+
+    } catch (error) {
+      console.error('Error loading users: ', error);
+    }
+    /*
     if (userId) {
       this.firestoreService.getUserIdFromDocId(userId).subscribe(
           (docUserId: string | null) => {
@@ -127,8 +159,10 @@ export class Home implements OnInit {
       console.log('No hay usuarios disponibles');
       this.setDefaultValues();
     }
-  }
+    */
 
+  }
+  /*
   loadData2(userId: string) {
     this.userId = userId;
     this.firestoreService.getPets(userId).subscribe(
@@ -171,7 +205,7 @@ export class Home implements OnInit {
         (error) => console.error('Error al obtener persona:', error)
     );
   }
-
+  */
   setPetValues(pet: any) {
     this.pet_name = pet.name;
     this.pet_breed = pet.breed;
@@ -209,14 +243,24 @@ export class Home implements OnInit {
     this.owner_picture = 'https://play.teleporthq.io/static/svg/default-img.svg';
   }
 
-  loadNextUser() {
-    this.firestoreService.getRandomUser(this.visitedProfiles).then((nextUserId) => {
-      if (nextUserId) {
-        this.loadData2(nextUserId);
-      } else {
-        console.log('No más usuarios disponibles que cumplan los filtros');
-        this.setDefaultValues();
-      }
-    });
+  async nextUser(): Promise<void> {
+    if (this.currentIndex < this.usersList.length - 1) {
+      this.currentIndex++;
+      this.updateCurrentUser();
+    } else {
+      await this.loadUsers();
+    }
   }
+
+  prevUser(): void {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.updateCurrentUser();
+    }
+  }
+
+  updateCurrentUser(): void {
+    this.userId = this.usersList[this.currentIndex];
+  }
+
 }
