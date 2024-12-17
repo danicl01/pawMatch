@@ -114,6 +114,18 @@ export class Home implements OnInit {
     return !selectedValue || fieldValue === selectedValue;
   }
 
+  private matchesAgeRange(age: number | undefined, selectedRange: string): boolean {
+    if (!age || !selectedRange) return true;
+
+    if (selectedRange.includes('-')) {
+      const [minAge, maxAge] = selectedRange.split('-').map(val => parseInt(val, 10));
+      return age >= minAge && age <= maxAge;
+    } else {
+      const exactAge = parseInt(selectedRange, 10);
+      return age === exactAge;
+    }
+  }
+
   async applyFilters(userId: string): Promise<boolean> {
     try {
       const user = await this.firestoreService.getUserDataById(userId);
@@ -121,13 +133,16 @@ export class Home implements OnInit {
 
       const pet = user.profilePet?.[0];
       const person = user.profilePerson;
-
+      console.log("Raza: ", this.selectedBreed);
       return this.matchesField(user.city, this.selectedCity) &&
           this.matchesField(user.country, this.selectedCountry) &&
           this.matchesField(pet?.sex, this.selectedPetSex) &&
+          this.matchesAgeRange(pet?.age, this.selectedPetAge) &&
           this.matchesField(pet?.species, this.selectedType) &&
           this.matchesField(pet?.breed, this.selectedBreed) &&
+          this.matchesField(pet?.sexualStatus, this.selectedSexStatus) &&
           this.matchesField(person?.sex, this.selectedPersonSex) &&
+          this.matchesAgeRange(person?.age, this.selectedPersonAge) &&
           this.matchesField(person?.job, this.selectedPersonJob) &&
           this.matchesField(person?.schedule, this.selectedSchedule);
     } catch (error) {
@@ -135,7 +150,6 @@ export class Home implements OnInit {
       return false;
     }
   }
-
 
   switchToPet(): void {
     this.currentView = 'pet';
