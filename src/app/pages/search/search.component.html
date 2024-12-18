@@ -9,11 +9,13 @@
         <div class="search-container14">
           <div class="search-container15">
             <span class="search-text20">Country</span>
+            <label for="country-select"></label>
             <input type="text" id="country-select" name="country" placeholder="Any" autocomplete="country" class="search-textinput1 input" [(ngModel)]="filters.selectedCountry"
             />
           </div>
           <div class="search-container16">
             <span class="search-text21">City</span>
+            <label for="city-select"></label>
             <input type="text" id="city-select" name="city" placeholder="Any" autocomplete="address-line2" class="search-textinput2 input" [(ngModel)]="filters.selectedCity"
             />
           </div>
@@ -25,7 +27,9 @@
       </div>
       <div class="search-container18">
         <span class="search-text23">City</span>
-        <input type="text" name="city" placeholder="Any" autocomplete="address-line2"  class="search-textinput3 input" [(ngModel)]="filters.selectedCity"/>
+        <label>
+          <input type="text" name="city" placeholder="Any" autocomplete="address-line2"  class="search-textinput3 input" [(ngModel)]="filters.selectedCity"/>
+        </label>
       </div>
       <div class="search-container19">
         <span class="search-text24">Search by Pet Data</span>
@@ -40,18 +44,22 @@
               <span class="search-text27">Age</span>
             </div>
             <div class="search-container24">
+              <label for="type-select"></label>
               <select id="type-select" name="petType" class="search-select10" [(ngModel)]="filters.selectedType" (change)="onTypeChange()">
                 <option *ngFor="let type of petTypes" [value]="type">{{ type }}</option>
               </select>
 
+              <label for="breed-select"></label>
               <select id="breed-select" name="petBreed" class="search-select10" [(ngModel)]="filters.selectedBreed" [disabled]="!filteredBreeds.length">
                 <option *ngFor="let breed of filteredBreeds" [value]="breed">{{ breed }}</option>
               </select>
 
+              <label for="pet-sex-select"></label>
               <select id="pet-sex-select" [(ngModel)]="filters.selectedPetSex" name="petSex" class="search-select11">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
+              <label for="pet-age-select"></label>
               <select id="pet-age-select" name="petAge" [(ngModel)]="filters.selectedPetAge" class="search-select12">
                 <option value="1-5">1-5 years</option>
                 <option value="6-10">6-10 years</option>
@@ -64,6 +72,7 @@
         <div class="search-container25">
           <div class="search-container26">
             <span class="search-text28">Sex status</span>
+            <label for="sex-status-select"></label>
             <select id="sex-status-select" name="sexStatus" class="search-select13" [(ngModel)]="filters.selectedSexStatus">
               <option value="Intact">Intact</option>
               <option value="Neutered">Neutered</option>
@@ -76,11 +85,13 @@
       <div class="search-container27">
         <div class="search-container28">
           <span class="search-text29" [(ngModel)]="filters.selectedSexStatus">Sex status</span>
-          <select class="search-select14">
-            <option value="Intact">Intact</option>
-            <option value="Neutered">Neutered</option>
-            <option value="Spayed">Spayed</option>
-          </select>
+          <label>
+            <select class="search-select14">
+              <option value="Intact">Intact</option>
+              <option value="Neutered">Neutered</option>
+              <option value="Spayed">Spayed</option>
+            </select>
+          </label>
         </div>
       </div>
 
@@ -99,6 +110,7 @@
                 <span class="search-text33">Job</span>
               </div>
               <div class="search-container36">
+                <label for="person-age-select"></label>
                 <select id="person-age-select" name="personAge" class="search-select15" [(ngModel)]="filters.selectedPersonAge">
                   <option value="18-25">18-25 years</option>
                   <option value="25-35">25-35 years</option>
@@ -107,10 +119,12 @@
                   <option value="55-65">55-65 years</option>
                   <option value="65+">65+ years</option>
                 </select>
+                <label for="person-sex-select"></label>
                 <select id="person-sex-select" name="personSex" class="search-select16" [(ngModel)]="filters.selectedPersonSex">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
+                <label for="job-select"></label>
                 <input type="text" id="job-select" name="job" placeholder="Any" class="search-select17" [(ngModel)]="filters.selectedPersonJob"/>
               </div>
             </div>
@@ -118,6 +132,7 @@
           <div class="search-container37">
             <div class="search-container38">
               <span class="search-text34">Schedule</span>
+              <label for="schedule-select"></label>
               <select id="schedule-select" name="schedule" class="search-select18" [(ngModel)]="filters.selectedSchedule">
                 <option value="Morning">Morning</option>
                 <option value="Midday">Midday</option>
@@ -131,13 +146,15 @@
       </div>
       <div class="search-container39">
         <span class="search-text35">Schedule</span>
-        <select class="search-select19" [(ngModel)]="filters.selectedSchedule">
-          <option value="Morning">Morning</option>
-          <option value="Midday">Midday</option>
-          <option value="Afternoon">Afternoon</option>
-          <option value="Evening">Evening</option>
-          <option value="Night">Night</option>
-        </select>
+        <label>
+          <select class="search-select19" [(ngModel)]="filters.selectedSchedule">
+            <option value="Morning">Morning</option>
+            <option value="Midday">Midday</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Evening">Evening</option>
+            <option value="Night">Night</option>
+          </select>
+        </label>
       </div>
       <div class="search-container40">
         <button (click)="onFilterClick()" class="search-navlink2 button" type="submit">Search</button>

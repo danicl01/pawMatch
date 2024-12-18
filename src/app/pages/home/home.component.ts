@@ -1,10 +1,8 @@
-import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core'
+import {Component, inject, OnInit} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FirestoreService} from "../../services/firestore.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
-import {map, Observable, of} from "rxjs";
-import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-home',
@@ -12,15 +10,13 @@ import {user} from "@angular/fire/auth";
   styleUrls: ['home.component.css'],
 })
 export class Home implements OnInit {
+  isComponentLoading: boolean = true;
   usersList: string[] = [];
   currentIndex: number = 0;
   userAuthId: string | null = null;
   userAuthDocId: string | null = null;
   currentView: 'pet' | 'person' = 'pet';
   userId: string | null = null;
-
-  city: string = ' '
-  country: string = ' '
 
   selectedCity: string = '';
   selectedCountry: string = '';
@@ -38,10 +34,10 @@ export class Home implements OnInit {
 
   private _authState = inject(AuthStateService);
   private firestoreService = inject(FirestoreService);
+  private _route = inject(ActivatedRoute);
   constructor(
       private title: Title,
-      private meta: Meta,
-      private route: ActivatedRoute) {
+      private meta: Meta,) {
 
     this.title.setTitle('Home - PawMatch')
     this.meta.addTags([
@@ -59,7 +55,7 @@ export class Home implements OnInit {
   }
 
   loadFilterParams() {
-    this.route.queryParams.subscribe(params => {
+    this._route.queryParams.subscribe(params => {
       this.selectedCountry = params['selectedCountry'] || '';
       this.selectedCity = params['selectedCity'] || '';
       this.selectedType = params['selectedType'] || '';
@@ -82,7 +78,7 @@ export class Home implements OnInit {
         if (docId) {
           this.userAuthDocId = docId;
         } else {
-          console.error('No se encontró docId para este userId');
+          console.error('No docId founded for this userId.');
         }
       });
     } else {
@@ -104,11 +100,11 @@ export class Home implements OnInit {
       }
       this.usersList.push(...filteredUsers);
       this.updateCurrentUser();
+      this.isComponentLoading = false;
     } catch (error) {
       console.error('Error loading users: ', error);
     }
   }
-
 
   private matchesField(fieldValue: any, selectedValue: any): boolean {
     return !selectedValue || fieldValue === selectedValue;
@@ -146,7 +142,7 @@ export class Home implements OnInit {
           this.matchesField(person?.job, this.selectedPersonJob) &&
           this.matchesField(person?.schedule, this.selectedSchedule);
     } catch (error) {
-      console.error("Error al aplicar filtros: ", error);
+      console.error("Error to apply filters: ", error);
       return false;
     }
   }
@@ -160,11 +156,12 @@ export class Home implements OnInit {
   }
 
   async nextUser(): Promise<void> {
+    if (this.currentIndex === this.usersList.length - 2) {
+      await this.loadUsers();
+    }
     if (this.currentIndex < this.usersList.length - 1) {
       this.currentIndex++;
       this.updateCurrentUser();
-    } else {
-      await this.loadUsers();
     }
   }
 

@@ -5,7 +5,7 @@
 
   <div class="home-container2">
     <div class="home-container3">
-      <div class="toggle-buttons">
+      <div *ngIf="!isComponentLoading" class="toggle-buttons">
         <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'person' }" (click)="switchToPerson()">People</button>
         <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'pet' }" (click)="switchToPet()">Pets</button>
         <div class="toggle-indicator" [ngClass]="{ 'left': currentView === 'person', 'right': currentView === 'pet' }"></div>
@@ -14,25 +14,53 @@
 
 
   </div>
-  <div class="home-container5">
-    <span id="owner-first-name-123" class="home-text19"> {{city}}, {{country}} </span>
-  </div>
   <div class="home-container6">
     <div class="home-container7">
-      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image1" (click)="prevUser()"/>
-      <pet-component *ngIf="currentView === 'pet'"
+      <img
+              alt="image"
+              src="/assets/arrow-right-600h.png"
+              class="home-image1"
+              [style.visibility]="currentIndex > 0 ? 'visible' : 'hidden'"
+              (click)="prevUser()"
+      />
+
+      <div *ngIf="isComponentLoading" class="loading-indicator">
+        <p>Loading content...</p>
+      </div>
+
+      <pet-component *ngIf="!isComponentLoading && currentView === 'pet'"
                      [userId]="userId">
       </pet-component>
 
-      <owner-component *ngIf="currentView === 'person'"
+      <owner-component *ngIf="!isComponentLoading && currentView === 'person'"
                        [userId]="userId">
       </owner-component>
-      <img alt="image" src="/assets/arrow-right-600h.png" class="home-image2" (click)="nextUser()"/>
+
+      <img
+              alt="image"
+              src="/assets/arrow-right-600h.png"
+              class="home-image2"
+              [style.visibility]="currentIndex < usersList.length - 1 ? 'visible' : 'hidden'"
+              (click)="nextUser()"
+      />
     </div>
   </div>
+
   <div class="home-container8">
-    <img alt="image" src="/assets/arrow-right-600h.png" class="home-image3" />
-    <img alt="image" src="/assets/arrow-right-600h.png" class="home-image4" />
+    <img
+            alt="image"
+            src="/assets/arrow-right-600h.png"
+            class="home-image3"
+            [style.visibility]="currentIndex > 0 ? 'visible' : 'hidden'"
+            (click)="prevUser()"
+    />
+    <img
+            alt="image"
+            src="/assets/arrow-right-600h.png"
+            class="home-image4"
+            [style.visibility]="currentIndex < usersList.length - 1 ? 'visible' : 'hidden'"
+            (click)="nextUser()"
+    />
   </div>
   <img alt="image" src="/assets/dog-food-400h.png" class="home-image5" />
   <img alt="image" src="/assets/hamster-400h.png" class="home-image6" />
