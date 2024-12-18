@@ -1,18 +1,13 @@
 <div class="home-container1">
-  <app-header link1Url="/home" rootClassName="headerroot-class-name">
-
-  </app-header>
-
+  <app-header link1Url="/home" rootClassName="headerroot-class-name"></app-header>
   <div class="home-container2">
     <div class="home-container3">
-      <div *ngIf="!isComponentLoading" class="toggle-buttons">
+      <div *ngIf="!isComponentLoading && usersList.length > 0" class="toggle-buttons">
         <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'person' }" (click)="switchToPerson()">People</button>
         <button type="button" class="home-button button" [ngClass]="{ 'active': currentView === 'pet' }" (click)="switchToPet()">Pets</button>
         <div class="toggle-indicator" [ngClass]="{ 'left': currentView === 'person', 'right': currentView === 'pet' }"></div>
       </div>
     </div>
-
-
   </div>
   <div class="home-container6">
     <div class="home-container7">
@@ -23,19 +18,22 @@
               [style.visibility]="currentIndex > 0 ? 'visible' : 'hidden'"
               (click)="prevUser()"
       />
-
       <div *ngIf="isComponentLoading" class="loading-indicator">
         <p>Loading content...</p>
       </div>
-
-      <pet-component *ngIf="!isComponentLoading && currentView === 'pet'"
-                     [userId]="userId">
+      <div *ngIf="!isComponentLoading && usersList.length === 0" class="loading-indicator">
+        <p>No users available</p>
+      </div>
+      <pet-component
+              *ngIf="!isComponentLoading && currentView === 'pet' && usersList.length > 0"
+              [userId]="userId"
+      >
       </pet-component>
-
-      <owner-component *ngIf="!isComponentLoading && currentView === 'person'"
-                       [userId]="userId">
+      <owner-component
+              *ngIf="!isComponentLoading && currentView === 'person' && usersList.length > 0"
+              [userId]="userId"
+      >
       </owner-component>
-
       <img
               alt="image"
               src="/assets/arrow-right-600h.png"

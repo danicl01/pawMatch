@@ -77,7 +77,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .toggle-buttons {
@@ -300,8 +300,8 @@
 }
 
 .loading-indicator {
-  text-align: center;
-  margin: 200px 0 1rem;
+  width: auto;
+  margin: 280px 0 1rem;
   color: #666;
   font-size: 2em;
 }

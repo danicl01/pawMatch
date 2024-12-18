@@ -90,9 +90,9 @@ export class Home implements OnInit {
     try {
       const userIds = await this.firestoreService.getRandomUsers(this.usersList);
       if (!userIds) return;
-
       const filteredUsers = [];
       for (const userId of userIds) {
+
         const passesFilters = await this.applyFilters(userId);
         if (passesFilters && userId !== this.userAuthDocId) {
           filteredUsers.push(userId);
