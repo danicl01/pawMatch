@@ -10,6 +10,7 @@ import {FirestoreService} from "../../services/firestore.service";
 })
 export class PetComponent {
   @Input() name: string = '';
+  @Input() sex: string = '';
   @Input() breed: string = '';
   @Input() age: string = '';
   @Input() weight: string = '';
@@ -39,6 +40,10 @@ export class PetComponent {
   text4: TemplateRef<any>
   @Input()
   imageSrc3: string = '/assets/female-200h.png'
+  @Input()
+  imageAlt5: string = 'image'
+  @Input()
+  imageSrc5: string = '/assets/male-200h.png'
   @ContentChild('text7')
   text7: TemplateRef<any>
   @ContentChild('text5')
@@ -64,7 +69,6 @@ export class PetComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userId']) {
       this.loadData(this.userId);
-      console.log('UserId cambiado a:', this.userId);
     }
   }
 
@@ -73,6 +77,7 @@ export class PetComponent {
       const user$ = this._fireService.getUser(this.userId);
       user$.subscribe(user => {
         this.name = user.profilePet[0]?.name || 'Not specified';
+        this.sex = user.profilePet[0]?.sex || 'Not specified';
         this.breed = user.profilePet[0]?.breed || 'Not specified';
         this.age = user.profilePet[0]?.age || 'Not specified';
         this.weight = user.profilePet[0]?.weight || 'Not specified';

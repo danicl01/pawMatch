@@ -29,10 +29,19 @@
             </ng-container>
           </span>
           <img
-            [attr.alt]="imageAlt3"
-            [attr.src]="imageSrc3"
-            class="pet-component-image1"
-           alt="pet sex symbol"/>
+                  *ngIf="sex === 'Male'"
+                  [attr.alt]="imageAlt5"
+                  [attr.src]="imageSrc5"
+                  class="pet-component-image1"
+                  alt="male pet sex symbol"
+          />
+          <img
+                  *ngIf="sex === 'Female'"
+                  [attr.alt]="imageAlt3"
+                  [attr.src]="imageSrc3"
+                  class="pet-component-image1"
+                  alt="female pet sex symbol"
+          />
         </div>
       </div>
       <div class="pet-component-container16">

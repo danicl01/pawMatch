@@ -167,7 +167,7 @@
 }
 .home-image1 {
   width: 120px;
-  z-index: 100;
+  z-index: 1;
   transform: rotate(180deg);
   align-self: center;
   object-fit: cover;
@@ -242,7 +242,7 @@
 }
 .home-image2 {
   width: 120px;
-  z-index: 100;
+  z-index: 1;
   align-self: center;
   object-fit: cover;
   margin-left: 10%;
@@ -274,7 +274,6 @@
   width: 313px;
   height: 311px;
   opacity: 0.2;
-  z-index: 1;
   position: fixed;
   transform: rotate(-20deg);
   object-fit: cover;
@@ -285,7 +284,6 @@
   bottom: -44px;
   height: 333px;
   opacity: 0.2;
-  z-index: 1;
   position: fixed;
   transform: rotate(10deg);
   object-fit: cover;
@@ -296,7 +294,6 @@
   width: 323px;;
   height: 333px;
   opacity: 0.2;
-  z-index: 1;
   position: fixed;
   transform: rotate(10deg);
   object-fit: cover;
@@ -333,11 +330,11 @@
 @media(max-width: 1200px) {
   .home-image1 {
     position: static;
-    margin-right: 5%;
+    margin-right: 2%;
   }
   .home-image2 {
     position: static;
-    margin-left: 5%;
+    margin-left: 2%;
   }
   .home-image3 {
     position: static;

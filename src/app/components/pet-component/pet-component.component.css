@@ -1,5 +1,5 @@
-:host { 
-  display: contents; 
+:host {
+  display: contents;
 }
 .pet-component-container10 {
   flex: 0 0 auto;
@@ -26,7 +26,7 @@
   width: 100%;
   height: 600px;
   display: flex;
-  z-index: 100;
+  z-index: 1;
   align-self: center;
   align-items: center;
   border-radius: var(--dl-radius-radius-radius4);
@@ -56,7 +56,7 @@
 .pet-component-text10 {
   font-size: 2em;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 700;
   margin-bottom: var(--dl-space-space-halfunit);
 }
@@ -72,12 +72,12 @@
   font-size: 1.3em;
   align-self: center;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 500;
 }
 .pet-component-image1 {
-  width: 23px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   margin-left: var(--dl-space-space-halfunit);
 }
@@ -99,15 +99,15 @@
   border-width: 1px;
   flex-direction: column;
   justify-content: center;
-  border-top-width: 0px;
-  border-left-width: 0px;
+  border-top-width: 0;
+  border-left-width: 0;
   border-right-width: 2px;
-  border-bottom-width: 0px;
+  border-bottom-width: 0;
 }
 .pet-component-text12 {
   font-size: 2.5em;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 900;
 }
 .pet-component-container18 {
@@ -120,15 +120,15 @@
   border-width: 1px;
   flex-direction: column;
   justify-content: center;
-  border-top-width: 0px;
-  border-left-width: 0px;
+  border-top-width: 0;
+  border-left-width: 0;
   border-right-width: 2px;
-  border-bottom-width: 0px;
+  border-bottom-width: 0;
 }
 .pet-component-text14 {
   font-size: 2.5em;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 900;
 }
 .pet-component-container19 {
@@ -143,7 +143,7 @@
 .pet-component-text16 {
   font-size: 2.5em;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 900;
 }
 .pet-component-container20 {
@@ -167,7 +167,7 @@
 .pet-component-text18 {
   font-size: 2em;
   align-self: center;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 500;
   margin-bottom: var(--dl-space-space-twounits);
 }
@@ -183,7 +183,7 @@
   font-size: 1.5em;
   align-self: flex-start;
   font-style: normal;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 300;
   margin-left: var(--dl-space-space-threeunits);
   text-decoration: none;
@@ -198,23 +198,25 @@
   justify-content: center;
 }
 .pet-component-image3 {
-  width: 100%;
+  margin-left: 20px;
+  width: 600px;
   height: 100%;
   object-fit: cover;
+  border-top-right-radius: 50px;
 }
 .pet-component-container23 {
-  top: 0px;
+  top: 0;
   flex: 0 0 auto;
   right: 97px;
   width: auto;
-  bottom: 0px;
+  bottom: 0;
   height: 692px;
   margin: auto;
   display: flex;
   z-index: 200;
   position: absolute;
   align-items: flex-start;
-  padding-right: 0px;
+  padding-right: 0;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -304,12 +306,23 @@
 .pet-componentroot-class-name3 {
   display: none;
 }
+
+@media(max-width: 1300px) {
+  .pet-component-image3 {
+    width: 500px;
+  }
+}
+
 @media(max-width: 1200px) {
   .pet-componentroot-class-name {
     width: 100%;
     align-self: center;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .pet-component-image3 {
+    width: 480px;
   }
 }
 @media(max-width: 991px) {
@@ -321,10 +334,6 @@
   }
   .pet-component-container22 {
     display: none;
-  }
-  .pet-component-image3 {
-    width: 100%;
-    height: 100%;
   }
   .pet-componentroot-class-name {
     display: none;
