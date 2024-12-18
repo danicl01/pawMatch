@@ -33,6 +33,7 @@
   justify-content: flex-start;
   background-color: #ffffff;
   border-bottom-left-radius: 7%;
+  border-top-right-radius: 50px;
 }
 .pet-component-container13 {
   flex: 0 0 auto;
@@ -188,6 +189,11 @@
   margin-left: var(--dl-space-space-threeunits);
   text-decoration: none;
 }
+
+.pet-component-navlink:hover {
+  border-bottom: 1px solid #64cbff;
+}
+
 .pet-component-container22 {
   flex: 0 0 auto;
   width: 60%;
