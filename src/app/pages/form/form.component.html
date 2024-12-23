@@ -9,6 +9,9 @@
       fill="currentColor"
     ></path>
   </svg>
+  <!-- form.component.html -->
+  <input #prueba type="text" placeholder="Ciudad" />
+
   <form id="registrationForm" name="userForm" method="POST" target="self" enctype="multipart/form-data" autocomplete="on" class="form-form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-form-content">
       <div class="form-form-owner-section">
@@ -39,7 +42,11 @@
           </div>
           <div class="form-container12">
             <div class="form-container13">
-              <input type="text" id="owner-city" name="ownerCity" required="required" placeholder="City" autocomplete="address-line2" class="form-textinput14 input" formControlName= "ownerCity"/>
+              <input type="text" id="owner-city" name="ownerCity" required="required"
+                     placeholder="City" autocomplete="off"
+                     class="form-textinput14 input" formControlName= "ownerCity"/>
+
+
             </div>
             <div class="form-container14">
               <select id="owner-country" name="ownerCountry" required="required" autocomplete="country" class="form-select2" formControlName= "ownerCountry">

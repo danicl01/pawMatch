@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: "pawmatch-f87bf.firebasestorage.app",
     messagingSenderId: "113794447173",
     appId: "1:113794447173:web:4122135f72103d2108f02c"
-  }
+  },
+  googleApiKey: 'AIzaSyBE1uZ_mYD0L1krt_jGwgirCS5g9U7Hx7s'
 };
 
 

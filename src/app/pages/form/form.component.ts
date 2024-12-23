@@ -1,16 +1,58 @@
-import {Component, inject, signal} from '@angular/core'
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, inject, signal, ViewChild} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FormBuilder, Validators} from "@angular/forms";
 import {ProfilePerson, ProfilePet, UserCreate, UserService} from "../../services/user.service";
 import {toast} from "ngx-sonner";
 import {Router} from "@angular/router";
 
+declare var google: any;
+
+
 @Component({
   selector: 'app-form',
   templateUrl: 'form.component.html',
   styleUrls: ['form.component.css'],
 })
-export class Form {
+
+export class Form implements AfterViewInit  {
+
+  @ViewChild('prueba') cityInput!: ElementRef;
+
+  ngAfterViewInit() {
+    console.log('City Input:', this.cityInput);
+    if (this.cityInput && this.cityInput.nativeElement) {
+      if (typeof google === 'undefined' || !google.maps) {
+        console.error("Google Maps no está cargado");
+        return;
+      }
+      this.getPlaceAutocomplete();
+    }
+  }
+
+  private getPlaceAutocomplete() {
+    if (!google || !google.maps) {
+      console.error('Google Maps API no está cargado correctamente');
+      return;
+    }
+    console.log("Fase1");
+    const autocomplete = new google.maps.places.Autocomplete(this.cityInput.nativeElement, {
+      componentRestrictions: { country: 'es' },
+      types: ['(cities)'],
+    });
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        console.log('Selected place:', place);
+      } else {
+        console.log('No details available for the selected place');
+      }
+    });
+  }
+
+
+
+
   private _formBuilder = inject(FormBuilder);
   private _userService = inject(UserService);
   private _router = inject(Router);
