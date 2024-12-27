@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable, of, switchMap} from 'rxjs';
+import {User} from "./user.service";
 
 @Injectable({
   providedIn: 'root',
@@ -100,4 +101,15 @@ export class FirestoreService {
         } else throw new Error('Usuario no encontrado.');
 
     }
+
+    getUsersWithLocation(): Observable<any[]> {
+        return this.firestore.collection('users').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as User;
+                const id = a.payload.doc.id;
+                return { id, latitude: data.latitude, longitude: data.longitude };
+            }))
+        );
+    }
+
 }

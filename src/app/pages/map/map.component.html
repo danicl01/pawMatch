@@ -1,13 +1,22 @@
 <div class="map-container1">
   <app-header rootClassName="headerroot-class-name2"></app-header>
   <div class="map-container2">
-    <iframe
-      src="https://www.google.com/maps?q=2880 Broadway, New York;&amp;output=embed"
-      class="map-google-maps"
-    ></iframe>
+    <div id="map" style="height: 500px; width: 100%;"></div>
+    <div class="distance-selector">
+      <label>
+        <input type="radio" name="distance" (change)="filterMarkers(15)" /> 15 km
+      </label>
+      <label>
+        <input type="radio" name="distance" (change)="filterMarkers(5)" /> 5 km
+      </label>
+      <label>
+        <input type="radio" name="distance" (change)="filterMarkers(1)" /> 1 km
+      </label>
+    </div>
+    <button (click)="goToCurrentLocation()">Volver a mi ubicación</button>
     <div class="map-container3">
-      <pet-component rootClassName="pet-componentroot-class-name2"></pet-component>
+      <owner-component rootClassName="pet-componentroot-class-name2" [userId]="selectedUserId"></owner-component>
     </div>
   </div>
-  <pet-component rootClassName="pet-componentroot-class-name3"></pet-component>
+  <owner-component rootClassName="pet-componentroot-class-name3" [userId]="selectedUserId"></owner-component>
 </div>

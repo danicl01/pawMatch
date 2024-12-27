@@ -63,6 +63,7 @@ export class PetComponent {
   constructor() {}
 
   ngOnInit() {
+    console.log("Usuario recibido", this.userId)
     this.loadData(this.userId);
   }
 
