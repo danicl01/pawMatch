@@ -1,6 +1,7 @@
-:host { 
-  display: contents; 
+:host {
+  display: contents;
 }
+
 .map-container1 {
   width: 100%;
   display: flex;
@@ -16,46 +17,131 @@
   height: 850px;
   display: flex;
   align-items: center;
-  justify-content: center;
   padding-top: 15vh;
+  margin-left: 100px;
 }
+
+.aux1 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.aux2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.distance-selector {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+.distance-selector label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.distance-selector input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  appearance: none;
+  border: 2px solid #3498db;
+  margin-right: 8px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.distance-selector input[type="radio"]:checked {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.distance-selector input[type="radio"]:hover {
+  border-color: #2980b9;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
 .map-google-maps {
-  width: 690px;
-  height: 770px;
-  border-radius: var(--dl-radius-radius-inputradius);
+  width: 100%;
+  height: 100%;
 }
+
 .map-container3 {
   flex: 0 0 auto;
   width: 50%;
   height: 70%;
   display: flex;
   align-items: center;
-  margin-left: var(--dl-space-space-threeunits);
+  margin-left: 100px;
   border-radius: var(--dl-radius-radius-inputradius);
   flex-direction: column;
   justify-content: center;
-  background-color: #ffffff;
+}
+
+.no-user-selected-message {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
 }
 
 @media(max-width: 1200px) {
-  .map-google-maps {
-    width: 504px;
+  .aux1 {
+    width: 25%;
   }
 }
+
 @media(max-width: 991px) {
-  .map-google-maps {
-    width: 400px;
-    margin-right: 0px;
+  .aux1 {
+    width: 40%;
+  }
+  .map-container3 {
+    margin-left: 20px;
   }
 }
+
 @media(max-width: 767px) {
-  .map-google-maps {
-    width: 500px;
+  .map-container2 {
+    justify-content: center;
+    margin-left: 0;
+  }
+  .aux1 {
+    width: 80%;
   }
   .map-container3 {
     display: none;
   }
+  .no-user-selected-message {
+    display: block;
+  }
 }
+
 @media(max-width: 479px) {
   .map-google-maps {
     width: 400px;

@@ -1,22 +1,38 @@
 <div class="map-container1">
   <app-header rootClassName="headerroot-class-name2"></app-header>
   <div class="map-container2">
-    <div id="map" style="height: 500px; width: 100%;"></div>
-    <div class="distance-selector">
-      <label>
-        <input type="radio" name="distance" (change)="filterMarkers(15)" /> 15 km
-      </label>
-      <label>
-        <input type="radio" name="distance" (change)="filterMarkers(5)" /> 5 km
-      </label>
-      <label>
-        <input type="radio" name="distance" (change)="filterMarkers(1)" /> 1 km
-      </label>
+    <div class="aux1">
+      <div class="aux2">
+        <div class="distance-selector">
+          <label>
+            <input type="radio" name="distance" (change)="filterMarkers(15)" checked/> 15 km
+          </label>
+          <label>
+            <input type="radio" name="distance" (change)="filterMarkers(5)" /> 5 km
+          </label>
+          <label>
+            <input type="radio" name="distance" (change)="filterMarkers(1)" /> 1 km
+          </label>
+        </div>
+        <button (click)="goToCurrentLocation()">Current</button>
+      </div>
+      <div id="map" style="height: 500px; width: 100%;"></div>
     </div>
-    <button (click)="goToCurrentLocation()">Volver a mi ubicación</button>
+
     <div class="map-container3">
-      <owner-component rootClassName="pet-componentroot-class-name2" [userId]="selectedUserId"></owner-component>
+      <ng-container *ngIf="selectedUserId; else noUserSelected">
+        <owner-component rootClassName="pet-componentroot-class-name2" [userId]="selectedUserId"></owner-component>
+      </ng-container>
+      <ng-template #noUserSelected>
+        <p>Select a marker to view user details.</p>
+      </ng-template>
     </div>
   </div>
-  <owner-component rootClassName="pet-componentroot-class-name3" [userId]="selectedUserId"></owner-component>
+
+  <ng-container *ngIf="selectedUserId; else noUserSelected2">
+    <owner-component rootClassName="pet-componentroot-class-name3" [userId]="selectedUserId"></owner-component>
+  </ng-container>
+  <div #noUserSelected2 class="no-user-selected-message">
+    <p>Select a marker to view user details.</p>
+  </div>
 </div>
