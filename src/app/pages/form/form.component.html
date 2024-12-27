@@ -10,8 +10,6 @@
     ></path>
   </svg>
   <!-- form.component.html -->
-  <input #prueba type="text" placeholder="Ciudad" />
-
   <form id="registrationForm" name="userForm" method="POST" target="self" enctype="multipart/form-data" autocomplete="on" class="form-form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-form-content">
       <div class="form-form-owner-section">
@@ -24,13 +22,42 @@
               <span class="form-text12">Pet&apos;s owner full name:</span>
               <span class="form-text13">*</span>
             </span>
-            <input type="text" id="owner-first-name" name="ownerFirstName" required="required" placeholder="First name" autocomplete="given-name" class="form-textinput10 input" formControlName= "firstName"/>
+            <input
+                    type="text"
+                    id="owner-first-name"
+                    name="ownerFirstName"
+                    required="required"
+                    placeholder="First name"
+                    autocomplete="given-name"
+                    class="form-textinput10 input"
+                    formControlName= "firstName"
+            >
           </div>
           <div class="form-last-name">
-            <input type="text" id="owner-last-name" name="ownerLastName" required="required" placeholder="Last name" autocomplete="family-name" class="form-textinput11 input" formControlName= "lastName"/>
+            <input
+                    type="text"
+                    id="owner-last-name"
+                    name="ownerLastName"
+                    required="required"
+                    placeholder="Last name"
+                    autocomplete="family-name"
+                    class="form-textinput11 input"
+                    formControlName= "lastName"
+            >
           </div>
         </div>
-        <input type="number" id="owner-age" max="99" min="10" name="ownerAge" step="1" required="required" placeholder="Age" class="form-textinput12 input" formControlName= "ownerAge"/>
+        <input
+                type="number"
+                id="owner-age"
+                max="99"
+                min="10"
+                name="ownerAge"
+                step="1"
+                required="required"
+                placeholder="Age"
+                class="form-textinput12 input"
+                formControlName= "ownerAge"
+        >
         <select id="owner-sex" name="ownerSex" required="required" autocomplete="off" class="form-select1" formControlName= "ownerSex">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -38,22 +65,44 @@
         <div class="form-owner-address-section">
           <div class="form-container11">
             <span class="form-text14">Adress:</span>
-            <input type="text" id="owner-address" name="ownerAddress" placeholder="Street Address" autocomplete="address-line1" class="form-textinput13 input" formControlName= "ownerAddress"/>
+            <input
+                    #ownerAddress
+                    type="text"
+                    id="owner-address"
+                    name="ownerAddress"
+                    placeholder="Street Address"
+                    autocomplete="address-line1"
+                    class="form-textinput13 input"
+                    formControlName= "ownerAddress"
+                    [readonly]="isAddressInputDisabled"
+            >
           </div>
           <div class="form-container12">
             <div class="form-container13">
-              <input type="text" id="owner-city" name="ownerCity" required="required"
-                     placeholder="City" autocomplete="off"
-                     class="form-textinput14 input" formControlName= "ownerCity"/>
-
-
+              <label for="owner-country"></label>
+              <input
+                      id="owner-country"
+                      type="text"
+                      name="ownerCountry"
+                      placeholder="Spain"
+                      class="form-select2"
+                      formControlName= "ownerCountry"
+                      [readonly]="true"
+              >
             </div>
             <div class="form-container14">
-              <select id="owner-country" name="ownerCountry" required="required" autocomplete="country" class="form-select2" formControlName= "ownerCountry">
-                <option value="Spain">Spain</option>
-                <option value="Canada">Canada</option>
-                <option value="England">England</option>
-              </select>
+              <label for="owner-city"></label>
+              <input
+                      #ownerCity
+                      id = owner-city
+                      type="text"
+                      name="ownerCity"
+                      required="required"
+                      placeholder="City"
+                      autocomplete="off"
+                     class="form-textinput14 input"
+                      formControlName= "ownerCity"
+              >
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, inject, signal, ViewChild} from '@angular/core'
+import {AfterViewInit, Component, ElementRef, inject, signal, ViewChild} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {FormBuilder, Validators} from "@angular/forms";
 import {ProfilePerson, ProfilePet, UserCreate, UserService} from "../../services/user.service";
@@ -6,7 +6,6 @@ import {toast} from "ngx-sonner";
 import {Router} from "@angular/router";
 
 declare var google: any;
-
 
 @Component({
   selector: 'app-form',
@@ -16,42 +15,14 @@ declare var google: any;
 
 export class Form implements AfterViewInit  {
 
-  @ViewChild('prueba') cityInput!: ElementRef;
+  @ViewChild('ownerCity') cityInput!: ElementRef;
+  @ViewChild('ownerAddress') addressInput!: ElementRef;
+
+  isAddressInputDisabled = true;
 
   ngAfterViewInit() {
-    console.log('City Input:', this.cityInput);
-    if (this.cityInput && this.cityInput.nativeElement) {
-      if (typeof google === 'undefined' || !google.maps) {
-        console.error("Google Maps no está cargado");
-        return;
-      }
-      this.getPlaceAutocomplete();
-    }
+    this.getPlaceAutocomplete();
   }
-
-  private getPlaceAutocomplete() {
-    if (!google || !google.maps) {
-      console.error('Google Maps API no está cargado correctamente');
-      return;
-    }
-    console.log("Fase1");
-    const autocomplete = new google.maps.places.Autocomplete(this.cityInput.nativeElement, {
-      componentRestrictions: { country: 'es' },
-      types: ['(cities)'],
-    });
-
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (place.geometry) {
-        console.log('Selected place:', place);
-      } else {
-        console.log('No details available for the selected place');
-      }
-    });
-  }
-
-
-
 
   private _formBuilder = inject(FormBuilder);
   private _userService = inject(UserService);
@@ -66,12 +37,13 @@ export class Form implements AfterViewInit  {
     ownerSex: this._formBuilder.control('', Validators.required),
     ownerAddress: this._formBuilder.control(''),
     ownerCity: this._formBuilder.control('', Validators.required),
-    ownerCountry: this._formBuilder.control('', Validators.required),
+    ownerCountry: this._formBuilder.control('Spain'),
     ownerJob: this._formBuilder.control('', Validators.required),
     ownerAvailability: this._formBuilder.control('', Validators.required),
     ownerDescription: this._formBuilder.control(''),
     ownerImage: this._formBuilder.control(''),
-
+    ownerLatitude: this._formBuilder.control(''),
+    ownerLongitude: this._formBuilder.control(''),
     petType: this._formBuilder.control('', Validators.required),
     petFirstName: this._formBuilder.control('', Validators.required),
     petLastName: this._formBuilder.control('', Validators.required),
@@ -85,6 +57,7 @@ export class Form implements AfterViewInit  {
     petDescription: this._formBuilder.control(''),
     petImage: this._formBuilder.control('')
   });
+
 
   private breeds = {
     Dog: [
@@ -167,8 +140,8 @@ export class Form implements AfterViewInit  {
     try {
       this.loading.set(true);
       const {
-        firstName, lastName, ownerSex, ownerAddress, ownerCity, ownerCountry,
-        ownerJob, ownerAvailability, ownerDescription, ownerImage, petType, petFirstName,
+        firstName, lastName, ownerSex, ownerAddress, ownerCity, ownerCountry, ownerLongitude,
+          ownerLatitude, ownerJob, ownerAvailability, ownerDescription, ownerImage, petType, petFirstName,
         petLastName, petBreed, petSex, petSexualStatus, petDiseases,
         petDescription, petImage
       } = this.form.value;
@@ -203,6 +176,8 @@ export class Form implements AfterViewInit  {
         city: ownerCity,
         country: ownerCountry,
         address: ownerAddress || '',
+        latitude: ownerLatitude || '',
+        longitude: ownerLongitude || '',
         profilePet: profilePet,
         profilePerson: profilePerson,
         savedUsers: []
@@ -216,5 +191,51 @@ export class Form implements AfterViewInit  {
     } finally {
       this.loading.set(false);
     }
+  }
+
+
+  private getPlaceAutocomplete() {
+    if (!google || !google.maps) {
+      console.error('Google Maps API no está cargado correctamente');
+      return;
+    }
+    const cityAutocomplete = new google.maps.places.Autocomplete(this.cityInput.nativeElement, {
+      componentRestrictions: { country: 'es' },
+      types: ['(cities)'],
+    });
+
+    cityAutocomplete.addListener('place_changed', () => {
+      const place = cityAutocomplete.getPlace();
+      if (place.geometry) {
+        this.isAddressInputDisabled = false;
+        this.setAddressAutocomplete(place.geometry.viewport);
+      } else {
+        console.log('No se han encontrado detalles para la ciudad seleccionada');
+      }
+    });
+  }
+
+  private setAddressAutocomplete(bounds: any) {
+    const addressAutocomplete = new google.maps.places.Autocomplete(this.addressInput.nativeElement, {
+      bounds: bounds,
+      strictBounds: true,
+      types: ['address'],
+    });
+    addressAutocomplete.addListener('place_changed', () => {
+      const place = addressAutocomplete.getPlace();
+      if (place.geometry) {
+        this.form.get('ownerAddress')?.setValue(place.formatted_address);
+
+        const coordinates = place.geometry.location;
+        const latitude = coordinates.lat();
+        const longitude = coordinates.lng();
+
+        this.form.get('ownerLatitude')?.setValue(latitude);
+        this.form.get('ownerLongitude')?.setValue(longitude);
+
+      } else {
+        console.log('No se han encontrado detalles para la dirección seleccionada');
+      }
+    });
   }
 }

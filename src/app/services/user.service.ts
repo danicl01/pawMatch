@@ -7,6 +7,8 @@ export interface User {
   city: string;
   country: string;
   address: string;
+  latitude: string;
+  longitude: string;
   profilePerson: ProfilePerson;
   profilePet: ProfilePet[];
   savedUsers: string[];
