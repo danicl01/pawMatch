@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import firebase from 'firebase/compat/app';
 import { Timestamp } from '@angular/fire/firestore';
 import {map, Observable} from "rxjs";
+import {NotificationService} from "./notification.service";
 
 const CHAT_PATH = 'chats';
 
@@ -32,6 +33,7 @@ export interface MessageCreate extends Omit<Message, 'id'> {}
 export class ChatService {
   private _firestore = inject(AngularFirestore);
   private _chatCollection: AngularFirestoreCollection<ChatCreate>;
+  private _notificationService = inject(NotificationService);
 
   constructor() {
     this._chatCollection = this._firestore.collection<ChatCreate>(CHAT_PATH);
@@ -51,7 +53,6 @@ export class ChatService {
     );
   }
 
-
   async createChat(userId: string, receiverId: string): Promise<string> {
     const newChat = await this._chatCollection.add({
       lastMessage: '',
@@ -60,6 +61,10 @@ export class ChatService {
       participants: [userId, receiverId],
       state: 'unread',
     });
+    await this._notificationService.addNotificationToUser(
+        receiverId,
+        'You have new chats in mailbox'
+    );
     return newChat.id;
   }
 

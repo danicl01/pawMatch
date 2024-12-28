@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {AuthStateService} from "../../auth/data-access/auth-state.service";
 import {FirestoreService} from "../../services/firestore.service";
 import {UserService} from "../../services/user.service";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-chat',
@@ -28,7 +29,8 @@ export class ChatComponent implements OnInit {
   private _chatService = inject(ChatService);
   private _activatedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
-  _userService = inject(UserService);
+  private _userService = inject(UserService);
+
 
   constructor() {}
 
@@ -108,11 +110,10 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  async createChatIfNeeded(receiverId: string) {
+  async createChatIfNeeded(receiverId: string): Promise<void> {
     if (!this.chatId) {
       this.chatId = await this._chatService.createChat(this.userId, receiverId);
     }
-
     this._chatService.getChatMessages(this.chatId).subscribe((messages) => {
       this.messages = messages;
     });

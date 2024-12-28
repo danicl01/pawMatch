@@ -178,6 +178,7 @@ export class Form implements AfterViewInit  {
         address: ownerAddress || '',
         latitude: ownerLatitude || '',
         longitude: ownerLongitude || '',
+        notification: '',
         profilePet: profilePet,
         profilePerson: profilePerson,
         savedUsers: []

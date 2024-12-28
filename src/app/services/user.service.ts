@@ -9,6 +9,7 @@ export interface User {
   address: string;
   latitude: string;
   longitude: string;
+  notification: string;
   profilePerson: ProfilePerson;
   profilePet: ProfilePet[];
   savedUsers: string[];
