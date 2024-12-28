@@ -65,10 +65,10 @@
           </ng-container>
         </a>
         <a
-                [attr.href]="textUrl"
                 target="_blank"
                 rel="noreferrer noopener"
                 class="header-link6 thq-link thq-body-small"
+                (click)="toggleNotification()"
         >
           <ng-container>
             <ng-template #defaultText>
@@ -173,6 +173,7 @@
                   target="_blank"
                   rel="noreferrer noopener"
                   class="thq-link thq-body-small header-link7"
+                  (click)="toggleNotification()"
           >
             <ng-container>
               <ng-template #defaultText2>
@@ -206,3 +207,6 @@
 
   </header>
 </header>
+<div *ngIf="isNotificationVisible" class="notification-container">
+  <app-notification></app-notification>
+</div>

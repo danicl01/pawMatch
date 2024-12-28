@@ -9,11 +9,12 @@ import {SavedUserComponent} from "./saved-user/saved-user.component";
 import {ChatComponent} from "./chat/chat.component";
 import {FormsModule} from "@angular/forms";
 import {ChatListComponent} from "./chat-list/chat-list.component";
+import {NotificationComponent} from "./notification/notification.component";
 
 @NgModule({
-  declarations: [Header, PetComponent, OwnerComponent, SavedUserComponent, ChatComponent, ChatListComponent],
+  declarations: [Header, PetComponent, OwnerComponent, SavedUserComponent, ChatComponent, ChatListComponent, NotificationComponent],
   imports: [CommonModule, RouterModule, FormsModule],
-  exports: [Header, PetComponent, OwnerComponent, SavedUserComponent, ChatComponent, ChatListComponent],
+  exports: [Header, PetComponent, OwnerComponent, SavedUserComponent, ChatComponent, ChatListComponent, NotificationComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ComponentsModule {}

@@ -47,6 +47,7 @@ export class Header {
 
   user$: Observable<any> | undefined;
   userId: string | null = null;
+  isNotificationVisible: boolean = false;
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
   private _router = inject(Router);
@@ -83,5 +84,9 @@ export class Header {
         this.imageSrcProfile = user.profilePerson?.picture || 'https://play.teleporthq.io/static/svg/default-img.svg';
       });
     }
+  }
+
+  toggleNotification(): void {
+    this.isNotificationVisible = !this.isNotificationVisible;
   }
 }

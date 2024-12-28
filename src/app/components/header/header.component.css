@@ -263,6 +263,13 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.notification-container {
+  margin-top: 10vh;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+}
+
 @media(max-width: 991px) {
   .header-image1 {
     width: var(--dl-size-size-large);
