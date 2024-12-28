@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { FirestoreService } from "../../services/firestore.service";
 import { AuthStateService } from "../../auth/data-access/auth-state.service";
-import { MapService } from '../../services/map.service';  // Importa el servicio
+import { MapService } from '../../services/map.service';
 
 declare var google: any;
 
@@ -72,6 +72,14 @@ export class Map implements OnInit {
           position: this.currentUserCoords,
           map: this.map,
           title: 'Your location',
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: "blue",
+            fillOpacity: 1,
+            strokeWeight: 1,
+            strokeColor: "darkblue",
+          },
         });
 
         this.markers = this.usersCoords.map(cord => {
@@ -95,6 +103,7 @@ export class Map implements OnInit {
 
   filterMarkers(radius: number) {
     this.currentRadius = radius;
+    this.map.setZoom(this.getZoomForRadius(radius));
     this.markers.forEach(marker => marker.setMap(null));
     this.markers = [];
 
@@ -114,6 +123,18 @@ export class Map implements OnInit {
         this.markers.push(marker);
       }
     });
+  }
+
+  getZoomForRadius(radius: number): number {
+    if (radius === 15) {
+      return 12;
+    } else if (radius === 5) {
+      return 14;
+    } else if (radius === 1) {
+      return 15;
+    } else {
+      return 12;
+    }
   }
 
   calculateDistance(cord1: any, cord2: any): number {
