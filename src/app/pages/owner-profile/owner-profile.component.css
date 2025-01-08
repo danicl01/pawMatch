@@ -16,7 +16,7 @@
   width: 80%;
   height: auto;
   display: flex;
-  z-index: 100;
+  z-index: 20;
   margin-top: var(--dl-space-space-fourunits);
   align-items: center;
   flex-direction: column;
@@ -420,6 +420,14 @@
   position: fixed;
   transform: rotate(20deg);
 }
+.aux {
+  display: flex;
+  flex-direction: row;
+ }
+
+.pet-profile-image1 {
+  margin-right: 20px;
+}
 @media(max-width: 1200px) {
   .owner-profile-container34 {
     margin-left: 0px;
@@ -440,14 +448,38 @@
   }
 }
 @media(max-width: 991px) {
+  .pet-profile-image1 {
+    display: none;
+  }
+}
+@media(max-width: 767px) {
   .owner-profile-container14 {
     width: 100%;
+    order: 2;
+  }
+  .owner-profile-container34 {
+    width: 100%;
+    order: 1;
+    margin-bottom: 40px;
+  }
+  .owner-profile-container17, .owner-profile-container28, .owner-profile-container33 {
+    font-size: 0.8em;
+  }
+  .owner-profile-button1, .owner-profile-button2, .owner-profile-button3 {
+    margin-right: 5px;
+    font-size: 1.3em;
   }
   .owner-profile-container31 {
     width: 100%;
   }
-  .owner-profile-container34 {
+  .owner-profile-container13 {
+    flex-direction: column;
+  }
+  .pet-profile-image1 {
     display: none;
+  }
+  .owner-profile-text20, .owner-profile-text35 {
+    font-size: 1.5em;
   }
 }
 @media(max-width: 767px) {
