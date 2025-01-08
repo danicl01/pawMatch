@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit {
   participantName: string;
   @Input() receiverId: string | null = null;
   @Output() chatCreated = new EventEmitter<void>();
+  @Output() chatClosed = new EventEmitter<void>();
   private _authState = inject(AuthStateService);
   private _fireService = inject(FirestoreService);
   private _chatService = inject(ChatService);
@@ -133,5 +134,10 @@ export class ChatComponent implements OnInit {
   navigateWithUserId() {
     this._userService.setRandomUserId(this.receiverId);
     this._router.navigate(['/user-owner-profile']);
+  }
+
+  backToChatList() {
+    this.receiverId = null;
+    this.chatClosed.emit();
   }
 }

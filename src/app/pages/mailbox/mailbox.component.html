@@ -1,7 +1,7 @@
 <div class="mailbox-container10">
   <app-header rootClassName="headerroot-class-name5"></app-header>
   <div class="mailbox-container11">
-    <div class="mailbox-container12">
+    <div class="mailbox-container12" [class.hidden]="isSmallScreen && selectedId">
       <div class="mailbox-container13">
         <div class="mailbox-container14">
           <span class="mailbox-text19">Inbox</span>
@@ -34,7 +34,7 @@
         </app-chat-list>
       </div>
     </div>
-    <div class="mailbox-container21">
+    <div class="mailbox-container21" [class.hidden]="isSmallScreen && !selectedId">
       <div *ngIf="!selectedId" class="mailbox-container22">
         <div class="mailbox-container23">
           <img
@@ -47,7 +47,12 @@
           </span>
         </div>
       </div>
-      <app-chat *ngIf="selectedId" [receiverId]="selectedId" (chatCreated)="onChatCreated()"></app-chat>
+      <app-chat
+              *ngIf="selectedId"
+              [receiverId]="selectedId"
+              (chatCreated)="onChatCreated()"
+              (chatClosed)="onChatClosed()">
+      </app-chat>
     </div>
   </div>
 </div>

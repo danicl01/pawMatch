@@ -1,6 +1,9 @@
 :host { 
   display: contents; 
 }
+.hidden {
+  display: none !important;
+}
 .mailbox-container10 {
   width: 100%;
   display: flex;
@@ -272,10 +275,7 @@
     margin-left: var(--dl-space-space-sixunits);
   }
   .mailbox-container21 {
-    display: none;
-  }
-  .mailbox-container22 {
-    display: none;
+    width: 100%;
   }
 }
 @media(max-width: 767px) {

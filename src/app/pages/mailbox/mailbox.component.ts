@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core'
+import {Component, HostListener, inject, Input} from '@angular/core'
 import { Title, Meta } from '@angular/platform-browser'
 import {ActivatedRoute, Router} from "@angular/router";
 import {ChatService, Message} from "../../services/chat.service";
@@ -11,7 +11,7 @@ import {FirestoreService} from "../../services/firestore.service";
   styleUrls: ['mailbox.component.css'],
 })
 export class Mailbox {
-  raw1ik8: string = ' '
+  isSmallScreen: boolean = window.innerWidth <= 991;
   selectedId: string | null = null;
   userId: string | null = null;
   allChats: typeof this.chatDetails = [];
@@ -38,6 +38,11 @@ export class Mailbox {
         content: 'Mailbox - PawMatch',
       },
     ])
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.isSmallScreen = window.innerWidth <= 991;
   }
 
   async ngOnInit(): Promise<void> {
@@ -108,5 +113,9 @@ export class Mailbox {
 
   onChatCreated() {
     this.getChatsAndUsers();
+  }
+
+  onChatClosed() {
+    this.selectedId = null;
   }
 }

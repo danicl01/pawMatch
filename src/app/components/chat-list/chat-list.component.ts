@@ -42,7 +42,7 @@ export class ChatListComponent {
 
     this.formattedDate = this.lastMessageDate
         ? new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short' }).format(new Date(this.lastMessageDate))
-        : 'Fecha no disponible';
+        : '';
   }
 
   async  onSelectParticipant() {
