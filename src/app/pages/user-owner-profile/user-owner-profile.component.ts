@@ -26,9 +26,9 @@ export class UserOwnerProfile {
   userId: string | null = null;
 
   private _authState = inject(AuthStateService);
-  _userService = inject(UserService);
-  _fireService = inject(FirestoreService);
-  _router = inject(Router);
+  private _userService = inject(UserService);
+  private _fireService = inject(FirestoreService);
+  private _router = inject(Router);
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('User-owner-Profile - PawMatch')
     this.meta.addTags([
@@ -77,6 +77,11 @@ export class UserOwnerProfile {
       error: err => {
         console.error('Error adding user to the saved list:', err);
       }
+    });
+  }
+  onIconClick() {
+    this._router.navigate(['/mailbox'], {
+      queryParams: { selectedUserId: this.userId }
     });
   }
 

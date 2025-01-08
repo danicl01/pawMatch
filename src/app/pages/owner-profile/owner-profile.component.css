@@ -433,7 +433,8 @@
     margin-left: 0px;
   }
   .owner-profile-image {
-    width: 400px;
+    width: 300px;
+    height: 300px;
   }
   .owner-profile-container35 {
     width: auto;
@@ -461,6 +462,7 @@
     width: 100%;
     order: 1;
     margin-bottom: 40px;
+    margin-top: 30px;
   }
   .owner-profile-container17, .owner-profile-container28, .owner-profile-container33 {
     font-size: 0.8em;

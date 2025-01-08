@@ -8,6 +8,7 @@
         Go to owner profile
       </button>
     </div>
+
     <div class="user-pet-profile-container13">
       <div class="user-pet-profile-container14">
         <div class="user-pet-profile-container15">
@@ -146,6 +147,7 @@
         </div>
         <div class="user-pet-profile-container46">
           <div class="user-pet-profile-container47">
+            <a routerLink="/saves" (click)="saveUser()">
             <svg
               width="717"
               height="717"
@@ -157,9 +159,10 @@
                 fill="currentColor"
               ></path>
             </svg>
+            </a>
           </div>
           <div class="user-pet-profile-container48">
-            <a routerLink="/mailbox" class="user-pet-profile-navlink2">
+            <a (click)="onIconClick()" class="user-pet-profile-navlink2">
               <svg
                 width="24"
                 height="24"
@@ -194,6 +197,7 @@
     </div>
     <div class="user-pet-profile-container55">
       <div class="user-pet-profile-container56">
+        <a routerLink="/saves" (click)="saveUser()">
         <svg
           width="717"
           height="717"
@@ -205,9 +209,10 @@
             fill="currentColor"
           ></path>
         </svg>
+        </a>
       </div>
       <div class="user-pet-profile-container57">
-        <a routerLink="/mailbox" class="user-pet-profile-navlink3">
+        <a (click)="onIconClick()" class="user-pet-profile-navlink3">
           <svg
             width="24"
             height="24"

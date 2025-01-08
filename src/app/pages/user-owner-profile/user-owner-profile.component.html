@@ -1,12 +1,14 @@
 <div class="user-owner-profile-container10">
   <app-header rootClassName="headerroot-class-name7"></app-header>
   <div class="user-owner-profile-container11">
+
     <div class="user-owner-profile-container12">
       <span class="user-owner-profile-text19">Owner Profile </span>
       <button (click)="navigateWithUserId()" class="owner-profile-btn">
         Go to pets profile
       </button>
     </div>
+
     <div class="user-owner-profile-container13">
       <div class="user-owner-profile-container14">
         <div class="user-owner-profile-container15">
@@ -16,6 +18,11 @@
           <div class="user-owner-profile-container17">
             <div class="user-owner-profile-container18">
               <div class="user-owner-profile-container19">
+                <img
+                        alt="image"
+                        src="/assets/usuario-masculino.png"
+                        class="pet-profile-image1"
+                />
                 <div class="user-owner-profile-container20">
                   <span class="user-owner-profile-text21">Name</span>
                   <span id="user-first-name" class="user-owner-profile-text22" [innerHTML]="ownerName"> </span>
@@ -24,6 +31,11 @@
             </div>
             <div class="user-owner-profile-container21">
               <div class="user-owner-profile-container22">
+                <img
+                        alt="image"
+                        src="/assets/sexo.png"
+                        class="pet-profile-image1"
+                />
                 <div class="user-owner-profile-container23">
                   <div class="user-owner-profile-container24">
                     <span class="user-owner-profile-text23">Sex</span>
@@ -34,6 +46,11 @@
             </div>
             <div class="user-owner-profile-container25">
               <div class="user-owner-profile-container26">
+                <img
+                        alt="image"
+                        src="/assets/pastel-de-cumpleanos.png"
+                        class="pet-profile-image1"
+                />
                 <div class="user-owner-profile-container27">
                   <span class="user-owner-profile-text25">Age</span>
                   <span id="user-age" class="user-owner-profile-text26" [innerHTML]="ownerAge"><br /></span>
@@ -42,14 +59,27 @@
             </div>
           </div>
           <div class="user-owner-profile-container28">
+            <img
+                    alt="image"
+                    src="/assets/job-promotion.png"
+                    class="pet-profile-image1"
+            />
             <div class="user-owner-profile-container29">
               <span class="user-owner-profile-text29">Job</span>
               <span id="user-job" class="user-owner-profile-text30" [innerHTML]="ownerJob"><br /></span>
             </div>
-            <div class="user-owner-profile-container30">
-              <span class="user-owner-profile-text33">Schedule</span>
-              <span id="user-schedule" class="user-owner-profile-text34" [innerHTML]="ownerSchedule"></span>
+            <div class="aux">
+              <img
+                      alt="image"
+                      src="/assets/calendario.png"
+                      class="pet-profile-image1"
+              />
+              <div class="user-owner-profile-container30">
+                <span class="user-owner-profile-text33">Schedule</span>
+                <span id="user-schedule" class="user-owner-profile-text34" [innerHTML]="ownerSchedule"></span>
+              </div>
             </div>
+
           </div>
         </div>
         <div class="user-owner-profile-container31">
@@ -90,7 +120,7 @@
             </a>
           </div>
           <div class="user-owner-profile-container38">
-            <a routerLink="/mailbox" class="user-owner-profile-navlink2">
+            <a (click)="onIconClick()" class="user-owner-profile-navlink2">
               <svg
                 width="24"
                 height="24"
@@ -109,6 +139,7 @@
     </div>
     <div class="user-owner-profile-container39">
       <div class="user-owner-profile-container40">
+        <a routerLink="/saves" (click)="saveUser()">
         <svg
           width="717"
           height="717"
@@ -120,9 +151,10 @@
             fill="currentColor"
           ></path>
         </svg>
+        </a>
       </div>
       <div class="user-owner-profile-container41">
-        <a routerLink="/mailbox" class="user-owner-profile-navlink3">
+        <a (click)="onIconClick()" class="user-owner-profile-navlink3">
           <svg
             width="24"
             height="24"
