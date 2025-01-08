@@ -1,4 +1,4 @@
-# PawMatch - Página Web de Citas para Mascotas
+# PawMatch - Página Web y Móvil de Citas para Mascotas
 
 PawMatch es una plataforma de citas para mascotas, similar a aplicaciones como Tinder, donde los dueños pueden hacer "match" con otros propietarios basados en las características de sus mascotas y dueños. Los usuarios pueden crear perfiles para ellos y sus mascotas, especificando detalles como la edad, el sexo, la raza y las preferencias para facilitar las conexiones. La plataforma también ofrece un sistema de chat para facilitar la interacción entre usuarios.
 
