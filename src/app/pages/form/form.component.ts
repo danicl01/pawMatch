@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {ProfilePerson, ProfilePet, UserCreate, UserService} from "../../services/user.service";
 import {toast} from "ngx-sonner";
 import {Router} from "@angular/router";
+import { petBreeds, PetType } from '../../models/pet-type.enums';
 
 declare var google: any;
 
@@ -14,21 +15,18 @@ declare var google: any;
 })
 
 export class Form implements AfterViewInit  {
-
   @ViewChild('ownerCity') cityInput!: ElementRef;
   @ViewChild('ownerAddress') addressInput!: ElementRef;
 
+  loading = signal(false);
   isAddressInputDisabled = true;
-
-  ngAfterViewInit() {
-    this.getPlaceAutocomplete();
-  }
+  petTypes = Object.values(PetType);
+  selectedPetType: PetType = PetType.Dog;
+  filteredBreeds: string[] = [];
 
   private _formBuilder = inject(FormBuilder);
   private _userService = inject(UserService);
   private _router = inject(Router);
-
-  loading = signal(false);
 
   form = this._formBuilder.group({
     firstName: this._formBuilder.control('', Validators.required),
@@ -58,47 +56,6 @@ export class Form implements AfterViewInit  {
     petImage: this._formBuilder.control('')
   });
 
-
-  private breeds = {
-    Dog: [
-      'German Shepherd', 'Labrador Retriever', 'Bulldog', 'Poodle', 'Chihuahua',
-      'Beagle', 'Corgi', 'Dalmatian', 'Boxer', 'Cocker Spaniel', 'Shih Tzu',
-      'Yorkshire Terrier', 'Pitbull', 'Rottweiler', 'Doberman', 'Golden Retriever',
-      'French Bulldog', 'Boston Terrier', 'Pug', 'Maltese', 'Shetland Sheepdog',
-      'Collie', 'Cane Corso', 'Great Dane', 'Basset Hound', 'Bloodhound',
-      'Coonhound', 'Dachshund', 'Akita', 'Alaskan Malamute', 'Siberian Husky',
-      'Samoyed', 'Chow Chow', 'Shar-Pei', 'Schnauzer', 'Airedale Terrier',
-      'Cairn Terrier', 'West Highland White Terrier', 'Scottish Terrier',
-      'Lhasa Apso', 'Cocker Spaniel', 'Springer Spaniel', 'Papillon',
-      'Affenpinscher', 'German Pointer', 'Poodle', 'Canelo', 'Greyhound', 'Pointer'
-    ],
-    Cat: [
-      'Sphynx', 'Persian', 'Maine Coon', 'British Shorthair', 'Siamese',
-      'Abyssinian', 'Bengal', 'Savannah', 'Ragdoll', 'Birman', 'Himalayan',
-      'Oriental Shorthair', 'Balinese', 'Javanese', 'Tonkinese', 'Russian Blue',
-      'Siberian', 'Nebelung', 'Chartreux', 'Korat', 'Devon Rex', 'Cornish Rex',
-      'Scottish Fold', 'Munchkin', 'American Curl', 'American Shorthair',
-      'American Wirehair', 'Turkish Van', 'Turkish Angora', 'Somali', 'Ocicat',
-      'Pixie-bob', 'Chausie', 'Cymric', 'Manx', 'Norwegian Forest Cat',
-      'Siberian Shorthair', 'Balinese Longhair', 'Oriental Longhair',
-      'Javanese Longhair', 'Colorpoint Shorthair', 'Calico', 'Torbie',
-      'Tortoiseshell', 'Tabby', 'Egyptian Mau', 'Ocicat Bengal', 'Ashera',
-      'Bengal Savannah', 'Kurilian Bobtail'
-    ],
-    Hamster: [
-      'Roborovski', 'Campbell', 'Winter White (Djungarian)', 'Chinese Hamster',
-      'Hybrid', 'Syrian Golden', 'Syrian Silver', 'Syrian Black', 'Syrian White',
-      'Syrian Panda', 'Roborovski Albino', 'Campbell Albino',
-      'Winter White Leucistic', 'Chinese Golden', 'Hybrid Calico'
-    ]
-  };
-
-  getBreeds(petType: string): string[] {
-    return this.breeds[petType] || [];
-  }
-
-  filteredBreeds: string[] = [];
-
   constructor(private title: Title, private meta: Meta) {
     this.title.setTitle('Form - PawMatch')
     this.meta.addTags([
@@ -115,6 +72,10 @@ export class Form implements AfterViewInit  {
     });
   }
 
+  ngAfterViewInit() {
+    this.getPlaceAutocomplete();
+  }
+
   onFileSelected(event: Event, fieldName: 'petImage' | 'ownerImage') {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
@@ -128,8 +89,7 @@ export class Form implements AfterViewInit  {
   }
 
   onTypeChange(): void {
-    const petType = this.form.get('petType')?.value;
-    this.filteredBreeds = this.getBreeds(petType);
+    this.filteredBreeds = petBreeds[this.selectedPetType] || [];
   }
 
   async submit() {
@@ -194,12 +154,9 @@ export class Form implements AfterViewInit  {
     }
   }
 
-
   private getPlaceAutocomplete() {
-    if (!google || !google.maps) {
-      console.error('Google Maps API no está cargado correctamente');
-      return;
-    }
+    if (!google || !google.maps) return console.error('Google Maps API no está cargado correctamente');
+
     const cityAutocomplete = new google.maps.places.Autocomplete(this.cityInput.nativeElement, {
       componentRestrictions: { country: 'es' },
       types: ['(cities)'],
@@ -210,8 +167,6 @@ export class Form implements AfterViewInit  {
       if (place.geometry) {
         this.isAddressInputDisabled = false;
         this.setAddressAutocomplete(place.geometry.viewport);
-      } else {
-        console.log('No se han encontrado detalles para la ciudad seleccionada');
       }
     });
   }
@@ -233,9 +188,6 @@ export class Form implements AfterViewInit  {
 
         this.form.get('ownerLatitude')?.setValue(latitude);
         this.form.get('ownerLongitude')?.setValue(longitude);
-
-      } else {
-        console.log('No se han encontrado detalles para la dirección seleccionada');
       }
     });
   }

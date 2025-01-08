@@ -913,6 +913,12 @@
   border-radius: var(--dl-radius-radius-inputradius);
   text-decoration: none;
   background-color: #f47aff;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.form-navlink:hover {
+  background-color: #fd41fd;
+  transform: scale(1.1);
 }
 .form-icon7 {
   top: 10px;

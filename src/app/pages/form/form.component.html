@@ -59,6 +59,7 @@
                 formControlName= "ownerAge"
         >
         <select id="owner-sex" name="ownerSex" required="required" autocomplete="off" class="form-select1" formControlName= "ownerSex">
+          <option value="" disabled selected>Owner Sex</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
@@ -140,19 +141,19 @@
           <div class="form-container18">
             <div class="form-container19">
               <div class="form-container20">
-                <input type="radio" id="pet-dog" name="petType" value="Dog" checked="checked" required="required" class="form-radiobutton1" formControlName= "petType" (change)="onTypeChange()"/>
+                <input type="radio" name="petType" value="Dog" class="form-radiobutton1" formControlName= "petType" (change)="onTypeChange()" checked/>
                 <label class="form-text24">Dog</label>
               </div>
             </div>
             <div class="form-container21">
               <div class="form-container22">
-                <input type="radio" id="pet-cat" name="petType" value="Cat" required="required" class="form-radiobutton2" formControlName= "petType"/>
+                <input type="radio" name="petType" value="Cat" class="form-radiobutton2" formControlName= "petType"/>
                 <label class="form-text25">Cat</label>
               </div>
             </div>
             <div class="form-container23">
               <div class="form-container24">
-                <input type="radio" id="pet-hamster" name="petType" value="Hamster" required="required" class="form-radiobutton3" formControlName= "petType"/>
+                <input type="radio" name="petType" value="Hamster" class="form-radiobutton3" formControlName= "petType"/>
                 <label class="form-text26">Hamster</label>
               </div>
             </div>
@@ -188,6 +189,7 @@
                 <span class="form-text34">*</span>
               </span>
               <select id="pet-breed" name="petBreed" required="required" autocomplete="off" class="form-select4" formControlName= "petBreed">
+                <option value="" disabled selected>Breed</option>
                 <option *ngFor="let breed of filteredBreeds" [value]="breed">{{ breed }}</option>
               </select>
             </div>
@@ -206,12 +208,14 @@
           <div class="form-container37">
             <div class="form-container38">
               <select id="pet-sex" name="petSex" required="required" autocomplete="off" class="form-select5" formControlName= "petSex">
+                <option value="" disabled selected>Pet Sex</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
             </div>
             <div class="form-container39">
               <select id="pet-sexual-status" name="petSexualStatus" required="required" autocomplete="off" class="form-select6" formControlName= "petSexualStatus">
+                <option value="" disabled selected>Sex Status</option>
                 <option value="Intact">Intact</option>
                 <option value="Neutered">Neutered</option>
                 <option value="Spayed">Spayed</option>
