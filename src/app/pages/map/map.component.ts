@@ -167,6 +167,5 @@ export class Map implements OnInit {
   }
   goToCurrentLocation() {
     this.map.setCenter(this.currentUserCoords);
-    this.map.setZoom(12);
   }
 }

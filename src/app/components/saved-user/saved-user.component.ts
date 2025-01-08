@@ -1,5 +1,6 @@
 import {Component, EventEmitter, inject, Input, Output, SimpleChanges} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-saved-user',
@@ -18,6 +19,7 @@ export class SavedUserComponent {
   @Output() selectUser = new EventEmitter<string>();
 
   private _fireService = inject(FirestoreService);
+  private _router = inject(Router);
 
   constructor() { }
 
@@ -66,5 +68,11 @@ export class SavedUserComponent {
     if (this.userId) {
       this.selectUser.emit(this.userId);
     }
+  }
+
+  onIconClick() {
+    this._router.navigate(['/mailbox'], {
+      queryParams: { selectedUserId: this.userId }
+    });
   }
 }
