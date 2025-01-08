@@ -10,13 +10,27 @@
           <div class="search-container15">
             <span class="search-text20">Country</span>
             <label for="country-select"></label>
-            <input type="text" id="country-select" name="country" placeholder="Any" autocomplete="country" class="search-textinput1 input" [(ngModel)]="filters.selectedCountry"
+            <input
+                    type="text"
+                    id="country-select"
+                    name="country"
+                    placeholder="Any"
+                    autocomplete="country"
+                    class="search-textinput1 input"
+                    [(ngModel)]="filters.selectedCountry"
             />
           </div>
           <div class="search-container16">
             <span class="search-text21">City</span>
             <label for="city-select"></label>
-            <input type="text" id="city-select" name="city" placeholder="Any" autocomplete="address-line2" class="search-textinput2 input" [(ngModel)]="filters.selectedCity"
+            <input
+                    type="text"
+                    id="city-select"
+                    name="city"
+                    placeholder="Any"
+                    autocomplete="address-line2"
+                    class="search-textinput2 input"
+                    [(ngModel)]="filters.selectedCity"
             />
           </div>
           <div class="search-container17">
@@ -84,9 +98,9 @@
       </div>
       <div class="search-container27">
         <div class="search-container28">
-          <span class="search-text29" [(ngModel)]="filters.selectedSexStatus">Sex status</span>
+          <span class="search-text29" >Sex status</span>
           <label>
-            <select class="search-select14">
+            <select class="search-select14" [(ngModel)]="filters.selectedSexStatus">
               <option value="Intact">Intact</option>
               <option value="Neutered">Neutered</option>
               <option value="Spayed">Spayed</option>
