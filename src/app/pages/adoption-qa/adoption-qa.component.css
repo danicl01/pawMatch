@@ -76,8 +76,33 @@
 .adoption-qa-navlink3 {
   color: #40a9ff;
   font-size: 32px;
-  text-decoration: underline;
 }
+
+.adoption-qa-navlink1, .adoption-qa-navlink2, .adoption-qa-navlink3 {
+  transition: all 0.3s ease;
+}
+
+.adoption-qa-navlink1:hover {
+  background-color: #a1f7a1;
+  transform: scale(1.05);
+}
+
+.adoption-qa-navlink2:hover {
+  background-color: #a1f7a1;
+  transform: scale(1.05);
+}
+
+.adoption-qa-navlink3:hover {
+  color: #ff6f61;
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+.adoption-qa-navlink1:hover, .adoption-qa-navlink2:hover, .adoption-qa-navlink3:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
 @media(max-width: 1200px) {
   .adoption-qa-icon1 {
     left: 0px;

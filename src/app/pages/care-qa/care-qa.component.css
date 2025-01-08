@@ -72,8 +72,34 @@
 .care-qa-navlink3 {
   color: #40a9ff;
   font-size: 32px;
-  text-decoration: underline;
 }
+
+.care-qa-navlink1, .care-qa-navlink2, .care-qa-navlink3 {
+  transition: all 0.3s ease;
+}
+
+.care-qa-navlink1:hover {
+  background-color: #a1c4ff;
+  transform: scale(1.05);
+}
+
+.care-qa-navlink2:hover {
+  background-color: #a1c4ff;
+  transform: scale(1.05);
+}
+
+.care-qa-navlink3:hover {
+  color: #ff6f61;
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+.care-qa-navlink1:hover, .care-qa-navlink2:hover, .care-qa-navlink3:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
 @media(max-width: 1200px) {
   .care-qa-icon1 {
     left: 0px;
