@@ -8,20 +8,9 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-image: linear-gradient(180deg, rgb(238, 255, 227) 1.00%,rgb(106, 217, 100) 98.00%);
+  background-image: radial-gradient(circle, rgb(255, 255, 255) 50%, rgb(144, 238, 144) 100%);
 }
-.adoption-qa-icon1 {
-  top: 0px;
-  fill: var(--dl-color-theme-neutral-dark);
-  left: 0px;
-  color: #ffffff;
-  right: 0px;
-  width: var(--dl-size-size-maxwidth);
-  bottom: 0px;
-  height: var(--dl-size-size-maxwidth);
-  margin: auto;
-  position: absolute;
-}
+
 .adoption-qa-container2 {
   top: 0px;
   flex: 0 0 auto;

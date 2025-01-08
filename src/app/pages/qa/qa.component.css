@@ -5,24 +5,13 @@
   width: 100%;
   display: flex;
   overflow: hidden;
-  min-height: 100vh;
+  height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(180deg, rgb(216, 249, 255) 3.00%,rgb(252, 217, 255) 100.00%);
+  background-image: radial-gradient(circle, rgb(252, 255, 255) 50%, rgb(252, 217, 255) 100%);
 }
-.qa-icon1 {
-  top: 0px;
-  fill: var(--dl-color-theme-neutral-dark);
-  left: 0px;
-  color: #ffffff;
-  right: 0px;
-  width: var(--dl-size-size-maxwidth);
-  bottom: 0px;
-  height: var(--dl-size-size-maxwidth);
-  margin: auto;
-  position: absolute;
-}
+
 .qa-container2 {
   flex: 0 0 auto;
   width: 60%;

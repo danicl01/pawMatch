@@ -8,20 +8,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(180deg, rgba(232, 244, 255, 0) 1.00%,rgb(103, 172, 204) 100.00%);
+  background-image: radial-gradient(circle, rgb(255, 255, 255) 50%, rgb(103, 172, 204) 100%);
+
 }
-.care-qa-icon1 {
-  top: 0px;
-  fill: var(--dl-color-theme-neutral-dark);
-  left: 0px;
-  color: #ffffff;
-  right: 0px;
-  width: var(--dl-size-size-maxwidth);
-  bottom: 0px;
-  height: var(--dl-size-size-maxwidth);
-  margin: auto;
-  position: absolute;
-}
+
 .care-qa-container2 {
   flex: 0 0 auto;
   width: 60%;
