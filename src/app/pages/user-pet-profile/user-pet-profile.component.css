@@ -37,16 +37,28 @@
   font-family: "Roboto";
   font-weight: 500;
 }
-.user-pet-profile-navlink1 {
-  top: 0px;
-  color: #fd41fd;
-  right: 0px;
+.pet-profile-btn {
+  top: 0;
+  right: 0;
   position: absolute;
-  font-size: 3em;
   font-style: italic;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-weight: 400;
-  text-decoration: underline;
+  background-color: #fd41fd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pet-profile-btn:hover {
+  background-color: rgb(67, 183, 255);
 }
 .user-pet-profile-container13 {
   flex: 0 0 auto;
@@ -731,11 +743,12 @@
     height: var(--dl-size-size-large);
     margin-bottom: var(--dl-space-space-twounits);
   }
-  .user-pet-profile-navlink1 {
-    left: 0px;
-    bottom: 0px;
+  .pet-profile-btn {
+    left: 0;
+    bottom: 0;
     position: absolute;
     align-self: flex-end;
+    width: 50%;
   }
   .user-pet-profile-container14 {
     width: 100%;
@@ -768,9 +781,6 @@
   }
 }
 @media(max-width: 479px) {
-  .user-pet-profile-navlink1 {
-    font-size: 2.5em;
-  }
   .user-pet-profile-container14 {
     width: 100%;
     margin-right: 0px;

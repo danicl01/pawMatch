@@ -37,18 +37,31 @@
   font-style: normal;
   font-weight: 500;
 }
-.owner-profile-navlink {
+
+.owner-profile-btn {
   top: 0;
-  color: #48d5ea;
   right: 0;
   position: absolute;
-  font-size: 3em;
-  align-self: flex-start;
   font-style: italic;
   font-family: "Roboto", serif;
   font-weight: 400;
-  text-decoration: underline;
+  background-color: rgb(67, 183, 255);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.owner-profile-btn:hover {
+  background-color: #fd41fd;
+}
+
 .owner-profile-container13 {
   flex: 0 0 auto;
   width: 100%;
@@ -445,10 +458,12 @@
   .owner-profile-text19 {
     margin-bottom: var(--dl-space-space-twounits);
   }
-  .owner-profile-navlink {
-    left: 4px;
-    bottom: 18px;
-    position: static;
+  .owner-profile-btn {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    align-self: flex-end;
+    width: 50%;
   }
 }
 @media(max-width: 479px) {
@@ -459,9 +474,6 @@
   }
   .owner-profile-text19 {
     font-size: 3em;
-  }
-  .owner-profile-navlink {
-    font-size: 2em;
   }
   .owner-profile-container15 {
     width: 100%;
