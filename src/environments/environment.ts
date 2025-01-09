@@ -6,15 +6,16 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCLGPVOPpLS_2D-X1ALmCTxjoCl-aut1E8",
-    authDomain: "pawmatch-f87bf.firebaseapp.com",
-    projectId: "pawmatch-f87bf",
-    storageBucket: "pawmatch-f87bf.firebasestorage.app",
-    messagingSenderId: "113794447173",
-    appId: "1:113794447173:web:4122135f72103d2108f02c"
+    apiKey: 'REPLACE_WITH_REAL_KEY',
+    authDomain: 'REPLACE_WITH_REAL_AUTH_DOMAIN',
+    projectId: 'REPLACE_WITH_REAL_PROJECT_ID',
+    storageBucket: 'REPLACE_WITH_REAL_BUCKET',
+    messagingSenderId: 'REPLACE_WITH_REAL_SENDER_ID',
+    appId: 'REPLACE_WITH_REAL_APP_ID'
   },
-  googleApiKey: 'AIzaSyBE1uZ_mYD0L1krt_jGwgirCS5g9U7Hx7s'
+  googleApiKey: 'REPLACE_WITH_REAL_GOOGLE_API_KEY'
 };
+
 
 
 
