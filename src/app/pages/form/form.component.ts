@@ -94,6 +94,7 @@ export class Form implements AfterViewInit  {
 
   async submit() {
     if (this.form.invalid) {
+      this.showFieldErrors();
       toast.error("Por favor, completa todos los campos requeridos.");
       return;
     }
@@ -191,4 +192,14 @@ export class Form implements AfterViewInit  {
       }
     });
   }
+
+  showFieldErrors() {
+    Object.keys(this.form.controls).forEach(field => {
+      const control = this.form.get(field);
+      if (control && control.invalid) {
+        control.markAsTouched();
+      }
+    });
+  }
+
 }
